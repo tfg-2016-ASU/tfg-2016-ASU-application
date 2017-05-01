@@ -1,0 +1,41 @@
+'use strict';
+
+var url = require('url');
+
+var Default = require('./DefaultService');
+
+module.exports.addFeedback = function addFeedback (req, res, next) {
+  Default.addFeedback(req.swagger.params, res, next);
+};
+
+module.exports.addFeedbackResult = function addFeedbackResult (req, res, next) {
+  Default.addFeedbackResult(req.swagger.params, res, next);
+};
+
+module.exports.deleteFeedback = function deleteFeedback (req, res, next) {
+  Default.deleteFeedback(req.swagger.params, res, next);
+};
+
+module.exports.findFeedbackById = function findFeedbackById (req, res, next) {
+  Default.findFeedbackById(req.swagger.params, res, next);
+};
+
+module.exports.findFeedbackByIdFeedbackAndStudent = function findFeedbackByIdFeedbackAndStudent (req, res, next) {
+  Default.findFeedbackByIdFeedbackAndStudent(req.swagger.params, res, next);
+};
+
+module.exports.findFeedbackByStudent = function findFeedbackByStudent (req, res, next) {
+  Default.findFeedbackByStudent(req.swagger.params, res, next);
+};
+
+module.exports.findFeedbacks = function findFeedbacks (req, res, next) {
+  Default.findFeedbacks(req.swagger.params, res, next);
+};
+
+module.exports.findFeedbacksResults = function findFeedbacksResults (req, res, next) {
+  Default.findFeedbacksResults(req.swagger.params, res, next);
+};
+
+module.exports.updateFeedbackByIdFeedbackAndStudent = function updateFeedbackByIdFeedbackAndStudent (req, res, next) {
+  Default.updateFeedbackByIdFeedbackAndStudent(req.swagger.params, res, next);
+};
