@@ -22,6 +22,42 @@
         controller: 'LoginController',
         templateUrl: 'components/login/login.html',
         controllerAs: 'vm'
+      })
+      .state('studentInformation', {
+        url: '/studentInformation',
+        controller: 'StudenInformationController',
+        templateUrl: 'components/studentInformation/studentInformation.html',
+        controllerAs: 'vm'
+      })
+      .state('preparation', {
+        url: '/preparation',
+        controller: 'PreparationController',
+        templateUrl: 'components/preparation/preparation.html',
+        controllerAs: 'vm'
+      })
+      .state('chooseReviewed', {
+        url: '/chooseReviewed',
+        controller: 'ChooseReviewedController',
+        templateUrl: 'components/chooseReviewed/chooseReviewed.html',
+        controllerAs: 'vm'
+      })
+      .state('checks', {
+        url: '/checks',
+        controller: 'ChecksController',
+        templateUrl: 'components/checks/checks.html',
+        controllerAs: 'vm'
+      })
+      .state('resume', {
+        url: '/resume',
+        controller: 'ResumeController',
+        templateUrl: 'components/resume/resume.html',
+        controllerAs: 'vm'
+      })
+      .state('finish', {
+        url: '/finish',
+        controller: 'FinishController',
+        templateUrl: 'components/finish/finish.html',
+        controllerAs: 'vm'
       });
 
     lockProvider.init({

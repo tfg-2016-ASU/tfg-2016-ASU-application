@@ -24,9 +24,11 @@ module.exports.findFeedbackByIdFeedbackAndStudent = function findFeedbackByIdFee
   Default.findFeedbackByIdFeedbackAndStudent(req.swagger.params, res, next);
 };
 
-module.exports.findFeedbackByStudent = function findFeedbackByStudent (req, res, next) {
-  Default.findFeedbackByStudent(req.swagger.params, res, next);
+module.exports.findFeedbackResultByIdFeedback = function findFeedbackResultByIdFeedback (req, res, next) {
+  Default.findFeedbackResultByIdFeedback(req.swagger.params, res, next);
 };
+
+
 
 module.exports.findFeedbacks = function findFeedbacks (req, res, next) {
   Default.findFeedbacks(req.swagger.params, res, next);

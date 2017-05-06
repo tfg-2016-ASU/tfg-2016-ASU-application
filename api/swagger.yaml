@@ -88,7 +88,7 @@ paths:
         description: "ID of feedback to fetch"
         required: true
         type: "integer"
-        format: "int64"
+        format: "int32"
       responses:
         200:
           description: "pet response"
@@ -168,21 +168,22 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
-  /feedbacksResults/{student}:
+  /feedbacksResults/{idFeedback}:
     get:
-      description: "Returns the result of a feedback based on a student"
-      operationId: "findFeedbackByStudent"
+      description: "Returns the result of a feedback based on a id"
+      operationId: "findFeedbackResultByIdFeedback"
       produces:
       - "application/json"
       - "application/xml"
       - "text/xml"
       - "text/html"
       parameters:
-      - name: "student"
+      - name: "idFeedback"
         in: "path"
-        description: "student of feedback to fetch"
+        description: "id of feedback to fetch"
         required: true
-        type: "string"
+        type: "integer"
+        format: "int64"
       responses:
         200:
           description: "feedback result response"
@@ -193,6 +194,7 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
+  
   /feedbacksResults/{idFeedback}/{student}:
     get:
       description: "Returns the result of the feedback id_feedback for the student"
@@ -318,13 +320,13 @@ definitions:
         format: "int32"
       student:
         type: "string"
+      email:
+        type: "string"
       reviewer:
         type: "string"
       group:
         type: "integer"
         format: "int32"
-      section:
-        type: "string"
       shift:
         type: "string"
       preparationEnd:
@@ -341,15 +343,6 @@ definitions:
   checkResult:
     type: "object"
     properties:
-      subject:
-        type: "string"
-      edition:
-        type: "string"
-      idFeedback:
-        type: "integer"
-        format: "int32"
-      student:
-        type: "string"
       idCheck:
         type: "integer"
         format: "int32"

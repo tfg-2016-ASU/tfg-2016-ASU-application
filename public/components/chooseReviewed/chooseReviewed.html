@@ -1,0 +1,22 @@
+
+<head>
+    <h4>Elija a quién va a revisar</h4>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat= "f in feedbacksResults">
+                <td>{{f.student}}</td>
+                <td><button class="btn btn-danger" ui-sref="checks" ng-click="chooseReviewer(f.student)">Choose</button></td>
+            </tr>
+        </tbody>
+    </table>
+</body>

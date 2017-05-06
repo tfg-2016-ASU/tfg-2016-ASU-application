@@ -1,10 +1,14 @@
 <html>
   <head>
-    <title>04 - User Profile</title>
+    <title>Feedbacks</title>
 
     <!-- Viewport settings-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+    <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- Basic style -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
       <style>
@@ -32,7 +36,9 @@
       </nav>
 
       <div ui-view></div>
-    </div>
+    </div>  
+
+   
 
     <script type="text/javascript" src="auth0-variables.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
@@ -44,7 +50,13 @@
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="app.run.js"></script>
     <script type="text/javascript" src="components/home/home.controller.js"></script>
-    <script type="text/javascript" src="components/login/login.controller.js"></script>
+    <script type="text/javascript" src="components/login/login.controller.js"></script> 
+    <script type="text/javascript" src="components/studentInformation/studentInformation.controller.js"></script>   
+    <script type="text/javascript" src="components/preparation/preparation.controller.js"></script>   
+    <script type="text/javascript" src="components/chooseReviewed/chooseReviewed.controller.js"></script> 
+    <script type="text/javascript" src="components/checks/checks.controller.js"></script> 
+    <script type="text/javascript" src="components/resume/resume.controller.js"></script> 
+    <script type="text/javascript" src="components/finish/finish.controller.js"></script>   
     <script type="text/javascript" src="components/auth/auth.service.js"></script>
   </body>
 </html>

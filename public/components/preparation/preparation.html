@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <h4>Preparación</h4>
+        <!--Import materialize.css-->
+      	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      	
+    </head>
+    <body>
+        
+        <p>
+            <ul class="preparation-container">
+                <li class="preparation-repeat" ng-repeat="p in preparation"> {{p.description}}  
+                </li>
+            </ul>
+        </p>
+
+        <p>
+            <input type="checkbox" id="preparationReady" class="filled-in" />
+            <label for="preparationReady"> ¡Preparado!</label>
+        </p>
+
+        <p>
+            <button ui-sref="chooseReviewed" ng-click="preparationEnd()">Siguiente</button>
+        </p>
+
+    </body>
+</html>

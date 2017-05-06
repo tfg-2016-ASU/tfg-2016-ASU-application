@@ -132,11 +132,11 @@ exports.findFeedbacks = function(args, res, next) {
 }
 
 
-exports.findFeedbackByStudent = function(args, res, next) {
+exports.findFeedbackResultByIdFeedback = function(args, res, next) {
   
-    var studentFeedback = args['student']['value'];
-    console.log(studentFeedback);
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({student:studentFeedback}).toArray(function(err, docs) {
+    var id = args['idFeedback']['value'];
+    console.log(id);
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:id}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedback");
         }else{
@@ -144,6 +144,8 @@ exports.findFeedbackByStudent = function(args, res, next) {
         }
     });
 }
+
+
 
 exports.findFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var student = args['student']['value'];
@@ -164,25 +166,63 @@ exports.findFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var student = args['student']['value'];
     var idFeedback = args['idFeedback']['value'];
-    console.log(student);
-    console.log(idFeedback);
-    console.log("----------");
-    console.log(res['req']['swagger']['params']['body']['value']['reviewer']);
+    console.log('A1 ' + student);
+    console.log('A2 ' + idFeedback);
+    
+
     var reviewer = res['req']['swagger']['params']['body']['value']['reviewer'];
+    console.log('A3 ' + reviewer);
+    var preparationEnd = res['req']['swagger']['params']['body']['value']['preparationEnd'];
+    var group = res['req']['swagger']['params']['body']['value']['group'];
+    var arrayCheckResults = res['req']['swagger']['params']['body']['value']['arrayCheckResults'];
     
+
     //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer}},
-        function(err, docs){
-            if(err){
-                //console.log("hello puta");
-            }else{
-                //res.sendStatus(200);
-            }
+
+    /*
+    var studentToUpdate = null;
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, student:student}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get feedback");
+        }else{
+            studentToUpdate = docs[0];
         }
-    );
+    });
+    console.log(studentToUpdate);
+    */
+
+    console.log(arrayCheckResults.length);
+
+
+    if (reviewer != "" && arrayCheckResults.length==0){
+        console.log('updating reviewer');
+        db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer}},
+            function(err, docs){
+                if(err){
+                    //console.log("error");
+                }else{
+                    res.sendStatus(200);
+                }
+            }
+        );
+    }else{
+        //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
+        console.log('updating checks');
+        db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {arrayCheckResults:arrayCheckResults}},
+            function(err, docs){
+                if(err){
+                    //console.log("error");
+                }else{
+                    res.sendStatus(200);
+                }
+            }
+        );
+    }
     
-    res.sendStatus(200);
+    
+    
 }
+
 
 
 

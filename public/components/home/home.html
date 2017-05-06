@@ -6,6 +6,6 @@
   </div>
   <div class="text-center" ng-if="isAuthenticated">
     <h2>Welcome, {{ vm.profile.email }}</h2>
-    <img ng-src="{{ vm.profile.picture }}">
+    <a ui-sref="studentInformation">Comenzar</a>
   </div>
 </div>
