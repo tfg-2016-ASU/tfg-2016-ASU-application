@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('app', ['auth0.lock', 'angular-jwt', 'ui.router'])
+    .module('app', ['auth0.lock', 'angular-jwt', 'ui.router', 'ngStorage'])
     .config(config);
 
   config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider', 'jwtOptionsProvider'];
@@ -57,6 +57,12 @@
         url: '/finish',
         controller: 'FinishController',
         templateUrl: 'components/finish/finish.html',
+        controllerAs: 'vm'
+      })
+      .state('improveCheck', {
+        url: '/improveCheck',
+        controller: 'ImproveCheckController',
+        templateUrl: 'components/improveCheck/improveCheck.html',
         controllerAs: 'vm'
       });
 

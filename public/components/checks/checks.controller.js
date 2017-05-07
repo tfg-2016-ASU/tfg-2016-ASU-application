@@ -5,12 +5,35 @@
     .module('app')
     .controller('ChecksController', ChecksController);
 
-  ChecksController.$inject = ['$scope', '$rootScope', '$http', '$location'];
+  ChecksController.$inject = ['$scope', '$rootScope', '$http', '$location', '$localStorage'];
 
-  function ChecksController($scope, $rootScope, $http, $location) {
+  function ChecksController($scope, $rootScope, $http, $location, $localStorage) {
 	
     console.log("ChecksController initialized");
-    $rootScope.idFeedback = $rootScope.newFeedbackResult.idFeedback;
+    
+    $scope.newFeedbackResult = $localStorage.newFeedbackResult;
+		console.log($scope.newFeedbackResult);
+		$scope.idFeedback = $scope.newFeedbackResult.idFeedback;
+    console.log($scope.idFeedback);
+
+
+    console.log($localStorage.checks); 
+    //Obtener las checks que hay que mostrar
+    var checks = $localStorage.checks
+    console.log(checks[0]);
+
+    $scope.idCheckToShow = checks[0].idCheck;
+    $scope.checkToShow = checks[0];
+    $scope.descriptionToShow = checks[0].description;
+    $scope.typeCheckToShow = checks[0].typeCheck;
+    var currentCheck = $scope.idCheckToShow;
+    var checksLength = checks.length;
+    var lastCheck = checks[checksLength-1].idCheck;
+    console.log("numero de tareas pendientes (inclusive la actual): " + checksLength);
+    console.log('Currentcheck: ' + currentCheck)
+
+    /*
+    //$rootScope.idFeedback = $rootScope.newFeedbackResult.idFeedback;
 
     console.log($rootScope.checks.length); 
     //Obtener las checks que hay que mostrar
@@ -29,16 +52,20 @@
     console.log("numero de tareas pendientes (inclusive la actual): " + checksLength);
     console.log('Currentcheck: ' + currentCheck)
     
+    */
+
     $scope.nextCheck = function (){
 
-      $rootScope.newFeedbackResult.arrayCheckResults.push({"idCheck": $rootScope.idCheckToShow,
+      $scope.newFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                               "result": "ok",
                                                               "comments": "no"});
 
+      console.log($scope.newFeedbackResult);
 
+                                                          
       if(currentCheck == lastCheck){
        
-        $http.put('/api/feedbacksResults/' + $rootScope.idFeedback + '/' + $rootScope.studentReviewed, $rootScope.newFeedbackResult)
+        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.newFeedbackResult)
         .then(function(response) {
           console.log('put perfect');
         })
@@ -52,8 +79,8 @@
         
 
       }else{
-
-        $http.put('/api/feedbacksResults/' + $rootScope.idFeedback + '/' + $rootScope.studentReviewed, $rootScope.newFeedbackResult)
+        
+        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.newFeedbackResult)
         .then(function(response) {
           console.log('put perfect');
         })
@@ -66,14 +93,19 @@
 
         //Aquí actualizo las variables relativas a la próxima check que se mostrará en la app
         currentCheck = currentCheck + 1;
-        $rootScope.idCheckToShow = checks[currentCheck].idCheck;
-        $rootScope.checkToShow = checks[currentCheck];
-        $rootScope.descriptionToShow = checks[currentCheck].description;
-        $rootScope.typeCheckToShow = checks[currentCheck].typeCheck;
+        $scope.idCheckToShow = checks[currentCheck].idCheck;
+        $scope.checkToShow = checks[currentCheck];
+        $scope.descriptionToShow = checks[currentCheck].description;
+        $scope.typeCheckToShow = checks[currentCheck].typeCheck;
 
       }
+      
     }	
 
+    $scope.improveCheck = function (idCheckToShow){
+      console.log("improveCheck");
+    }
+    
 
     $scope.finishFeedback = function (){
       console.log("finish");
@@ -85,7 +117,7 @@
       console.log("resume");
     }
 
-
   }
+  
 
 }());
