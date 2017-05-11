@@ -19,15 +19,15 @@
     */
 
     $scope.newFeedbackResult = $localStorage.newFeedbackResult;
-    console.log($scope.newFeedbackResult.idFeedback);
+    console.log('A: ' + $scope.newFeedbackResult);
     $scope.idFeedback = $scope.newFeedbackResult.idFeedback;
+    
 
-    $http.get('/api/feedbacksInformation/' + $scope.newFeedbackResult.idFeedback)
+    $http.get('/api/feedbacksInformation/' + $scope.idFeedback)
     .then(function(response) {      
       $scope.preparation = response.data[0].preparation;
       $localStorage.checks = response.data[0].checks;
       //$scope.checks = response.data[0].checks;
-      console.log($localStorage.checks);
       
     })
     .catch(function(response) {
@@ -36,9 +36,7 @@
     .finally(function() {
       console.log("Preparation showed");
     });
-
     
-
   }
 
 }());

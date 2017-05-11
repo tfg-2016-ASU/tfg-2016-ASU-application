@@ -40,23 +40,52 @@
 			console.log('Revisor: ' + $scope.newFeedbackResult.student);	//este es el alumno loggeado en el sistema, que actuará como revisor
 			$localStorage.studentReviewed = $scope.studentReviewed;
 
+			//get al student que voy a revisar -> obetngo sus datos -> le modifico el reviewer 
+			$http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.studentReviewed)
+			.then(function(response) {     
+				$scope.reviewedFeedbackResult = response.data[0];
+				console.log($scope.reviewedFeedbackResult);
+				
+				/*
+				//Modifico el reviewer
+		    //Elimino el _id y el createDate ya que al hacer el put swagger espera un objeto json sin esos atributos
+				delete $scope.reviewedFeedbackResult._id;
+			  delete $scope.reviewedFeedbackResult.createDate;
 
-			//Crear un objeto con todas las propiedades undefined excepto el reviewer
-			$scope.newFeedbackResult.reviewer = $scope.newFeedbackResult.student;
-			
-			$http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.studentReviewed, $scope.newFeedbackResult)
-			//$http.put('/api/feedbacksResults/1/david salas', $rootScope.newFeedbackResult)
-			.then(function(response) {
-				console.log('all perfect');
+			  $scope.reviewedFeedbackResult.reviewer = $scope.studentReviewer;
+				$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
+				
+				//$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
+
+				//Crear un objeto con todas las propiedades undefined excepto el reviewer
+				$scope.newFeedbackResult.reviewer = $scope.newFeedbackResult.student;
+				*/
+				 $scope.reviewedFeedbackResult.reviewer = $scope.newFeedbackResult.student;
+				
+				$http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.studentReviewed, $scope.reviewedFeedbackResult)
+				.then(function(response) {
+					console.log('all perfect');
+
+					$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
+				  console.log($localStorage.reviewedFeedbackResult);
+					
+				})
+				.catch(function(response) {
+					console.error('Error', response.status, response.data);
+				})
+				.finally(function() {
+					console.log("Finished");
+				});
+
+				
+
 			})
 			.catch(function(response) {
-			  console.error('Error', response.status, response.data);
+				console.error('Show preparation error', response.status, response.data);
 			})
 			.finally(function() {
-			  console.log("Finished");
+				console.log("Preparation showed");
 			});
-
-			
 		
 	}
 

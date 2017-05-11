@@ -5,14 +5,21 @@
     .module('app')
     .controller('ResumeController', ResumeController);
 
-  ResumeController.$inject = ['$scope'];
+  ResumeController.$inject = ['$scope', '$localStorage'];
 
-  function ResumeController($scope) {
+  function ResumeController($scope, $localStorage) {
 	
     console.log("ResumeController initialized");
-	
-    var vm = this;
+	/*
+    $scope.idFeedback = $localStorage.idFeedback;
+    $scope.checks = $localStorage.reviewedFeedbackResult.arrayCheckResults;
 
+    $scope.goToTheCheck = function (idCheck){
+      $localStorage.checkToImprove = idCheck;
+      console.log(idCheck);
+      //$localStorage.nextCheck();
+    }
+*/
   }
 
 }());

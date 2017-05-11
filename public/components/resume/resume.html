@@ -1,10 +1,22 @@
-<html>
-    <head>
-        <h4>Feedback {{idFeedback}}</h4>
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-    </head>
-    <body>
-        Resumen del feedback
-    </body>
-</html>
+<!--<head>
+    <h4>Feedback {{idFeedback}}</h4>
+    
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Resumen del feedback</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat= "C in checks">
+                <td>Tarea {{C.idCheck}}</td>
+                <td> {{C.result}}</td>
+                <td><button ui-sref="improveCheck" ng-click="chooseReviewer(C.idCheck)">Mejorar a la tarea</button></td>
+            </tr>
+        </tbody>
+    </table>
+</body>-->
