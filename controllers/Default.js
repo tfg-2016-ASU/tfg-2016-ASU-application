@@ -28,8 +28,6 @@ module.exports.findFeedbackResultByIdFeedback = function findFeedbackResultByIdF
   Default.findFeedbackResultByIdFeedback(req.swagger.params, res, next);
 };
 
-
-
 module.exports.findFeedbacks = function findFeedbacks (req, res, next) {
   Default.findFeedbacks(req.swagger.params, res, next);
 };

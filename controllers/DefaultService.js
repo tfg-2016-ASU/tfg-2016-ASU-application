@@ -69,13 +69,13 @@ exports.deleteFeedback = function(args, res, next) {
    **/
   var idFeedback = args['idFeedback']['value'];
   db.collection(FEEDBACKS_COLLECTION).remove({idFeedback:idFeedback}, {}, (err,numRemoved)=>{
-		if(err){
-			res.sendStatus(500);
-		}else{
-			console.log("Deleted " + numRemoved + " objects");
-			res.sendStatus(200);
-		}
-	});
+    if(err){
+      res.sendStatus(500);
+    }else{
+      console.log("Deleted " + numRemoved + " objects");
+      res.sendStatus(200);
+    }
+  });
 }
 
 exports.findFeedbackById = function(args, res, next) {
@@ -163,7 +163,6 @@ exports.findFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 }
 
 
-
 exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var student = args['student']['value'];
     var idFeedback = args['idFeedback']['value'];
@@ -180,16 +179,6 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 
     //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
 
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults}},
-            function(err, docs){
-                if(err){
-                    //console.log("error");
-                }else{
-                    res.sendStatus(200);
-                }
-            }
-        );
-
     /*
     var studentToUpdate = null;
     db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, student:student}).toArray(function(err, docs) {
@@ -201,37 +190,21 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     });
     console.log(studentToUpdate);
     */
-/*
+
     console.log(arrayCheckResults.length);
 
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults}},
+            function(err, docs){
+                if(err){
+                    //console.log("error");
+                }else{
+                    res.sendStatus(200);
+                }
+            }
+        );
 
-    if (reviewer != "" && arrayCheckResults.length==0){
-        console.log('updating reviewer');
-        db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer}},
-            function(err, docs){
-                if(err){
-                    //console.log("error");
-                }else{
-                    res.sendStatus(200);
-                }
-            }
-        );
-    }else{
-        //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
-        console.log('updating checks');
-        db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {arrayCheckResults:arrayCheckResults}},
-            function(err, docs){
-                if(err){
-                    //console.log("error");
-                }else{
-                    res.sendStatus(200);
-                }
-            }
-        );
-    }
-   */ 
+  
+    
     
     
 }
-
-

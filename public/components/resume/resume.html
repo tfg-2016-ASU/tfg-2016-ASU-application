@@ -1,4 +1,4 @@
-<!--<head>
+<head>
     <h4>Feedback {{idFeedback}}</h4>
     
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -15,8 +15,8 @@
             <tr ng-repeat= "C in checks">
                 <td>Tarea {{C.idCheck}}</td>
                 <td> {{C.result}}</td>
-                <td><button ui-sref="improveCheck" ng-click="chooseReviewer(C.idCheck)">Mejorar a la tarea</button></td>
+                <td><button ui-sref="improveCheck" ng-click="improveCheck(C.idCheck)">Mejorar la tarea</button></td>
             </tr>
         </tbody>
     </table>
-</body>-->
+</body>

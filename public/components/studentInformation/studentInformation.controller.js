@@ -30,7 +30,7 @@
 
 		
 	
-			
+			console.log($scope.newFeedbackResult);
 			$localStorage.newFeedbackResult = $scope.newFeedbackResult;
 			console.log($localStorage.newFeedbackResult);
 			
@@ -86,15 +86,15 @@
 
 			$http.post('/api/feedbacksResults', $scope.newFeedbackResult)
 			.then(function(response) {
-				console.log('Feedback result added correctly!');
-			})
+					console.log('Feedback result added correctly!');
+						
+				})
 			.catch(function(response) {
 			  console.error('Feedbacks results error', response.status, response.data);
 			})
 			.finally(function() {
 			  console.log("Feedbacks results showed");
-			  console.log($localStorage.newFeedbackResult);
-			  $localStorage.idFeedback = $scope.newFeedbackResult.idFeedback;
+				console.log($localStorage.newFeedbackResult);
 			});
 
 		}

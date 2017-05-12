@@ -11,7 +11,7 @@
 	
     console.log("FinishController initialized");
 	
-    console.log($rootScope.idFeedback);
+    
 
   }
 

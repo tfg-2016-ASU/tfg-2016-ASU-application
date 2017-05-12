@@ -5,14 +5,13 @@
     .module('app')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['authService', '$localStorage'];
+  LoginController.$inject = ['authService'];
 
-  function LoginController(authService, $localStorage) {
+  function LoginController(authService) {
 
     var vm = this;
     vm.authService = authService;
 
-    
   }
 
 }());

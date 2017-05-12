@@ -642,7 +642,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = { raw: '8.6.0' };
+	module.exports = { raw: '8.6.1' };
 
 
 /***/ },
@@ -7277,7 +7277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	IframeHandler.prototype.loadEventListener = function () {
 	  var _this = this;
-	  _this.callback(this.iframe.contentWindow.location.hash);
+	  _this.callback(null, this.iframe.contentWindow.location.hash);
 	};
 	
 	IframeHandler.prototype.callbackHandler = function (result) {
@@ -8143,7 +8143,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  handler = new SilentAuthenticationHandler(this, this.client.buildAuthorizeUrl(params));
 	
-	  handler.login(usePostMessage, function (hash) {
+	  handler.login(usePostMessage, function (err, hash) {
+	    if (typeof hash === 'object') {
+	      // hash was already parsed, so we just return it
+	      // it's here to be backwards compatible and should be removed in the next major version
+	      return cb(err, hash);
+	    }
 	    var transaction = _this.transactionManager.getStoredTransaction(params.state);
 	    var transactionNonce = options.nonce || (transaction && transaction.nonce) || null;
 	    var transactionState = options.state || (transaction && transaction.state) || null;
@@ -8717,7 +8722,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    callback: callback,
 	    timeout: this.timeout,
 	    timeoutCallback: function () {
-	      callback('#error=timeout&error_description=Timeout+during+authentication+renew.');
+	      callback(null, '#error=timeout&error_description=Timeout+during+authentication+renew.');
 	    },
 	    usePostMessage: usePostMessage || false
 	  });

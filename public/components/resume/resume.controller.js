@@ -10,16 +10,14 @@
   function ResumeController($scope, $localStorage) {
 	
     console.log("ResumeController initialized");
-	/*
+	
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.checks = $localStorage.reviewedFeedbackResult.arrayCheckResults;
-
-    $scope.goToTheCheck = function (idCheck){
-      $localStorage.checkToImprove = idCheck;
-      console.log(idCheck);
-      //$localStorage.nextCheck();
+    
+    $scope.improveCheck = function(idCheck){
+      $localStorage.currentCheck = idCheck;
     }
-*/
+
   }
 
 }());

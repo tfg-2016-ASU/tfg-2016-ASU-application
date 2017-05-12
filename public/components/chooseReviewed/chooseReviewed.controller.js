@@ -5,9 +5,9 @@
     .module('app')
     .controller('ChooseReviewedController', ChooseReviewedController);
 
-  ChooseReviewedController.$inject = ['$scope', '$rootScope', '$http', '$localStorage'];
+  ChooseReviewedController.$inject = ['$scope', '$rootScope', '$http', '$localStorage', '$location'];
 
-  function ChooseReviewedController($scope, $rootScope, $http, $localStorage) {
+  function ChooseReviewedController($scope, $rootScope, $http, $localStorage, $location) {
 	
     console.log("ChooseReviewedController initialized");
 
@@ -51,12 +51,10 @@
 		    //Elimino el _id y el createDate ya que al hacer el put swagger espera un objeto json sin esos atributos
 				delete $scope.reviewedFeedbackResult._id;
 			  delete $scope.reviewedFeedbackResult.createDate;
-
 			  $scope.reviewedFeedbackResult.reviewer = $scope.studentReviewer;
 				$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
 				
 				//$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
-
 				//Crear un objeto con todas las propiedades undefined excepto el reviewer
 				$scope.newFeedbackResult.reviewer = $scope.newFeedbackResult.student;
 				*/
@@ -68,6 +66,10 @@
 
 					$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
 				  console.log($localStorage.reviewedFeedbackResult);
+
+					$localStorage.reviewedFeedbackResult.arrayCheckResults = [];
+					$localStorage.currentCheck = 0;
+					$location.path('/checks');
 					
 				})
 				.catch(function(response) {

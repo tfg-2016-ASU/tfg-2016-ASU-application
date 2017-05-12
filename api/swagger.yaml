@@ -194,7 +194,6 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
-  
   /feedbacksResults/{idFeedback}/{student}:
     get:
       description: "Returns the result of the feedback id_feedback for the student"
@@ -264,9 +263,6 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
-
-
-
 definitions:
   errorModel:
     type: "object"
@@ -353,4 +349,3 @@ definitions:
         type: "string"
       comments:
         type: "string"
-  
