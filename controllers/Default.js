@@ -39,3 +39,7 @@ module.exports.findFeedbacksResults = function findFeedbacksResults (req, res, n
 module.exports.updateFeedbackByIdFeedbackAndStudent = function updateFeedbackByIdFeedbackAndStudent (req, res, next) {
   Default.updateFeedbackByIdFeedbackAndStudent(req.swagger.params, res, next);
 };
+
+module.exports.findStudentsPrepared = function findStudentsPrepared (req, res, next) {
+  Default.findStudentsPrepared(req.swagger.params, res, next);
+};

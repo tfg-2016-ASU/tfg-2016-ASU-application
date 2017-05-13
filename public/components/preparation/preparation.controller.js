@@ -10,6 +10,10 @@
   function PreparationController($scope, $http, $rootScope, $localStorage) {
 
     console.log("PreparationController initialized");
+    
+
+    $scope.preparationReady = 'no';
+    
 
     /*
     console.log(JSON.parse(JSON.stringify($localStorage.newFeedbackResult)));
@@ -21,6 +25,13 @@
     $scope.newFeedbackResult = $localStorage.newFeedbackResult;
     console.log($scope.newFeedbackResult.idFeedback);
     $scope.idFeedback = $scope.newFeedbackResult.idFeedback;
+
+    $scope.changePreparationEnd = function(){
+      console.log("cambié");
+      console.log($scope.preparationReady);
+      $scope.newFeedbackResult.preparationEnd = $scope.preparationReady;
+
+    }
 
     $http.get('/api/feedbacksInformation/' + $scope.newFeedbackResult.idFeedback)
     .then(function(response) {      
@@ -38,6 +49,18 @@
     });
 
     
+    $scope.modifyPreparationEnd = function(){
+      $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.newFeedbackResult.student, $scope.newFeedbackResult)
+				.then(function(response) {
+					console.log('all perfect');
+				})
+				.catch(function(response) {
+					console.error('Error', response.status, response.data);
+				})
+				.finally(function() {
+					console.log("Finished");
+				});
+    }
 
   }
 

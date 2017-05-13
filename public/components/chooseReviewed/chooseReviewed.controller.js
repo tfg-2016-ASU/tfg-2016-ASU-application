@@ -20,7 +20,7 @@
 		$scope.idFeedback = $scope.newFeedbackResult.idFeedback;
 
 
-		$http.get('/api/feedbacksResults/' + $scope.idFeedback)
+		$http.get('/api/findStudentsPrepared/' + $scope.idFeedback)
 		.then(function(response) {
 			$scope.feedbacksResults = response.data;
 			console.log($scope.feedbacksResults);

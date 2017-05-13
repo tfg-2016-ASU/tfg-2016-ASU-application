@@ -64,6 +64,12 @@
         controller: 'ImproveCheckController',
         templateUrl: 'components/improveCheck/improveCheck.html',
         controllerAs: 'vm'
+      })
+      .state('ganttChart', {
+        url: '/devel/roadmap/milestone1',
+        controller: 'GanttChartController',
+        templateUrl: 'components/ganttChart/ganttChart.html',
+        controllerAs: 'vm'
       });
 
     lockProvider.init({

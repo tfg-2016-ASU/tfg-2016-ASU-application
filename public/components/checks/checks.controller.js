@@ -30,11 +30,21 @@
       $localStorage.currentCheck = 0;
     }
     console.log('current check: ' + $localStorage.currentCheck);
-    $scope.idCheckToShow = $localStorage.currentCheck;
-    $scope.descriptionToShow = checks[$localStorage.currentCheck].description;
+
+
+
     var checksLength = checks.length;
     $localStorage.lastCheck = checks[checksLength-1].idCheck;
-    console.log('id check to show: ' + $scope.idCheckToShow);
+
+    if($localStorage.currentCheck > $localStorage.lastCheck){
+      $location.path('/finish');
+    }else{
+      $scope.idCheckToShow = $localStorage.currentCheck;
+      $scope.descriptionToShow = checks[$localStorage.currentCheck].description;
+      console.log('id check to show: ' + $scope.idCheckToShow);
+    }
+
+    
 
 /*
     $scope.idCheckToShow = checks[0].idCheck;
@@ -49,15 +59,18 @@
 
     */
 
+    
+
     $scope.nextCheck = function (){
 
 
-      /*var i;
+      var i;
       for (i = 0; i < $scope.reviewedFeedbackResult.arrayCheckResults.length; i++) {
         if($scope.reviewedFeedbackResult.arrayCheckResults[i].idCheck == $localStorage.currentCheck){
           $scope.reviewedFeedbackResult.arrayCheckResults.splice(i, 1);
+          console.log('ana palangana');
         }
-      };*/  
+      };
 
 
       $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,

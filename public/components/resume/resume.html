@@ -1,22 +1,22 @@
-<head>
-    <h4>Feedback {{idFeedback}}</h4>
-    
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-    
-</head>
-<body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Resumen del feedback</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat= "C in checks">
-                <td>Tarea {{C.idCheck}}</td>
-                <td> {{C.result}}</td>
-                <td><button ui-sref="improveCheck" ng-click="improveCheck(C.idCheck)">Mejorar la tarea</button></td>
-            </tr>
-        </tbody>
-    </table>
-</body>
+<html>
+     <div class="container" >
+        <head>
+            <h3 class="center-align">Feedback {{idFeedback}}</h3>
+            <h5 class="center-align">Resumen del feedback</h5>
+            </br>
+            <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+            
+        </head>
+        <body>
+            <table class="table">
+                <tbody>
+                    <tr ng-repeat= "C in checks">
+                        <td class="center-align">Tarea {{C.idCheck}}</td>
+                        <td class="center-align"> {{C.result}}</td>
+                        <td class="center-align"><button ui-sref="improveCheck" ng-click="improveCheck(C.idCheck)" class="btn red lighten-2">Mejorar la tarea</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </body>
+     </div>
+</html>

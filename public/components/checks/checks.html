@@ -1,20 +1,32 @@
 <html>
+    <div class="container">
     <head>
-        <h4>Feedback {{idFeedback}}</h4>
+        <h3 class="center-align">Feedback {{idFeedback}}</h3>
         <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     </head>
     <body>
-        Tarea {{idCheckToShow}}
+        <h5 class="center-align">Tarea {{idCheckToShow}}</h5>
         </br>
         </br>
-        {{descriptionToShow}}
+        <h6 class="center-align">{{descriptionToShow}}</h6>
         </br>
         </br>
-        <button ui-sref="improveCheck" ng-click="improveCheck(idCheckToShow)">NO</button>
-        <button ng-click="nextCheck()">OK</button>
+        <div class="center-align">
+
+
+            
+        <button ui-sref="improveCheck" ng-click="improveCheck(idCheckToShow)" class="btn red lighten-2">
+            <i class="material-icons right">cancel</i>
+        </button>
+        <button ng-click="nextCheck()" class="btn green lighten-2">
+            <i class="material-icons right">check</i>
+        </button>
         </br>
         </br>
-        <button ui-sref="resume" ng-click="resumeFeedback()">Resumen</button>
-        <button ui-sref="finish" ng-click="finishFeedback()">Terminar</button>
+        </br>
+        <button ui-sref="resume" ng-click="resumeFeedback()" class="btn waves-effect waves-light">Resumen</button>
+        <button ui-sref="finish" ng-click="finishFeedback()" class="btn waves-effect waves-light">Terminar</button>
+        </div>
     </body>
+    </div>
 </html>

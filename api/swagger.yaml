@@ -194,6 +194,40 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
+  
+
+  /findStudentsPrepared/{idFeedback}:
+    get:
+      description: "Returns all feedbacks results with preparationEnd equal to 'si'"
+      operationId: "findStudentsPrepared"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "idFeedback"
+        in: "path"
+        description: "id of feedback to fetch"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "feedbacks response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/feedbackResult"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"  
+
+
+
+
   /feedbacksResults/{idFeedback}/{student}:
     get:
       description: "Returns the result of the feedback id_feedback for the student"

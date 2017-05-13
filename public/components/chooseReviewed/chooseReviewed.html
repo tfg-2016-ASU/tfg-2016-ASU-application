@@ -1,6 +1,8 @@
-
+<html>
+<div class="container" >
 <head>
-    <h4>Elija a quién va a revisar</h4>
+    <h3 class="center-align">Feedback {{idFeedback}}</h3>
+    <h4 class="center-align">Elija a quién va a revisar</h4>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     
@@ -9,14 +11,17 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th class="center-align">Name</th>
+                <th class="center-align">Elegir</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             <tr ng-repeat= "f in feedbacksResults">
-                <td>{{f.student}}</td>
-                <td><button class="btn btn-danger"  ng-click="chooseReviewer(f.student)">Choose</button></td>
+                <td class="center-align">{{f.student}}</td>
+                <td class="center-align"><button class="btn btn-danger"  ng-click="chooseReviewer(f.student)">Elegir</button></td>
             </tr>
         </tbody>
     </table>
 </body>
+</div>
+</html>

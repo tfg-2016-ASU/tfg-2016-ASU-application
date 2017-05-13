@@ -162,6 +162,19 @@ exports.findFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     });
 }
 
+exports.findStudentsPrepared = function(args, res, next) {
+    var idFeedback = args['idFeedback']['value'];
+    console.log(idFeedback);
+    
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si'}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get feedback");
+        }else{
+            res.status(200).json(docs);
+        }
+    });
+}
+
 
 exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var student = args['student']['value'];
@@ -193,7 +206,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 
     console.log(arrayCheckResults.length);
 
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults}},
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd}},
             function(err, docs){
                 if(err){
                     //console.log("error");

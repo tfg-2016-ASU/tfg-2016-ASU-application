@@ -1,6 +1,8 @@
   <html>
+    <div class="container" >
     <head>
-      <h4>Feedback</h4>
+      
+      <h4 class="center-align">Feedback SOS</h4>
         <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
       	<!--Import Google Icon Font-->
       	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -8,9 +10,10 @@
       	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 		    <!--Let browser know website is optimized for mobile-->
       	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
     </head>
 
-    <body>
+    <!--<body>
       <form>
       <input ng-model="newFeedbackResult.idFeedback" placeholder="Número de feedback" id="idFeedback" type="number" class="validate" ng-required="true" required></input>
       <input ng-model="newFeedbackResult.student" placeholder="Nombre y apellidos" id="student" type="text" class="validate" ng-required="true" required></input>
@@ -18,11 +21,47 @@
       <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" id="shift" type="text" class="validate" ng-required="true" required></input>
       
       <button ui-sref="preparation" ng-click="addFeedbackResult()">Siguiente</button>
-         
 
       </form>
-      <!--Import jQuery before materialize.js-->
+      
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    </body>-->
+    <body>
+      
+        
+        <form>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input ng-model="newFeedbackResult.student" placeholder="Nombre y apellidos" id="student" type="text" class="validate" ng-required="true" required></input>
+          </div>
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">feedback</i>
+             <input ng-model="newFeedbackResult.idFeedback" placeholder="Número de feedback" id="idFeedback" type="number" class="validate" ng-required="true" required></input>
+          </div>
+         
+          <div class="input-field col s6">
+            <i class="material-icons prefix">group</i>
+            <input ng-model="newFeedbackResult.group" placeholder="Grupo" id="group" type="number" class="validate" ng-required="true" required></input>
+          </div>
+         
+          <div class="input-field col s6">
+            <i class="material-icons prefix">access_time</i>
+            <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" id="shift" type="text" class="validate" ng-required="true" required></input>
+          </div>
+          
+
+          <button ui-sref="preparation" ng-click="addFeedbackResult()" class="btn waves-effect waves-light">Siguiente
+            <i class="material-icons right">send</i>
+          </button>
+
+        </form>
+      
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+        
+     
     </body>
+     </div>
   </html>
