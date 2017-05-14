@@ -1,12 +1,19 @@
 <html>
     <head>
-        <h4>Feedback {{idFeedback}}</h4>
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+        <div class="container">
+            <h3 class="center-align">Feedback {{idFeedback}}</h3>
+            <!--Import materialize.css-->
+            <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     </head>
     <body>
-        Resultado final del feedback
+        <div class="center-align">
+            <h5>Resultado final del feedback: {{score}}</h5>
+        </div>
 
-        <a ui-sref="resume">Resumen</a>
+        <div class="center-align">
+            <a ui-sref="resume">Resumen</a>
+        </div>
+
+        </div>
     </body>
 </html>

@@ -40,11 +40,13 @@
       if($scope.comments != 'no'){
         $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                                 "result": "ok",
-                                                                "comments": $scope.comments});
+                                                                "comments": $scope.comments,
+                                                                "punctuation": $localStorage.punctuation});
       }else{
         $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                                 "result": "ok",
-                                                                "comments": "no"});
+                                                                "comments": "no",
+                                                                "punctuation": $localStorage.punctuation});
       }
 
       
@@ -127,11 +129,13 @@
       if($scope.comments != 'no'){
         $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                                 "result": "no",
-                                                                "comments": $scope.comments});
+                                                                "comments": $scope.comments,
+                                                                "punctuation": 0});
       }else{
          $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                                 "result": "no",
-                                                                "comments": "no"});
+                                                                "comments": "no",
+                                                                "punctuation": 0});
       }
 
      

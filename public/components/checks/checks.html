@@ -7,6 +7,7 @@
     <body>
         <h5 class="center-align">Tarea {{idCheckToShow}}</h5>
         </br>
+        <h6 class="center-align">{{punctuation}} puntos</h6>
         </br>
         <h6 class="center-align">{{descriptionToShow}}</h6>
         </br>
@@ -15,7 +16,7 @@
 
 
             
-        <button ui-sref="improveCheck" ng-click="improveCheck(idCheckToShow)" class="btn red lighten-2">
+        <button ui-sref="improveCheck" ng-click="improveCheck(idCheckToShow, punctuation)" class="btn red lighten-2">
             <i class="material-icons right">cancel</i>
         </button>
         <button ng-click="nextCheck()" class="btn green lighten-2">

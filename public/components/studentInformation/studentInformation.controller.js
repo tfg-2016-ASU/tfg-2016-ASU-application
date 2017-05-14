@@ -21,7 +21,7 @@
 				"email": "string",
 				"reviewer": "",
 				"preparationEnd": "no",
-				"result": "string",
+				"result": "NEGATIVO",
 				"score": 0,
 				"arrayCheckResults": [
 				]

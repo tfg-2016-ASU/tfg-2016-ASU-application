@@ -41,7 +41,9 @@
     }else{
       $scope.idCheckToShow = $localStorage.currentCheck;
       $scope.descriptionToShow = checks[$localStorage.currentCheck].description;
+      $scope.punctuation = checks[$localStorage.currentCheck].punctuation;
       console.log('id check to show: ' + $scope.idCheckToShow);
+      console.log('punctuation to show: ' + $scope.punctuation);
     }
 
     
@@ -72,17 +74,19 @@
         }
       };
 
+      console.log()
 
       $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                               "result": "ok",
-                                                              "comments": "no"});
+                                                              "comments": "no",
+                                                              "punctuation": $scope.punctuation});
 
       $localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
       console.log($scope.reviewedFeedbackResult);
 
                                                           
       if($scope.idCheckToShow == $localStorage.lastCheck){
-       
+        
         $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.reviewedFeedbackResult)
         .then(function(response) {
           console.log('put perfect');
@@ -90,6 +94,7 @@
           $scope.idCheckToShow = checks[$localStorage.currentCheck].idCheck;
           $scope.checkToShow = checks[$scope.idCheckToShow];
           $scope.descriptionToShow = checks[$scope.idCheckToShow].description;
+          $scope.punctuation = checks[$scope.idCheckToShow].punctuation;
           console.log('current check: ' + $localStorage.currentCheck);
           console.log('id check to show: ' + $scope.idCheckToShow);
           
@@ -113,6 +118,7 @@
           $scope.idCheckToShow = checks[$localStorage.currentCheck].idCheck;
           $scope.checkToShow = checks[$scope.idCheckToShow];
           $scope.descriptionToShow = checks[$scope.idCheckToShow].description;
+          $scope.punctuation = checks[$scope.idCheckToShow].punctuation;
           console.log('current check: ' + $localStorage.currentCheck);
           console.log('id check to show: ' + $scope.idCheckToShow);
           
@@ -135,8 +141,9 @@
       
     }	
 
-    $scope.improveCheck = function (idCheckToShow){
+    $scope.improveCheck = function (idCheckToShow, punctuation){
       $localStorage.currentCheck = idCheckToShow;
+      $localStorage.punctuation = punctuation;
       console.log("improveCheck");
     }
     
