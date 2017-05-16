@@ -38,7 +38,7 @@
             
             <div class="row">
                 <div class="col s4">
-                    <div flex layout="row" layout-align="center center" ui-sref="improveCheck" class="demo-swipe" md-swipe-left="improveCheck(idCheckToShow, punctuation)">
+                    <div flex layout="row" layout-align="center center" ui-sref="improveCheck" class="demo-swipe" md-swipe-right="improveCheck(idCheckToShow, punctuation)">
                         <i class="material-icons">sentiment_very_dissatisfied</i>
                     </div>
                 </div>
@@ -48,9 +48,9 @@
                 </div>
 
                 <div class="col s4">
-                    <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-right="nextCheck()">
-                        <i class="material-icons right">arrow forward</i>
-                        <!--<i class="material-icons">sentiment_very_satisfied</i>-->
+                    <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-left="nextCheck()">
+                        <!--<i class="material-icons right">arrow forward</i>-->
+                        <i class="material-icons">sentiment_very_satisfied</i>
                     </div>
                 </div>
             </div>
