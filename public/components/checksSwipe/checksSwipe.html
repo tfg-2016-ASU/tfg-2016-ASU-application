@@ -1,5 +1,5 @@
 <html>
-    <div class="container">
+    <div class="container" id="first-container">
     <head>
         <h3 class="center-align">Feedback {{idFeedback}}</h3>
         <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -23,6 +23,7 @@
                 -ms-user-select: none;
                 user-select: none; 
             }
+            
         </style>
     </head>
     <body ng-app="app">
@@ -31,36 +32,37 @@
             </br>
             <h6 class="center-align">{{punctuation}} puntos</h6>
             </br>
-            <h6 class="center-align">{{descriptionToShow}}</h6>
-            </br>
+           
             </br>
             <div class="center-align">
-
-
-                
-            <button ui-sref="improveCheck" ng-click="improveCheck(idCheckToShow, punctuation)" class="btn red lighten-2">
-                <i class="material-icons right">cancel</i>
-            </button>
-            <button ng-click="nextCheck()" class="btn green lighten-2">
-                <i class="material-icons right">check</i>
-            </button>
-            </br>
-            </br>
-
             
-                <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-left="improveCheck(idCheckToShow, punctuation)">
-                    <span class="no-select">Swipe me to the left</span>
+            <div class="row">
+                <div class="col s4">
+                    <div flex layout="row" layout-align="center center" ui-sref="improveCheck" class="demo-swipe" md-swipe-left="improveCheck(idCheckToShow, punctuation)">
+                        <i class="material-icons">sentiment_very_dissatisfied</i>
+                    </div>
                 </div>
-                
-                <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-right="nextCheck()">
-                    <span class="no-select">Swipe me to the right</span>
+
+                <div class="col s4">
+                    <h6 class="center-align">{{descriptionToShow}}</h6> 
                 </div>
-            
+
+                <div class="col s4">
+                    <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-right="nextCheck()">
+                        <i class="material-icons right">arrow forward</i>
+                        <!--<i class="material-icons">sentiment_very_satisfied</i>-->
+                    </div>
+                </div>
+            </div>
+
             </br>
             </br>
+
             <button ui-sref="resume" ng-click="resumeFeedback()" class="btn waves-effect waves-light">Resumen</button>
             <button ui-sref="finish" ng-click="finishFeedback()" class="btn waves-effect waves-light">Terminar</button>
+
             </div>
+            
 
         </div>
     </body>

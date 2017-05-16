@@ -147,6 +147,7 @@
       $localStorage.currentCheck = idCheckToShow;
       $localStorage.punctuation = punctuation;
       console.log("improveCheck");
+      $location.path('/improveCheck');
     }
     
 
