@@ -6,9 +6,9 @@
     .module('app')
     .service('authService', authService);
 
-  authService.$inject = ['lock', 'authManager', '$q'];
+  authService.$inject = ['$rootScope', 'lock', 'authManager', '$q'];
 
-  function authService(lock, authManager, $q) {
+  function authService($rootScope, lock, authManager, $q) {
 
     var userProfile = JSON.parse(localStorage.getItem('profile')) || null;
     var deferredProfile = $q.defer();
@@ -57,6 +57,21 @@
     function getProfileDeferred() {
       return deferredProfile.promise;
     }
+
+    function isAdmin() {
+      return userProfile && userProfile.app_metadata
+        && userProfile.app_metadata.roles
+        && userProfile.app_metadata.roles.indexOf('admin') > -1;
+    }
+
+    $rootScope.$on('$stateChangeStart', function(event, nextRoute) {
+      if (nextRoute.controller === 'AdminController') {
+        if (!isAdmin()) {
+          alert('You are not allowed to see the Admin content');
+          return event.preventDefault();
+        }
+      }
+    });
 
     return {
       login: login,

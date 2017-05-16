@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('app', ['auth0.lock', 'angular-jwt', 'ui.router', 'ngStorage'])
+    .module('app', ['auth0.lock', 'angular-jwt', 'ui.router', 'ngStorage', 'ngMaterial'])
     .config(config);
 
   config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider', 'jwtOptionsProvider'];
@@ -70,13 +70,32 @@
         controller: 'GanttChartController',
         templateUrl: 'components/ganttChart/ganttChart.html',
         controllerAs: 'vm'
+      })
+      .state('admin', {
+        url: '/admin',
+        controller: 'AdminController',
+        templateUrl: 'components/admin/admin.html',
+        controllerAs: 'vm'
+      })
+      .state('swipe', {
+        url: '/swipe',
+        controller: 'demoSwipeCtrl',
+        templateUrl: 'components/swipe/swipe.html',
+        controllerAs: 'vm'
       });
 
     lockProvider.init({
       clientID: AUTH0_CLIENT_ID,
       domain: AUTH0_DOMAIN,
       options: {
-        _idTokenVerification: false
+        _idTokenVerification: false,
+        languageDictionary: {
+          title: "Feedbacks SOS 16-17"
+        },
+        theme: {
+          logo: '/images/logous.png',
+          primaryColor: "#9d2235"
+        }
       }
     });
 

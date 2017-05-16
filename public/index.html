@@ -29,6 +29,7 @@
             <ul class="nav navbar-nav">
               <li ng-if="!isAuthenticated"><a ui-sref="login">Log In</a></li>
               <li ng-if="isAuthenticated"><a ui-sref="home" ng-click="authService.logout()">Log Out</a></li>
+              <li><a ui-sref="admin">Admin</a></li>
               <li><a ui-sref="home">Home</a></li>
             </ul>
           </div>
@@ -48,6 +49,11 @@
     <script type="text/javascript" src="bower_components/auth0.js/build/auth0.js"></script>
     <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
+
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="app.run.js"></script>
     <script type="text/javascript" src="components/home/home.controller.js"></script>
@@ -60,6 +66,8 @@
     <script type="text/javascript" src="components/finish/finish.controller.js"></script> 
     <script type="text/javascript" src="components/improveCheck/improveCheck.controller.js"></script> 
     <script type="text/javascript" src="components/ganttChart/ganttChart.controller.js"></script> 
+    <script type="text/javascript" src="components/admin/admin.controller.js"></script>
+    <script type="text/javascript" src="components/swipe/swipe.controller.js"></script>
     <script type="text/javascript" src="components/auth/auth.service.js"></script>
   </body>
 </html>
