@@ -1,13 +1,13 @@
-  (function () {
+ (function () {
   'use strict';
 
   angular
     .module('app')
     .controller('demoSwipeCtrl', demoSwipeCtrl);
 
-  demoSwipeCtrl.$inject = ['$scope'];
+  demoSwipeCtrl.$inject = ['$scope','$location'];
 
-  function demoSwipeCtrl($scope) {
+  function demoSwipeCtrl($scope, $location) {
 	
     console.log("demoSwipeCtrl initialized");
 	
@@ -23,9 +23,11 @@
     };
 
     $scope.onSwipeDown = function(ev) {
-      alert('You swiped down!!');
+      //alert('You swiped down!!');
+      $location.path('/finish');
     };
 
   }
 
 }());
+

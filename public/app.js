@@ -82,6 +82,12 @@
         controller: 'demoSwipeCtrl',
         templateUrl: 'components/swipe/swipe.html',
         controllerAs: 'vm'
+      })
+      .state('checksSwipe', {
+        url: '/checksSwipe',
+        controller: 'ChecksSwipeController',
+        templateUrl: 'components/checksSwipe/checksSwipe.html',
+        controllerAs: 'vm'
       });
 
     lockProvider.init({

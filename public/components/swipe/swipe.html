@@ -1,45 +1,143 @@
-<html>    
+<!--<html>    
     <head>
         <link rel="stylesheet" type="text/css" href="/css/estilos.css" media="screen" />
-        <style type="text/css">
-            .swipedemoBasicUsage .demo-swipe {
-            padding: 20px 10px; }
+        
+      	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div ng-controller="demoSwipeCtrl" ng-cloak layout="row">
+            <div flex>
+                <div class="demo-swipe" md-swipe-left="onSwipeLeft()">
+                <span class="no-select">Swipe me to the left</span>
+                <md-icon md-font-icon="android" aria-label="android"></md-icon>
+                </div>
+                <md-divider></md-divider>
+                <div class="demo-swipe" md-swipe-right="onSwipeRight()">
+                <span class="no-select">Swipe me to the right</span>
+                </div>
+            </div>
+    </div>
+    
+    
+    </body>
+    
+<html>-->
 
-            .swipedemoBasicUsage .no-select {
+<!--
+<html lang="en" >
+   <head>
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	  <style>
+         .swipeContainer .demo-swipe {
+            padding: 20px 10px; 			
+         }
+         .swipeContainer .no-select {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
-            user-select: none; }
-        </style>
-    </head>
-    <body>
-        <div ng-controller="demoSwipeCtrl" ng-cloak layout="row">
-        <div flex>
-            <div class="demo-swipe" md-swipe-left="onSwipeLeft()">
-            <span class="no-select">Swipe me to the left</span>
-            <md-icon md-font-icon="android" aria-label="android"></md-icon>
+            user-select: none; 
+         }
+	  </style>
+         
+   </head>
+   <body ng-app="firstApplication"> 
+      <md-card>
+         <div id="swipeContainer" ng-controller="demoSwipeCtrl as ctrl" layout="row" ng-cloak>
+            <div flex>
+               <div class="demo-swipe" md-swipe-left="onSwipeLeft()">
+                  <span class="no-select">Swipe me to the left</span>
+                  <md-icon md-font-icon="android" aria-label="android"></md-icon>
+               </div>
+               <md-divider></md-divider>
+               <div class="demo-swipe" md-swipe-right="onSwipeRight()">
+                  <span class="no-select">Swipe me to the right</span>
+               </div>
             </div>
             <md-divider></md-divider>
-            <div class="demo-swipe" md-swipe-right="onSwipeRight()">
-            <span class="no-select">Swipe me to the right</span>
+            <div flex layout="row">
+               <div flex layout="row" layout-align="center center"
+                  class="demo-swipe" md-swipe-up="onSwipeUp()">
+                  <span class="no-select">Swipe me up</span>
+               </div>
+               <md-divider></md-divider>
+               <div flex layout="row" layout-align="center center"
+                  class="demo-swipe" md-swipe-down="onSwipeDown()">
+                  <span class="no-select">Swipe me down</span>
+               </div>
             </div>
-        </div>
-        <md-divider></md-divider>
-        <div flex layout="row">
-            <div flex layout="row" layout-align="center center"
-                class="demo-swipe" md-swipe-up="onSwipeUp()">
-            <span class="no-select">Swipe me up</span>
-            </div>
-            <md-divider></md-divider>
-            <div flex layout="row" layout-align="center center"
-                class="demo-swipe" md-swipe-down="onSwipeDown()">
-            <span class="no-select">Swipe me down</span>
-            </div>
-        </div>
-        </div>
+         </div>
+      </md-card>
+   </body>
+</html>
+-->
+
+
+<html lang="en" >
+   <head>
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	  <style>
+         .swipeContainer .demo-swipe {
+            padding: 20px 10px; 			
+         }
+         .swipeContainer .no-select {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none; 
+         }
+	  </style>
+         
+   </head>
+   <body ng-app="app"> 
     
-    </body>
-    
-<html>
+         <div id="swipeContainer" ng-controller="demoSwipeCtrl as ctrl" layout="row" ng-cloak>
+            
+
+
+          
+               <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-left="onSwipeLeft()">
+                  <span class="no-select">Swipe me to the left</span>
+               </div>
+             
+               <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-right="onSwipeRight()">
+                  <span class="no-select">Swipe me to the right</span>
+               </div>
+            
+           
+
+
+            
+               <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-up="onSwipeUp()">
+                  <span class="no-select">Swipe me up</span>
+               </div>
+               
+               <div flex layout="row" layout-align="center center"
+                  class="demo-swipe" md-swipe-down="onSwipeDown()">
+                  <span class="no-select">Swipe me down</span>
+               </div>
+           
+
+
+
+         </div>
+      
+   </body>
+</html>
