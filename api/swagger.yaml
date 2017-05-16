@@ -12,7 +12,7 @@ info:
   license:
     name: "MIT"
     url: "http://opensource.org/licenses/MIT"
-host: "localhost:8080"
+host: "tfg-asu-2017.herokuapp.com"
 basePath: "/api"
 schemes:
 - "http"
