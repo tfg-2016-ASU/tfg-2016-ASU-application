@@ -7,17 +7,59 @@
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+      .admin i {
+        margin: 40px 0;
+        color: #ee6e73;
+        font-size: 7rem;
+        display: block;
+      }
+      .admin-panel {
+          font-size: 1.7rem;
+          font-weight: 500;
+          margin-top: 5px;
+          margin-bottom: 0;
+      }
+	  </style>
   </head>
   <body>
     <div class="container">
-      <h2 class="center-align"><img src="/images/logous.png"></h2>
-      <h4 class="center-align">Admin</h4>
-      
-      <div class="center-align">
-        <a ui-sref="resume">Resumen</a>
+    
+      </br>
+      </br>
+      <h3 class="center-align">Admin</h3>
+      <div class="row">
+
+      <div class="col s4">
+          <div class="center admin">
+            <i ui-sref="crosscheck" class="material-icons">flash_on</i>
+            <p class="admin-panel">Crosscheck</p>
+          </div>
       </div>
+      <div class="col s4">
+          <div class="center admin">
+            <i ui-sref="stateFeedback" class="material-icons">visibility</i>
+            <p class="admin-panel">Ver estado del feedback</p>
+          </div>
+      </div>
+      <div class="col s4">
+          <div class="center admin">
+            <i ui-sref="feedbacksResultsRecords" class="material-icons">assignment</i>
+            <p class="admin-panel">Historial de feedbacks</p>
+          </div>
+      </div>
+
+    </div>
+      
       
     </div>
+    
   </body>
   
 </html>
+
+
+<!-- <div class="center-align">
+        <a ui-sref="resume">Resumen</a>
+      </div>
+-->

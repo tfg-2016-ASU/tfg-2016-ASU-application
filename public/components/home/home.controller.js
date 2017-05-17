@@ -6,10 +6,13 @@
     .module('app')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['authService', '$scope'];
+  HomeController.$inject = ['authService', '$scope', '$location'];
 
-  function HomeController(authService, $scope) {
 
+  function HomeController(authService, $scope, $location) {
+
+  
+    
     var vm = this;
     vm.authService = authService;
 

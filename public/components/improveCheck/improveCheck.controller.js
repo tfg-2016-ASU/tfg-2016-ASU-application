@@ -96,7 +96,7 @@
           console.log('here: ' + $localStorage.reviewedFeedbackResult['arrayCheckResults'].length); 
           
           
-          $location.path('/checks');
+          $location.path('/checksSwipe');
         })
         .catch(function(response) {
           console.error('Error', response.status, response.data);
@@ -185,7 +185,7 @@
           console.log('here: ' + $localStorage.reviewedFeedbackResult['arrayCheckResults'].length); 
           
           
-          $location.path('/checks');
+          $location.path('/checksSwipe');
         })
         .catch(function(response) {
           console.error('Error', response.status, response.data);

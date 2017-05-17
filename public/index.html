@@ -2,6 +2,12 @@
   <head>
     <title>Feedbacks</title>
 
+
+ 
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+		
+   
     <!-- Viewport settings-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
@@ -19,6 +25,8 @@
     </style>
   </head>
   <body>
+    
+    
     <div ng-app="app">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -35,6 +43,8 @@
           </div>
         </div>
       </nav>
+      
+
 
       <div ui-view></div>
     </div>  
@@ -69,6 +79,11 @@
     <script type="text/javascript" src="components/admin/admin.controller.js"></script>
     <script type="text/javascript" src="components/swipe/swipe.controller.js"></script>
     <script type="text/javascript" src="components/checksSwipe/checksSwipe.controller.js"></script>
+    <script type="text/javascript" src="components/crossCheck/crossCheck.controller.js"></script>
+    <script type="text/javascript" src="components/stateFeedback/stateFeedback.controller.js"></script>
+    <script type="text/javascript" src="components/feedbacksResultsRecords/feedbacksResultsRecords.controller.js"></script>
     <script type="text/javascript" src="components/auth/auth.service.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
   </body>
 </html>

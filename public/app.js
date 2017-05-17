@@ -88,7 +88,26 @@
         controller: 'ChecksSwipeController',
         templateUrl: 'components/checksSwipe/checksSwipe.html',
         controllerAs: 'vm'
+      })
+      .state('crosscheck', {
+        url: '/crosscheck',
+        controller: 'CrosscheckController',
+        templateUrl: 'components/crosscheck/crosscheck.html',
+        controllerAs: 'vm'
+      })
+      .state('stateFeedback', {
+        url: '/stateFeedback',
+        controller: 'StateFeedbackController',
+        templateUrl: 'components/stateFeedback/stateFeedback.html',
+        controllerAs: 'vm'
+      })
+      .state('feedbacksResultsRecords', {
+        url: '/feedbacksResultsRecords',
+        controller: 'FeedbacksResultsRecordsController',
+        templateUrl: 'components/feedbacksResultsRecords/feedbacksResultsRecords.html',
+        controllerAs: 'vm'
       });
+
 
     lockProvider.init({
       clientID: AUTH0_CLIENT_ID,

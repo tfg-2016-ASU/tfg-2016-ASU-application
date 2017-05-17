@@ -69,7 +69,7 @@
 
 					$localStorage.reviewedFeedbackResult.arrayCheckResults = [];
 					$localStorage.currentCheck = 0;
-					$location.path('/checks');
+					$location.path('/checksSwipe');
 					
 				})
 				.catch(function(response) {

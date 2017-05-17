@@ -49,15 +49,20 @@
 
                 <div class="col s4">
                     <div flex layout="row" layout-align="center center" class="demo-swipe" md-swipe-left="nextCheck()">
-                        <!--<i class="material-icons right">arrow forward</i>-->
-                        <i class="material-icons">sentiment_very_satisfied</i>
+                        <i class="material-icons md-48">sentiment_very_satisfied</i>
                     </div>
                 </div>
             </div>
 
             </br>
+            <button ui-sref="improveCheck" ng-click="improveCheck(idCheckToShow, punctuation)" class="btn red lighten-2">
+                <i class="material-icons right">cancel</i>
+            </button>
+            <button ng-click="nextCheck()" class="btn green lighten-2">
+                <i class="material-icons right">check</i>
+            </button>
             </br>
-
+            </br>
             <button ui-sref="resume" ng-click="resumeFeedback()" class="btn waves-effect waves-light">Resumen</button>
             <button ui-sref="finish" ng-click="finishFeedback()" class="btn waves-effect waves-light">Terminar</button>
 
