@@ -11,6 +11,7 @@
   function StudenInformationController($scope, $http, $rootScope, $localStorage) {
 
 		console.log("StudenInformationController initialized");
+		$localStorage.$reset();
 
 		//------------------------------------------------------------------------------------------------
 		//Inicializar las propiedad de newFeedbackResult que no han sido inicializadas en el formulario
@@ -22,7 +23,7 @@
 				"reviewer": "",
 				"preparationEnd": "no",
 				"result": "POSITIVO",
-				"wating": "no",
+				"waiting": "no",
 				"score": 0,
 				"arrayCheckResults": [
 				]

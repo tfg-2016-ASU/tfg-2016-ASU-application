@@ -5,17 +5,23 @@
     .module('app')
     .controller('RandomAssignmentController', RandomAssignmentController);
 
-  RandomAssignmentController.$inject = ['$scope', '$localStorage', '$http'];
+  RandomAssignmentController.$inject = ['$scope',  '$localStorage', '$http', '$location'];
 
-  function RandomAssignmentController($scope, $localStorage, $http) {
+  function RandomAssignmentController($scope, $localStorage, $http, $location) {
 	
     console.log("RandomAssignmentController initialized");
 
+    console.log($localStorage.newFeedbackResult.newFeedbackResult);
+    
     $scope.newFeedbackResult = $localStorage.newFeedbackResult;
-		$scope.idFeedback = $scope.newFeedbackResult.idFeedback;
+    $scope.idFeedback = $scope.newFeedbackResult.idFeedback;
     $scope.shift = $scope.newFeedbackResult.shift;
     $scope.group = $scope.newFeedbackResult.group;
     $scope.student = $scope.newFeedbackResult.student;
+    console.log($scope.student);
+    
+    
+    
 
     //Comprobar si ya tengo alguien asignado o no:
     
@@ -108,32 +114,25 @@
 
                     $scope.reviewedFeedbackResultStudent2.reviewer = $scope.student1;
                     $scope.reviewedFeedbackResultStudent1.reviewer = $scope.student2;
-                    $scope.reviewedFeedbackResultStudent1.waiting = 'si';
-                  
-                    console.log($scope.reviewedFeedbackResultStudent2);
-                    console.log($scope.reviewedFeedbackResultStudent1);
-                  
+                   
+                    $scope.reviewedFeedbackResultStudent2.waiting = 'si';
+                    
+                 
 
                     $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.reviewedFeedbackResultStudent2.student, $scope.reviewedFeedbackResultStudent2)
                     .then(function(response) {
-                      console.log('perfect');           
                     })
                     .catch(function(response) {
-                      console.log('error');
                     })
                     .finally(function() {
-                    console.log('finished');
                     });
                     
                     $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.reviewedFeedbackResultStudent1.student, $scope.reviewedFeedbackResultStudent1)
                     .then(function(response) {
-                      console.log('perfect');        
                     })
                     .catch(function(response) {
-                      console.log('error');
                     })
                     .finally(function() {
-                      console.log('finished');
                     });
 
 
@@ -146,32 +145,53 @@
 
               })
               .catch(function(response) {
-                console.log('error');
               })
               .finally(function() {
-                console.log('finished');
               });
 
               
-              $scope.arrayAux = ['pera', 'manzana', 'platano'];
+              
 
         }else if($scope.myReviewer != ''){
           console.log('entro en el else');
           $scope.student2 = $scope.myReviewer;
           $scope.withAssignment = ['e1', 'e2'];
-          console.log($scope.withAssignment.length);
         }
 
 
         })
       .catch(function(response) {
-        console.log('error');
       })
       .finally(function() {
-        console.log('finished');
       });
 
-  }
+    }
+
+    $scope.iHaveToWaiting = function(){
+        console.log('iHaveToWaiting?')
+        $localStorage.student = $scope.student;
+        $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
+        .then(function(response) {      
+          $scope.waiting = response.data[0].waiting;
+          $scope.reviewedFeedbackResult = response.data[0];
+          $localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
+          console.log($localStorage.reviewedFeedbackResult);
+          console.log($scope.waiting);
+          if($scope.waiting == 'no'){
+            $location.path('/checksV2');
+          }else{
+            $location.path('/waiting');
+          }
+        })
+        .catch(function(response) {
+          console.error('Show preparation error', response.status, response.data);
+        })
+        .finally(function() {
+          console.log("Preparation showed");
+        });
+    }  
+   
+
   }
 
 }());

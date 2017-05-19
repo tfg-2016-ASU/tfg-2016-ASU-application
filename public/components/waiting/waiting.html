@@ -3,9 +3,7 @@
 <head>
    
     <h3 class="center-align">Feedback {{idFeedback}}</h3>
-    <div class="center-align">
-        <h4 class="title">{{student}}, vas a revisar a:</h4>
-    </div>
+   
 
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -22,17 +20,11 @@
     </style>
 </head>
 <body>
-    <div class="text-center" ng-if="withAssignment.length!=2">
-        <p>No tienes asignado a nadie todavía</p>
-        <button ng-click="isThereReviewer()" class="btn blue lighten-2">
+    <div class="text-center">
+        <h5 class="title">Revisión en curso...</h5>
+        </br>   
+        <button ng-click="beginReview()" class="btn blue lighten-2">
             <i class="material-icons">refresh</i>
-        </button>
-    </div>
-    <div class="text-center" ng-if="withAssignment.length==2">
-        <h5>{{student2}}</h5>
-        </br>
-        <button ng-click='iHaveToWaiting()' class="btn blue lighten-2">
-            <i class="material-icons">forward</i>
         </button>
     </div>
 </body>

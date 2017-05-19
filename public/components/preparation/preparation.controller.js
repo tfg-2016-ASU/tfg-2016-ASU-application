@@ -54,6 +54,8 @@
       $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.newFeedbackResult.student, $scope.newFeedbackResult)
 				.then(function(response) {
 					console.log('all perfect');
+          $localStorage.newFeedbackResult = $scope.newFeedbackResult;
+          console.log($localStorage.newFeedbackResult);
 				})
 				.catch(function(response) {
 					console.error('Error', response.status, response.data);

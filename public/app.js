@@ -41,6 +41,12 @@
         templateUrl: 'components/randomAssignment/randomAssignment.html',
         controllerAs: 'vm'
       })
+      .state('waiting', {
+        url: '/waiting',
+        controller: 'WaitingController',
+        templateUrl: 'components/waiting/waiting.html',
+        controllerAs: 'vm'
+      })
       .state('chooseReviewed', {
         url: '/chooseReviewed',
         controller: 'ChooseReviewedController',
@@ -51,6 +57,12 @@
         url: '/checks',
         controller: 'ChecksController',
         templateUrl: 'components/checks/checks.html',
+        controllerAs: 'vm'
+      })
+      .state('checksV2', {
+        url: '/checksV2',
+        controller: 'ChecksV2Controller',
+        templateUrl: 'components/checksV2/checksV2.html',
         controllerAs: 'vm'
       })
       .state('resume', {
