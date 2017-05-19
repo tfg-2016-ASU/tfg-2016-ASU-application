@@ -39,7 +39,8 @@
       $localStorage.checks = response.data[0].checks;
       //$scope.checks = response.data[0].checks;
       console.log($localStorage.checks);
-      
+      $localStorage.punctuation = response.data[0].punctuation;
+      console.log($localStorage.punctuation);
     })
     .catch(function(response) {
       console.error('Show preparation error', response.status, response.data);

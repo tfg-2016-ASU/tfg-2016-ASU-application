@@ -43,3 +43,8 @@ module.exports.updateFeedbackByIdFeedbackAndStudent = function updateFeedbackByI
 module.exports.findStudentsPrepared = function findStudentsPrepared (req, res, next) {
   Default.findStudentsPrepared(req.swagger.params, res, next);
 };
+
+module.exports.findStudentsPreparedSameShift = function findStudentsPreparedSameShift (req, res, next) {
+  Default.findStudentsPreparedSameShift(req.swagger.params, res, next);
+};
+

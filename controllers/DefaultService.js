@@ -175,6 +175,20 @@ exports.findStudentsPrepared = function(args, res, next) {
     });
 }
 
+exports.findStudentsPreparedSameShift = function(args, res, next) {
+    var idFeedback = args['idFeedback']['value'];
+    var shift = args['shift']['value'];
+    
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si', shift:shift}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get feedback");
+        }else{
+            res.status(200).json(docs);
+        }
+    });
+}
+
+
 
 exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var student = args['student']['value'];
@@ -188,6 +202,8 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var preparationEnd = res['req']['swagger']['params']['body']['value']['preparationEnd'];
     var group = res['req']['swagger']['params']['body']['value']['group'];
     var arrayCheckResults = res['req']['swagger']['params']['body']['value']['arrayCheckResults'];
+    var score = res['req']['swagger']['params']['body']['value']['score'];
+    var result = res['req']['swagger']['params']['body']['value']['result'];
     
 
     //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
@@ -206,7 +222,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 
     console.log(arrayCheckResults.length);
 
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd}},
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result}},
             function(err, docs){
                 if(err){
                     //console.log("error");

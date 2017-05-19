@@ -1,0 +1,19 @@
+<html>
+<div class="container" >
+<head>
+    <h3 class="center-align">Feedback {{idFeedback}}</h3>
+    <h4 class="center-align">Vas a revisar a ...</h4>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    
+</head>
+<body>
+    <div class="text-center" ng-if="withAssignment.length!=2">
+        <p>No tienes asignado un revisado todavía</p>
+    </div>
+    <div class="text-center" ng-if="withAssignment.length==2">
+        <h2>{{student2}}</h2>
+    </div>
+</body>
+</div>
+</html>

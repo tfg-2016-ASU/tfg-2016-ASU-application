@@ -21,7 +21,7 @@
 				"email": "string",
 				"reviewer": "",
 				"preparationEnd": "no",
-				"result": "NEGATIVO",
+				"result": "POSITIVO",
 				"score": 0,
 				"arrayCheckResults": [
 				]
@@ -30,9 +30,9 @@
 
 		
 	
-			console.log($scope.newFeedbackResult);
+			//console.log($scope.newFeedbackResult);
 			$localStorage.newFeedbackResult = $scope.newFeedbackResult;
-			console.log($localStorage.newFeedbackResult);
+			//console.log($localStorage.newFeedbackResult);
 			
 
 			//$scope.newPet.id = parseInt($scope.newPet.id);
@@ -94,7 +94,7 @@
 			})
 			.finally(function() {
 			  console.log("Feedbacks results showed");
-				console.log($localStorage.newFeedbackResult);
+				//console.log($localStorage.newFeedbackResult);
 			});
 
 		}

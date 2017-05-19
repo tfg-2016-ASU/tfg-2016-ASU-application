@@ -5,13 +5,14 @@
     .module('app')
     .controller('CrosscheckController', CrosscheckController);
 
-  CrosscheckController.$inject = ['$scope'];
+  CrosscheckController.$inject = ['$scope', '$localStorage'];
 
-  function CrosscheckController($scope) {
+  function CrosscheckController($scope, $localStorage) {
 	
     console.log("CrosscheckController initialized");
 	
-    var vm = this;
+    $scope.checks = $localStorage.checks;
+    console.log($localStorage.checks);
 
   }
 

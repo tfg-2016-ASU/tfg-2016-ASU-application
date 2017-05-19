@@ -1,13 +1,8 @@
 <html>
   <head>
     <title>Feedbacks</title>
-
-
- 
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-		
-   
     <!-- Viewport settings-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
@@ -18,11 +13,11 @@
     <!-- Basic style -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
       <style>
-      .navbar{
-        margin-bottom: 0;
-        border-radius: 0;
-      }
-    </style>
+        .navbar{
+          margin-bottom: 0;
+          border-radius: 0;
+        }
+      </style>
   </head>
   <body>
     
@@ -50,7 +45,6 @@
     </div>  
 
    
-
     <script type="text/javascript" src="auth0-variables.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -58,31 +52,42 @@
     <script type="text/javascript" src="bower_components/angular-lock/dist/angular-lock.js"></script>
     <script type="text/javascript" src="bower_components/auth0.js/build/auth0.js"></script>
     <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="app.run.js"></script>
+    <script type="text/javascript" src="components/home/home.controller.js"></script>
+    <script type="text/javascript" src="components/login/login.controller.js"></script>
+    <script type="text/javascript" src="components/admin/admin.controller.js"></script>
+    <script type="text/javascript" src="components/auth/auth.service.js"></script>
+
+    
     <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
 
     <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
 
-    <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="app.run.js"></script>
-    <script type="text/javascript" src="components/home/home.controller.js"></script>
-    <script type="text/javascript" src="components/login/login.controller.js"></script> 
+    
+    
     <script type="text/javascript" src="components/studentInformation/studentInformation.controller.js"></script>   
     <script type="text/javascript" src="components/preparation/preparation.controller.js"></script>  
     <script type="text/javascript" src="components/chooseReviewed/chooseReviewed.controller.js"></script> 
+
+    <script type="text/javascript" src="components/randomAssignment/randomAssignment.controller.js"></script>
+
     <script type="text/javascript" src="components/checks/checks.controller.js"></script> 
     <script type="text/javascript" src="components/resume/resume.controller.js"></script> 
     <script type="text/javascript" src="components/finish/finish.controller.js"></script> 
     <script type="text/javascript" src="components/improveCheck/improveCheck.controller.js"></script> 
     <script type="text/javascript" src="components/ganttChart/ganttChart.controller.js"></script> 
-    <script type="text/javascript" src="components/admin/admin.controller.js"></script>
+    
     <script type="text/javascript" src="components/swipe/swipe.controller.js"></script>
     <script type="text/javascript" src="components/checksSwipe/checksSwipe.controller.js"></script>
+    <script type="text/javascript" src="components/crossCheckSelectFeedback/crossCheckSelectFeedback.controller.js"></script>
+    <script type="text/javascript" src="components/crossCheckSelectStudent/crossCheckSelectStudent.controller.js"></script>
     <script type="text/javascript" src="components/crossCheck/crossCheck.controller.js"></script>
     <script type="text/javascript" src="components/stateFeedback/stateFeedback.controller.js"></script>
     <script type="text/javascript" src="components/feedbacksResultsRecords/feedbacksResultsRecords.controller.js"></script>
-    <script type="text/javascript" src="components/auth/auth.service.js"></script>
+  
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
   </body>

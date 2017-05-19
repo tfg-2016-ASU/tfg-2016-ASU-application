@@ -17,23 +17,14 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th class="center-align">Alumnos</th>
                         <th class="center-align">Tareas</th>
-                        <th class="center-align">Resultado</th>
                     </tr>
                 </thead>
-                <tbody class="center-align">
-                    <tr ng-repeat= "c in checks">
-                        
-                        <td class="center-align">Tarea {{c.idCheck}}</td>
-                       
-                        <td class="center-align">
-                            <button ui-sref="crosscheckSelectStudent" ng-click="crosscheckNegative()" class="btn red lighten-2">
-                                <i class="material-icons">cancel</i>
-                            </button>
-                            <button ui-sref="crosscheckSelectStudent" ng-click="crosscheckPositive()" class="btn green lighten-2">
-                                <i class="material-icons">check</i>
-                            </button>
-                        </td>
+                <tbody >
+                    <tr ng-repeat= "f in feedbacksResults">
+                        <td class="center-align">{{f.student}}</td>
+                        <td class="center-align"><button ui-sref="crosscheck" class="btn btn-danger"  ng-click="chooseStudent(f.student)">Ver tareas</button></td>
                     </tr>
                 </tbody>
             </table>

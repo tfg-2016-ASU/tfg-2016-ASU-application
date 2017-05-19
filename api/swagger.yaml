@@ -12,7 +12,7 @@ info:
   license:
     name: "MIT"
     url: "http://opensource.org/licenses/MIT"
-host: "tfg-asu-2017.herokuapp.com"
+host: "localhost:8080"
 basePath: "/api"
 schemes:
 - "http"
@@ -226,6 +226,40 @@ paths:
       x-swagger-router-controller: "Default"  
 
 
+  /findStudentsPreparedSameShift/{idFeedback}/{shift}:
+    get:
+      description: "Returns all feedbacks results with preparationEnd equal to 'si'"
+      operationId: "findStudentsPreparedSameShift"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "idFeedback"
+        in: "path"
+        description: "id of feedback to fetch"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "shift"
+        in: "path"
+        description: "shift of feedback to fetch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "feedbacks response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/feedbackResult"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default" 
+
 
 
   /feedbacksResults/{idFeedback}/{student}:
@@ -315,6 +349,9 @@ definitions:
       idFeedback:
         type: "integer"
         format: "int32"
+      punctuation:
+        type: "number"
+        format: "double"
       preparation:
         type: "array"
         items:
@@ -341,9 +378,6 @@ definitions:
         type: "string"
       description:
         type: "string"
-      punctuation:
-        type: "number"
-        format: "double"
   feedbackResult:
     type: "object"
     properties:
@@ -370,8 +404,8 @@ definitions:
       result:
         type: "string"
       score:
-        type: "integer"
-        format: "int32g"
+        type: "number"
+        format: "double"
       arrayCheckResults:
         type: "array"
         items:
@@ -386,6 +420,4 @@ definitions:
         type: "string"
       comments:
         type: "string"
-      punctuation:
-        type: "number"
-        format: "double"
+      

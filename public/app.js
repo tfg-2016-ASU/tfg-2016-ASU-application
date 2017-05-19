@@ -35,6 +35,12 @@
         templateUrl: 'components/preparation/preparation.html',
         controllerAs: 'vm'
       })
+      .state('randomAssignment', {
+        url: '/randomAssignment',
+        controller: 'RandomAssignmentController',
+        templateUrl: 'components/randomAssignment/randomAssignment.html',
+        controllerAs: 'vm'
+      })
       .state('chooseReviewed', {
         url: '/chooseReviewed',
         controller: 'ChooseReviewedController',
@@ -87,6 +93,18 @@
         url: '/checksSwipe',
         controller: 'ChecksSwipeController',
         templateUrl: 'components/checksSwipe/checksSwipe.html',
+        controllerAs: 'vm'
+      })
+      .state('crosscheckSelectFeedback', {
+        url: '/crosscheckSelectFeedback',
+        controller: 'CrosscheckSelectFeedbackController',
+        templateUrl: 'components/crosscheckSelectFeedback/crosscheckSelectFeedback.html',
+        controllerAs: 'vm'
+      })
+      .state('crosscheckSelectStudent', {
+        url: '/crosscheckSelectStudent',
+        controller: 'CrosscheckSelectStudentController',
+        templateUrl: 'components/crosscheckSelectStudent/crosscheckSelectStudent.html',
         controllerAs: 'vm'
       })
       .state('crosscheck', {

@@ -58,7 +58,7 @@
 				//Crear un objeto con todas las propiedades undefined excepto el reviewer
 				$scope.newFeedbackResult.reviewer = $scope.newFeedbackResult.student;
 				*/
-				 $scope.reviewedFeedbackResult.reviewer = $scope.newFeedbackResult.student;
+				$scope.reviewedFeedbackResult.reviewer = $scope.newFeedbackResult.student;
 				
 				$http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.studentReviewed, $scope.reviewedFeedbackResult)
 				.then(function(response) {

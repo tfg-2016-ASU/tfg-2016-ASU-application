@@ -14,19 +14,47 @@
     $scope.idFeedback = $localStorage.idFeedback;
     
     $http.get('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.studentReviewed)
-    .then(function(response) {      
+    .then(function(response) {    
+      $scope.feedbackFinished = response.data[0];
       $scope.arrayCheckResults = response.data[0].arrayCheckResults;
-      console.log($scope.arrayCheckResults);
+    
+      $localStorage.result = 'POSITIVO';
+      $localStorage.score = $localStorage.punctuation;
+
+      
 
       var arrayCheckResultsLength = $scope.arrayCheckResults.length;
       var i;
-      var score = 0;
-      for(i=0; i<arrayCheckResultsLength-1; i++){
-        score = score + $scope.arrayCheckResults[i].punctuation;
+      for(i=0; i<arrayCheckResultsLength; i++){
+       
+        if($scope.arrayCheckResults[i].result == 'no'){
+          $localStorage.result = 'NEGATIVO';
+          $localStorage.score = 0;
+         
+          break;
+        }
       }
 
-      $scope.score = score;
-      console.log($scope.score);
+      $scope.feedbackFinished.result = $localStorage.result;
+      $scope.feedbackFinished.score = $localStorage.score;
+     
+
+
+      console.log($scope.idFeedback);
+      console.log($localStorage.studentReviewed);
+      console.log($scope.feedbackFinished);
+      $scope.feedbackFinished.shift = 'jeje';
+
+      $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.feedbackFinished)
+				.then(function(response) {
+					console.log('put perfect');
+				})
+				.catch(function(response) {
+					console.error('Error', response.status, response.data);
+				})
+				.finally(function() {
+					console.log("Finished");
+				});
 
     })
     .catch(function(response) {
