@@ -5,24 +5,25 @@
     .module('app')
     .controller('WaitingController', WaitingController);
 
-  WaitingController.$inject = ['$scope', '$localStorage', '$http'];
+  WaitingController.$inject = ['$scope', '$localStorage', '$http', '$location'];
 
-  function WaitingController($scope, $localStorage, $http) {
+  function WaitingController($scope, $localStorage, $http, $location) {
 	
     console.log("WaitingController initialized");
 	
     $scope.idFeedback = $localStorage.idFeedback;
+    console.log($localStorage.idFeedback);  
 
 
     $scope.beginReview = function(){
         //comprobar que el waiting vale 'no'
         console.log($localStorage.student);
-        $http.get('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.student)
+        $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.student)
         .then(function(response) {      
           $scope.waiting = response.data[0].waiting;
           console.log($scope.waiting);
           if($scope.waiting == 'no'){
-            $location.path('/checksV2');
+            $location.path('/checksSwipe');
           }
         })
         .catch(function(response) {
@@ -33,6 +34,8 @@
         });
 
     }
+
+  
 
   }
 

@@ -118,7 +118,7 @@
 
     $scope.improveCheck = function (idCheckToShow){
       $localStorage.currentCheck = idCheckToShow;
-      console.log("improveCheck");
+      console.log("improveCheckV2");
     }
     
 

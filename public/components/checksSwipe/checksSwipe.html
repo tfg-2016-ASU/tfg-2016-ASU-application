@@ -30,15 +30,14 @@
         <div id="swipeContainer" ng-controller="ChecksSwipeController as ctrl"  ng-cloak>
             <h5 class="center-align">Tarea {{idCheckToShow}}</h5>
             </br>
-            <h6 class="center-align">{{punctuation}} puntos</h6>
-            </br>
+           
            
             </br>
             <div class="center-align">
             
             <div class="row">
                 <div class="col s4">
-                    <div flex layout="row" layout-align="center center" ui-sref="improveCheck" class="demo-swipe" md-swipe-right="improveCheck(idCheckToShow, punctuation)">
+                    <div flex layout="row" layout-align="center center" ui-sref="improveCheck" class="demo-swipe" md-swipe-right="improveCheck(idCheckToShow)">
                         <i class="material-icons">sentiment_very_dissatisfied</i>
                     </div>
                 </div>
@@ -55,7 +54,7 @@
             </div>
 
             </br>
-            <button ui-sref="improveCheck" ng-click="improveCheck(idCheckToShow, punctuation)" class="btn red lighten-2">
+            <button ui-sref="improveCheck" ng-click="improveCheck(idCheckToShow)" class="btn red lighten-2">
                 <i class="material-icons right">cancel</i>
             </button>
             <button ng-click="nextCheck()" class="btn green lighten-2">

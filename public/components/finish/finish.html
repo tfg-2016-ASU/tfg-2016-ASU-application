@@ -11,9 +11,25 @@
             <h5>Puntuación: {{feedbackFinished.score}}</h5>
         </div>
 
-        <div class="center-align">
+        <!--<div class="center-align">
             <a ui-sref="resume">Resumen</a> <a ui-sref="home" ng-click="authService.logout()">Log Out</a>
+        </div>-->
+        
+        <div class="center-align">
+            <button ui-sref="resume" class="btn blue lighten-2">Resumen</button>
+            <button ui-sref="bye" ng-click="finishFeedback()" class="btn blue lighten-2">Estoy de acuerdo</button>
         </div>
+
+
+        <!--<div class="text-center" ng-if="firstReviewFinished==true">
+            <button ui-sref="resume" class="btn blue lighten-2">Resumen true</button>
+            <button ui-sref="bye" class="btn blue lighten-2">Estoy de acuerdo</button>
+        </div>
+        <div class="text-center" ng-if="firstReviewFinished==false">
+            <button ui-sref="resume" class="btn blue lighten-2">Resumen false</button>
+            <button ui-sref="bye" ng-click="finishFeedback()" class="btn blue lighten-2">Estoy de acuerdo</button>
+        </div>-->
+        
 
         </div>
     </body>

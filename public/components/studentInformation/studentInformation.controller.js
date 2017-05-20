@@ -13,6 +13,7 @@
 		console.log("StudenInformationController initialized");
 		$localStorage.$reset();
 
+
 		//------------------------------------------------------------------------------------------------
 		//Inicializar las propiedad de newFeedbackResult que no han sido inicializadas en el formulario
 			

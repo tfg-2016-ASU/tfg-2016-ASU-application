@@ -3,13 +3,13 @@
 
   angular
     .module('app')
-    .controller('ImproveCheckController', ImproveCheckController);
+    .controller('ImproveCheckV2Controller', ImproveCheckV2Controller);
 
-  ImproveCheckController.$inject = ['$scope', '$localStorage', '$location', '$http'];
+  ImproveCheckV2Controller.$inject = ['$scope', '$localStorage', '$location', '$http'];
 
-  function ImproveCheckController($scope, $localStorage, $location, $http) {
+  function ImproveCheckV2Controller($scope, $localStorage, $location, $http) {
 	
-    console.log("ImproveCheckController initialized");
+    console.log("ImproveCheckV2Controller initialized");
     
     $scope.reviewedFeedbackResult = $localStorage.reviewedFeedbackResult;
     $scope.idFeedback = $localStorage.idFeedback;
@@ -40,11 +40,13 @@
       if($scope.comments != 'no'){
         $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                                 "result": "ok",
-                                                                "comments": $scope.comments});
+                                                                "comments": $scope.comments
+                                                               });
       }else{
         $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                                 "result": "ok",
-                                                                "comments": "no"});
+                                                                "comments": "no"
+                                                               });
       }
 
       
@@ -54,7 +56,7 @@
                                                         
       if($scope.idCheckToShow == $localStorage.lastCheck){
         
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.reviewedFeedbackResult)
+        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.student, $scope.reviewedFeedbackResult)
         .then(function(response) {
           console.log('put perfect');
           /*$localStorage.currentCheck = $localStorage.currentCheck + 1;
@@ -79,7 +81,7 @@
 
       }else{
         
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.reviewedFeedbackResult)
+        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.student, $scope.reviewedFeedbackResult)
         .then(function(response) {
           console.log('put perfect');
           //$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
@@ -127,11 +129,13 @@
       if($scope.comments != 'no'){
         $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                                 "result": "no",
-                                                                "comments": $scope.comments});
+                                                                "comments": $scope.comments
+                                                                });
       }else{
          $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                                 "result": "no",
-                                                                "comments": "no"});
+                                                                "comments": "no"
+                                                                });
       }
 
      
@@ -141,7 +145,7 @@
                                                         
       if($scope.idCheckToShow == $localStorage.lastCheck){
         
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.reviewedFeedbackResult)
+        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.student, $scope.reviewedFeedbackResult)
         .then(function(response) {
           console.log('put perfect');
           /*$localStorage.currentCheck = $localStorage.currentCheck + 1;
@@ -166,7 +170,7 @@
 
       }else{
         
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.reviewedFeedbackResult)
+        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.student, $scope.reviewedFeedbackResult)
         .then(function(response) {
           console.log('put perfect');
           //$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;

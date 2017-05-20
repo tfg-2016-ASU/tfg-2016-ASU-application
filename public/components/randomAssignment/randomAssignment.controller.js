@@ -11,10 +11,14 @@
 	
     console.log("RandomAssignmentController initialized");
 
-    console.log($localStorage.newFeedbackResult.newFeedbackResult);
+
+    console.log($localStorage.newFeedbackResult);
+
+    
     
     $scope.newFeedbackResult = $localStorage.newFeedbackResult;
     $scope.idFeedback = $scope.newFeedbackResult.idFeedback;
+    $localStorage.idFeedback = $scope.idFeedback;
     $scope.shift = $scope.newFeedbackResult.shift;
     $scope.group = $scope.newFeedbackResult.group;
     $scope.student = $scope.newFeedbackResult.student;
@@ -100,6 +104,7 @@
                     $scope.feedbacksResults = withoutAssignment;
                     $localStorage.feedbacksResults = $scope.feedbacksResults;
 
+
                     $scope.withAssignment = withAssignment;
 
                     
@@ -116,7 +121,8 @@
                     $scope.reviewedFeedbackResultStudent1.reviewer = $scope.student2;
                    
                     $scope.reviewedFeedbackResultStudent2.waiting = 'si';
-                    
+                    $localStorage.reviewedFeedbackResultStudent2 = $scope.reviewedFeedbackResultStudent2;
+                    console.log($localStorage.reviewedFeedbackResultStudent2);
                  
 
                     $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.reviewedFeedbackResultStudent2.student, $scope.reviewedFeedbackResultStudent2)
@@ -175,10 +181,11 @@
           $scope.waiting = response.data[0].waiting;
           $scope.reviewedFeedbackResult = response.data[0];
           $localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
+          $localStorage.studentReviewed = $scope.student;
           console.log($localStorage.reviewedFeedbackResult);
           console.log($scope.waiting);
           if($scope.waiting == 'no'){
-            $location.path('/checksV2');
+            $location.path('/checksSwipe');
           }else{
             $location.path('/waiting');
           }

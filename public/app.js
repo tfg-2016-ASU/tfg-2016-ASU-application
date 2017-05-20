@@ -65,6 +65,12 @@
         templateUrl: 'components/checksV2/checksV2.html',
         controllerAs: 'vm'
       })
+      .state('improveCheckV2', {
+        url: '/improveCheckV2',
+        controller: 'ImproveCheckV2Controller',
+        templateUrl: 'components/improveCheckV2/improveCheckV2.html',
+        controllerAs: 'vm'
+      })
       .state('resume', {
         url: '/resume',
         controller: 'ResumeController',
@@ -135,6 +141,12 @@
         url: '/feedbacksResultsRecords',
         controller: 'FeedbacksResultsRecordsController',
         templateUrl: 'components/feedbacksResultsRecords/feedbacksResultsRecords.html',
+        controllerAs: 'vm'
+      })
+      .state('bye', {
+        url: '/bye',
+        controller: 'ByeController',
+        templateUrl: 'components/bye/bye.html',
         controllerAs: 'vm'
       });
 
