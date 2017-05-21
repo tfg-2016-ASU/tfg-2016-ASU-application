@@ -22,7 +22,7 @@
     $scope.shift = $scope.newFeedbackResult.shift;
     $scope.group = $scope.newFeedbackResult.group;
     $scope.student = $scope.newFeedbackResult.student;
-
+    
     
     
     
@@ -51,8 +51,11 @@
     $scope.isThereReviewer = function(){
       $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
       .then(function(response) {      
+        
         $scope.myReviewer = response.data[0].reviewer;
         console.log('¿tengo myreviewer?' + $scope.myReviewer);
+
+        
         $localStorage.myReviewer =  $scope.myReviewer;
 
         if($scope.myReviewer == ''){
@@ -114,6 +117,7 @@
                     $localStorage.myReviewer = $scope.student2;
                     console.log('student1: ' + $scope.student1);
                     console.log('student2: ' + $scope.student2);
+                    
 
                     $scope.reviewedFeedbackResultStudent2 = elegido;
                     $scope.reviewedFeedbackResultStudent1 =  $scope.newFeedbackResult;
@@ -124,10 +128,10 @@
                     $scope.reviewedFeedbackResultStudent2.reviewer = $scope.student1;
                     $scope.reviewedFeedbackResultStudent1.reviewer = $scope.student2;
                    
-                    $scope.reviewedFeedbackResultStudent2.waiting = 'si';
+                    $scope.reviewedFeedbackResultStudent1.waiting = 'no';
                     $localStorage.reviewedFeedbackResultStudent2 = $scope.reviewedFeedbackResultStudent2;
                     console.log('feedback de mi reviewed: ' + $localStorage.reviewedFeedbackResultStudent2.student);
-                 
+                    $localStorage.RWDEF = $localStorage.reviewedFeedbackResultStudent2;
 
                     $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.reviewedFeedbackResultStudent2.student, $scope.reviewedFeedbackResultStudent2)
                     .then(function(response) {
@@ -167,6 +171,15 @@
           $scope.student2 = $scope.myReviewer;
           console.log('myreviewer: ' + $scope.student2);
           $scope.withAssignment = ['e1', 'e2'];
+          $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.myReviewer)
+            .then(function(response) {      
+            $localStorage.RWDEF = response.data[0];
+            })
+            .catch(function(response) {
+            })
+            .finally(function() {
+            });
+
         }
 
 
@@ -179,38 +192,35 @@
     }
 
     $scope.iHaveToWaiting = function(){
+        console.log($localStorage.RWDEF);
         console.log('iHaveToWaiting?')
-        $localStorage.student = $scope.student;
-        console.log('yo: ' + $localStorage.student);
+        //$localStorage.student = $scope.student;
+        //console.log('yo: ' + $localStorage.student);
+        $localStorage.student = $scope.student2;
+        console.log($localStorage.student);
         $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
         .then(function(response) {      
           $scope.waiting = response.data[0].waiting;
+          //$scope.rw = response.data[0].reviewer;
           //$scope.reviewedFeedbackResult = response.data[0];
+          //$localStorage.rw = $scope.rw;
           //$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
-          
-          $localStorage.studentReviewed = response.data[0].reviewer;
-          console.log('RW: ' + response.data[0].reviewer);
-          $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed)
-            .then(function(response) {      
-              $localStorage.reviewedFeedbackResult = response.data[0];
-              
-              console.log($scope.waiting);
-              if($scope.waiting == 'no'){
-                $location.path('/checksSwipe');
-              }else{
-                $location.path('/waiting');
-              }
-            })
-            .catch(function(response) {
-            })
-            .finally(function() {
-            });
-          
+          //$localStorage.studentReviewed = response.data[0].reviewer;
+          //$localStorage.reviewedFeedbackResult = response.data[0];
+          //console.log('RW: ' + response.data[0].reviewer);
+          //$localStorage.rw = response.data[0].reviewer;
+          console.log($scope.waiting);
+          if($scope.waiting == 'no'){
+            $location.path('/checksSwipe');
+          }else{
+            $location.path('/waiting');
+          }      
         })
         .catch(function(response) {
         })
         .finally(function() {
         });
+        
     }  
    
 

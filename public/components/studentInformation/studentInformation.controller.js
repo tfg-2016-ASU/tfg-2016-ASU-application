@@ -23,7 +23,7 @@
 				"reviewer": "",
 				"preparationEnd": "no",
 				"result": "POSITIVO",
-				"waiting": "no",
+				"waiting": "si",
 				"score": 0,
 				"arrayCheckResults": [
 				]

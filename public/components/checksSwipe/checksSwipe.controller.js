@@ -12,9 +12,11 @@
     console.log("ChecksSwipeController initialized");
 
    
+    $localStorage.studentReviewed = $localStorage.RWDEF.student;
+    $localStorage.reviewedFeedbackResult = $localStorage.RWDEF;
+
     
-    console.log($localStorage.reviewedFeedbackResult);   
-    console.log($localStorage.studentReviewed);
+    
 
     
 

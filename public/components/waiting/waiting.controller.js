@@ -16,13 +16,13 @@
 
 
     $scope.beginReview = function(){
-        //comprobar que el waiting vale 'no'
+        //comprobar que el waiting vale 'si'
         console.log($localStorage.student);
         $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.student)
         .then(function(response) {      
           $scope.waiting = response.data[0].waiting;
           console.log($scope.waiting);
-          if($scope.waiting == 'no'){
+          if($scope.waiting == 'si'){
             $location.path('/checksSwipe');
           }
         })
