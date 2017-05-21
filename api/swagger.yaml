@@ -346,6 +346,10 @@ definitions:
   feedbackInformation:
     type: "object"
     properties:
+      subject:
+        type: "string"
+      edition:
+        type: "string"
       idFeedback:
         type: "integer"
         format: "int32"
@@ -374,8 +378,6 @@ definitions:
       idCheck:
         type: "integer"
         format: "int32"
-      typeCheck:
-        type: "string"
       description:
         type: "string"
   feedbackResult:
@@ -391,8 +393,6 @@ definitions:
         type: "integer"
         format: "int32"
       student:
-        type: "string"
-      email:
         type: "string"
       reviewer:
         type: "string"

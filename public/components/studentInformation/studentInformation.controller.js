@@ -20,7 +20,6 @@
 			$scope.newFeedbackResult = {
 				"subject": "SOS",
 				"edition": "15-16",
-				"email": "string",
 				"reviewer": "",
 				"preparationEnd": "no",
 				"result": "POSITIVO",

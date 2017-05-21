@@ -42,7 +42,6 @@
         
       });
     }
-
     $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
       .then(function(response) {      
         $scope.myReviewer = response.data[0].reviewer;

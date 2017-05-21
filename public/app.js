@@ -131,10 +131,10 @@
         templateUrl: 'components/crosscheck/crosscheck.html',
         controllerAs: 'vm'
       })
-      .state('stateFeedback', {
-        url: '/stateFeedback',
-        controller: 'StateFeedbackController',
-        templateUrl: 'components/stateFeedback/stateFeedback.html',
+      .state('newFeedbackInformation', {
+        url: '/newFeedbackInformation',
+        controller: 'NewFeedbackInformationController',
+        templateUrl: 'components/newFeedbackInformation/newFeedbackInformation.html',
         controllerAs: 'vm'
       })
       .state('feedbacksResultsRecords', {
