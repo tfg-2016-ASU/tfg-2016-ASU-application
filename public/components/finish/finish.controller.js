@@ -69,7 +69,7 @@
     $scope.finishFeedback = function(){
       if($localStorage.reviewedFeedbackResultStudent2!='undefined'){
         $localStorage.reviewedFeedbackResultStudent2.waiting = 'no';
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewer, $localStorage.reviewedFeedbackResultStudent2)
+        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $localStorage.reviewedFeedbackResultStudent2)
         .then(function(response) {
           console.log('put perfect');
           $localStorage.firstReviewFinished = true;

@@ -22,7 +22,7 @@
     $scope.shift = $scope.newFeedbackResult.shift;
     $scope.group = $scope.newFeedbackResult.group;
     $scope.student = $scope.newFeedbackResult.student;
-    console.log($scope.student);
+
     
     
     
@@ -42,6 +42,7 @@
         
       });
     }
+
     $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
       .then(function(response) {      
         $scope.myReviewer = response.data[0].reviewer;
@@ -51,11 +52,12 @@
       $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
       .then(function(response) {      
         $scope.myReviewer = response.data[0].reviewer;
-        console.log($scope.myReviewer);
+        console.log('¿tengo myreviewer?' + $scope.myReviewer);
+        $localStorage.myReviewer =  $scope.myReviewer;
 
         if($scope.myReviewer == ''){
 
-          console.log('entro en el if');
+          console.log('No, entro en el if');
         
       
               $http.get('/api/findStudentsPreparedSameShift/' + $scope.idFeedback + '/' + $scope.shift)
@@ -109,10 +111,13 @@
                     
                     $scope.student1 = $scope.student;
                     $scope.student2 = elegido.student;
+                    $localStorage.myReviewer = $scope.student2;
+                    console.log('student1: ' + $scope.student1);
+                    console.log('student2: ' + $scope.student2);
 
                     $scope.reviewedFeedbackResultStudent2 = elegido;
                     $scope.reviewedFeedbackResultStudent1 =  $scope.newFeedbackResult;
-                    
+                    $scope.myReviewer = $scope.newFeedbackResult;;
                   
                     //modificar los reviewers de cada uno, y a uno de los dos ponerle waiting='si'
 
@@ -121,7 +126,7 @@
                    
                     $scope.reviewedFeedbackResultStudent2.waiting = 'si';
                     $localStorage.reviewedFeedbackResultStudent2 = $scope.reviewedFeedbackResultStudent2;
-                    console.log($localStorage.reviewedFeedbackResultStudent2);
+                    console.log('feedback de mi reviewed: ' + $localStorage.reviewedFeedbackResultStudent2.student);
                  
 
                     $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.reviewedFeedbackResultStudent2.student, $scope.reviewedFeedbackResultStudent2)
@@ -158,8 +163,9 @@
               
 
         }else if($scope.myReviewer != ''){
-          console.log('entro en el else');
+          console.log('Si, tengo reviwer, entro en el else');
           $scope.student2 = $scope.myReviewer;
+          console.log('myreviewer: ' + $scope.student2);
           $scope.withAssignment = ['e1', 'e2'];
         }
 
@@ -175,25 +181,35 @@
     $scope.iHaveToWaiting = function(){
         console.log('iHaveToWaiting?')
         $localStorage.student = $scope.student;
+        console.log('yo: ' + $localStorage.student);
         $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
         .then(function(response) {      
           $scope.waiting = response.data[0].waiting;
-          $scope.reviewedFeedbackResult = response.data[0];
-          $localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
-          $localStorage.studentReviewed = $scope.student;
-          console.log($localStorage.reviewedFeedbackResult);
-          console.log($scope.waiting);
-          if($scope.waiting == 'no'){
-            $location.path('/checksSwipe');
-          }else{
-            $location.path('/waiting');
-          }
+          //$scope.reviewedFeedbackResult = response.data[0];
+          //$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
+          
+          $localStorage.studentReviewed = response.data[0].reviewer;
+          console.log('RW: ' + response.data[0].reviewer);
+          $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed)
+            .then(function(response) {      
+              $localStorage.reviewedFeedbackResult = response.data[0];
+              
+              console.log($scope.waiting);
+              if($scope.waiting == 'no'){
+                $location.path('/checksSwipe');
+              }else{
+                $location.path('/waiting');
+              }
+            })
+            .catch(function(response) {
+            })
+            .finally(function() {
+            });
+          
         })
         .catch(function(response) {
-          console.error('Show preparation error', response.status, response.data);
         })
         .finally(function() {
-          console.log("Preparation showed");
         });
     }  
    
@@ -201,3 +217,5 @@
   }
 
 }());
+
+

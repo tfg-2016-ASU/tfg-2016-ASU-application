@@ -13,7 +13,10 @@
 
    
     
-    console.log($localStorage.reviewedFeedbackResult);      
+    console.log($localStorage.reviewedFeedbackResult);   
+    console.log($localStorage.studentReviewed);
+
+    
 
     //$localStorage.reviewedFeedbackResult.arrayCheckResults.push();
 
@@ -50,18 +53,7 @@
 
     
 
-/*
-    $scope.idCheckToShow = checks[0].idCheck;
-    $scope.checkToShow = checks[0];
-    $scope.descriptionToShow = checks[0].description;
-    $scope.typeCheckToShow = checks[0].typeCheck;
-    var currentCheck = $scope.idCheckToShow;
-    var checksLength = checks.length;
-    var lastCheck = checks[checksLength-1].idCheck;
-    console.log("numero de tareas pendientes (inclusive la actual): " + checksLength);
-    console.log('Currentcheck: ' + currentCheck)
 
-    */
 
     
 
@@ -129,12 +121,7 @@
           
         });
 
-        //Aquí actualizo las variables relativas a la próxima check que se mostrará en la app
-        /*currentCheck = currentCheck + 1;
-        $scope.idCheckToShow = checks[currentCheck].idCheck;
-        $scope.checkToShow = checks[currentCheck];
-        $scope.descriptionToShow = checks[currentCheck].description;
-        $scope.typeCheckToShow = checks[currentCheck].typeCheck;*/
+       
         
       }
       
@@ -165,6 +152,7 @@
       $scope.nextCheck();
     };
 
+    
   }
   
 
