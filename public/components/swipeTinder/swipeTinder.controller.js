@@ -5,19 +5,23 @@
     .module('app')
     .controller('SwipeTinderController', SwipeTinderController);
 
-  SwipeTinderController.$inject = ['$scope', '$http'];
+  SwipeTinderController.$inject = ['$scope', '$http', '$location'];
 
-  function SwipeTinderController($scope, $http) {
+  function SwipeTinderController($scope, $http, $location) {
 	
     console.log("SwipeTinderController initialized");
 
+
 	
     $(document).ready(function () {
+
+      
         
         $http.get('/api/feedbacksInformation/' + '1')
         .then(function(response) {
           $scope.feedbacksResultsSwipe = response.data[0].checks;
-
+          $scope.lastCheckSwipe = response.data[0].checks[response.data[0].checks.length-1].idCheck;
+          
           // Define cards
           /*var cards = [
             new Tindercardsjs.card(2, 'Tarea 2', 'Se debe tener, al menos, dos planes: Uno premium con 1000 peticiones y uno básico que permita como máximo 10 peticiones', '/images/cabecera-swipe.png'),
@@ -44,12 +48,40 @@
           
           console.log(cards2);
 
-            
+          var arrayRes = [];
           // Render cards
           Tindercardsjs.render(cards2, $('#main'), function (event) {
-            console.log('Swiped ' + event.direction + ', cardid is ' + event.cardid + ' and target is:');
-            console.log(event.card);
+           
+            //console.log('Swiped ' + event.direction + ', cardid is ' + event.cardid + ' and target is:');
+            //console.log(event.card);
+            
+            
+
+            var result;
+            if(event.direction == 'right'){
+              result = 'ok';
+            }else if(event.direction == 'left'){
+              result = 'no';
+            }
+            
+            arrayRes.push({"idCheck": event.cardid,
+                           "result": result,
+                           "comments": "no"
+                          });
+
+            console.log((arrayRes));
+
+            if(event.cardid == $scope.lastCheckSwipe){
+              console.log('entro en el if');
+              
+              $("div.demo-container").html( "</br><h3>No hay más tareas<h3>");
+              $("div.demo-container2").html( "<h3>Todas las tareas están evaluadas</h3>");
+            }
+
           });
+
+          
+
 
 
 

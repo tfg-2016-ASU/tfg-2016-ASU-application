@@ -34,7 +34,7 @@ Tindercardsjs = (function () {
      */
     this.tojQuery = function () {
       if (!jqo) {
-        jqo = $('<div class="tc-card">').attr('data-cardid', cardid).html('<div class="tc-card-img-cont"><img src="' + imgpath + '" class="tc-card-img"><div class="tc-card-body"><h2 class="tc-card-name">' + name + '</h2><span class="tc-card-desc">' + desc + '</span></div></div>');
+        jqo = $('<div class="tc-card">').attr('data-cardid', cardid).attr('data-desc', desc).html('<div class="tc-card-img-cont"><img src="' + imgpath + '" class="tc-card-img"><div class="tc-card-body"><h2 class="tc-card-name">' + name + '</h2><span class="tc-card-desc">' + desc + '</span></div></div>');
       }
       return jqo;
     };
@@ -74,6 +74,7 @@ Tindercardsjs = (function () {
               if (typeof onSwiped === 'function') {
                 resultEvent.cardid = $card.attr('data-cardid');
                 resultEvent.card = $card;
+                resultEvent.desc = $card.attr('data-desc');;
                 if (deltaX > 100) {
                   resultEvent.direction = 'right';
                 } else {

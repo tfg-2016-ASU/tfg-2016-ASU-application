@@ -78,8 +78,8 @@
 
       $scope.reviewedFeedbackResult.arrayCheckResults.push({"idCheck": $scope.idCheckToShow,
                                                               "result": "ok",
-                                                              "comments": "no",
-                                                              "punctuation": $scope.punctuation});
+                                                              "comments": "no"
+                                                             });
 
       $localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
       console.log($scope.reviewedFeedbackResult);

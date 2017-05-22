@@ -3,12 +3,17 @@
 <html>
 
   <head>
-    <title>Tindercardsjs demo</title>
+    <title>Feedback SOS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+    <div class="feedback">
+      <h2 class="center-align">Feedback SOS</h2>
+    </div>
     <style>
-      
+     .feedback h2 {
+        color: #9d2235;
+      }
+
       body{
         font-family: 'Helvetica-Neue', 'HelveticaNeue', arial, sans-serif;
         color: #434343;
@@ -25,13 +30,33 @@
         left:50%;
         margin-left:-160px;
       }
+
+      #demo-container{
+        position:relative;
+        left:56%;
+        margin-left:-180px;
+      }
+      #demo-container2{
+        position:absolute;
+        left:51%;
+        margin-left:-180px;
+      }
     </style>
     
   </head>
   
   <body>
+    <div class="demo-container" id="demo-container">
+      <div class="demo-box"></div>
+    </div>
+
+    <div class="demo-container2" id="demo-container2">
+      <div class="demo-box"></div>
+    </div>
     
     <div id="main"></div>
+
+  
     
   </body>
   
