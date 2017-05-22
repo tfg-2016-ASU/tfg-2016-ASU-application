@@ -188,6 +188,20 @@ exports.findStudentsPreparedSameShift = function(args, res, next) {
     });
 }
 
+exports.findDistinctIdFeedbacks = function(args, res, next) {
+
+    //db.collection(FEEDBACKS_RESULTS_COLLECTION).distinct("idFeedback");
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).distinct("idFeedback",
+            function(err, docs){
+                if(err){
+                    //console.log("error");
+                }else{
+                    res.send(docs);
+                }
+            }
+        );
+}
+
 
 
 exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {

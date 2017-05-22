@@ -2,7 +2,7 @@
 <div class="container" >
     <head>
         <div class="titulo">
-        <h4 class="center-align">Historial de feedbacks</h4>
+        <h4 class="center-align">Feedback {{idFeedbackChosen}}</h4>
         <div>
         <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
         <!--Import Google Icon Font-->
@@ -21,14 +21,14 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="center-align">Id Feedback</th>
+                    <th class="center-align">Alumno</th>
                     <th class="center-align">Elegir</th>
                 </tr>
             </thead>
             <tbody >
-                <tr ng-repeat= "f in differentsFeedbacks">
-                    <td class="center-align">{{f}}</td>
-                    <td class="center-align"><button class="btn btn-danger" ui-sref="feedbacksResultsRecordsStudents" ng-click="chooseIdFeedback(f)">Elegir</button></td>
+                <tr ng-repeat= "f in feedbacksResultsHistorial">
+                    <td class="center-align">{{f.student}}</td>
+                    <td class="center-align"><button class="btn btn-danger" ui-sref="feedbacksResultsRecordsStudentChosen" ng-click="chooseStudent(f.student)">Elegir</button></td>
                 </tr>
             </tbody>
         </table>

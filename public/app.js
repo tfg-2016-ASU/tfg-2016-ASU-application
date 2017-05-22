@@ -143,6 +143,18 @@
         templateUrl: 'components/feedbacksResultsRecords/feedbacksResultsRecords.html',
         controllerAs: 'vm'
       })
+      .state('feedbacksResultsRecordsStudents', {
+        url: '/feedbacksResultsRecordsStudents',
+        controller: 'FeedbacksResultsRecordsStudentsController',
+        templateUrl: 'components/feedbacksResultsRecordsStudents/feedbacksResultsRecordsStudents.html',
+        controllerAs: 'vm'
+      })
+      .state('feedbacksResultsRecordsStudentChosen', {
+        url: '/feedbacksResultsRecordsStudentChosen',
+        controller: 'FeedbacksResultsRecordsStudentChosenController',
+        templateUrl: 'components/feedbacksResultsRecordsStudentChosen/feedbacksResultsRecordsStudentChosen.html',
+        controllerAs: 'vm'
+      })
       .state('bye', {
         url: '/bye',
         controller: 'ByeController',

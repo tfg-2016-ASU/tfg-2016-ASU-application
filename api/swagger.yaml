@@ -261,6 +261,31 @@ paths:
       x-swagger-router-controller: "Default" 
 
 
+  /findDistinctIdFeedbacks:
+    get:
+      description: "Returns all distinct idFeedbacks"
+      operationId: "findDistinctIdFeedbacks"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      responses:
+        200:
+          description: "feedbacks response"
+          schema:
+            type: array
+            items:
+              type: integer
+              minimum: 0
+              maximum: 63
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default" 
+
+
 
   /feedbacksResults/{idFeedback}/{student}:
     get:
