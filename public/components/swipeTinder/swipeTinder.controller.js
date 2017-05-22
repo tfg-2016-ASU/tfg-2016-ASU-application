@@ -5,23 +5,35 @@
     .module('app')
     .controller('SwipeTinderController', SwipeTinderController);
 
-  SwipeTinderController.$inject = ['$scope', '$http', '$location'];
+  SwipeTinderController.$inject = ['$scope', '$http', '$location', '$localStorage'];
 
-  function SwipeTinderController($scope, $http, $location) {
+  function SwipeTinderController($scope, $http, $location, $localStorage) {
 	
     console.log("SwipeTinderController initialized");
 
+    $scope.idFeedback = $localStorage.idFeedback;
+    $localStorage.studentReviewed = $localStorage.RWDEF.student;
+    $localStorage.reviewedFeedbackResult = $localStorage.RWDEF;
 
-	
+    console.log($localStorage.studentReviewed);
+    console.log($localStorage.reviewedFeedbackResult);
+    $scope.totalChecks = $localStorage.checks.length;
+
+    
+
+
     $(document).ready(function () {
 
-      
+        
         
         $http.get('/api/feedbacksInformation/' + '1')
         .then(function(response) {
           $scope.feedbacksResultsSwipe = response.data[0].checks;
           $scope.lastCheckSwipe = response.data[0].checks[response.data[0].checks.length-1].idCheck;
-          
+          $scope.checkShowed = response.data[0].checks[0].idCheck;
+          var aux = $scope.checkShowed;
+          var progress = Math.round(aux/$scope.lastCheckSwipe * 100);
+          console.log(Math.round(aux/$scope.lastCheckSwipe * 100));
           // Define cards
           /*var cards = [
             new Tindercardsjs.card(2, 'Tarea 2', 'Se debe tener, al menos, dos planes: Uno premium con 1000 peticiones y uno básico que permita como máximo 10 peticiones', '/images/cabecera-swipe.png'),
@@ -49,13 +61,17 @@
           console.log(cards2);
 
           var arrayRes = [];
+
+
+          var heidi;
+
           // Render cards
           Tindercardsjs.render(cards2, $('#main'), function (event) {
            
             //console.log('Swiped ' + event.direction + ', cardid is ' + event.cardid + ' and target is:');
             //console.log(event.card);
-            
-            
+           
+      
 
             var result;
             if(event.direction == 'right'){
@@ -70,15 +86,26 @@
                           });
 
             console.log((arrayRes));
+          
+            console.log(event.cardid);
 
             if(event.cardid == $scope.lastCheckSwipe){
               console.log('entro en el if');
               $('#main').html("</br><h3 class='center-align'>Todas las tareas están evaluadas</h3><div class='center icon'><i class='material-icons'>assignment</i></div>");
-              //$("div.main").html( "</br><h3 class='center-align'>No hay más tareas<h3>");
-              //$("div.demo-container2").html( "</br><h3 class='center-align'>Todas las tareas están evaluadas<h3>");
+              
             }
+            
+            aux++;
+            var progress = Math.round(aux/$scope.lastCheckSwipe * 100);
+            console.log(Math.round(aux/$scope.lastCheckSwipe * 100));
+            //$( "div.demo-container" ).html("<p class='center-align'>Todas las tareas están evaluadas</p>");
+            $( "div.demo-container" ).html("<p class='center-align'>Tarea "+aux+ "/" + $scope.lastCheckSwipe);
+            $( "div.progress" ).html("<div class='determinate' style='width:"+ progress +"%'></div>");
 
           });
+
+
+
 
           
         })
@@ -92,6 +119,7 @@
         
     });
 
+   
   }
 
 }());

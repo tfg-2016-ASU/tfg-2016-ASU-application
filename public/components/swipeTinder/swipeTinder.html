@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <div class="feedback">
-      <h2 class="center-align">Feedback SOS</h2>
+      <h2 class="center-align">Feedback {{idFeedback}}</h2>
     </div>
     <style>
      .feedback h2 {
@@ -36,31 +36,35 @@
         font-size: 7rem;
         display: block;
       }
-      /*
-      #demo-container2{
-        position:absolute;
-        left:51%;
-        margin-left:-180px;
-      }*/
+      .progress{
+        width:320px;
+        height: 6px;
+        margin-right: auto;
+        margin-left: auto;
+        
+      }
+     
+      
     </style>
     
   </head>
   
   <body>
     
-    <div class="demo-container" id="demo-container">
-      <div class="demo-box"></div>
-    </div>
-    
-    <div class="demo-container2" id="demo-container2">
-      <div class="demo-box"></div>
-    </div>
-    
-    <div id="main"></div>
+  <div id="main"></div>
+
+  <div class="demo-container"> 
+    <p class="center-align">Tarea {{checkShowed}}/{{lastCheckSwipe}}</p>
+  </div>  
+
+  
+   <div class="progress" id="progress">
+      <div class="determinate" style="width: 33%"></div>
+   </div>
 
     <div class="center-align">
-    <button ui-sref="resume" ng-click="resumeFeedback()" class="btn waves-effect waves-light">Resumen</button>
-    <button ui-sref="finish" ng-click="finishFeedback()" class="btn waves-effect waves-light">Terminar</button>
+      <button ui-sref="resume" ng-click="resumeFeedback()" class="btn waves-effect waves-light">Resumen</button>
+      <button ui-sref="finish" ng-click="finishFeedback()" class="btn waves-effect waves-light">Terminar</button>
     </div>
     
   </body>
