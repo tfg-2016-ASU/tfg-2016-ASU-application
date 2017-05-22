@@ -73,18 +73,14 @@
 
             if(event.cardid == $scope.lastCheckSwipe){
               console.log('entro en el if');
-              
-              $("div.demo-container").html( "</br><h3>No hay más tareas<h3>");
-              $("div.demo-container2").html( "<h3>Todas las tareas están evaluadas</h3>");
+              $('#main').html("</br><h3 class='center-align'>Todas las tareas están evaluadas</h3><div class='center icon'><i class='material-icons'>assignment</i></div>");
+              //$("div.main").html( "</br><h3 class='center-align'>No hay más tareas<h3>");
+              //$("div.demo-container2").html( "</br><h3 class='center-align'>Todas las tareas están evaluadas<h3>");
             }
 
           });
 
           
-
-
-
-
         })
         .catch(function(response) {
           console.error('Feedbacks results error', response.status, response.data);
