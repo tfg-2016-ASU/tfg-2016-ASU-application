@@ -136,11 +136,10 @@ Tindercardsjs = (function () {
           'border': '1px solid #666',
           'border-radius': '10px',
           'background-color': '#fff',
-          'height': '300',
+          'height': '230px',
           'left': '10px',
           'top': '10px',
-          'right': '10px',
-          'width': '270px'
+          'right': '10px'
         });
         
         $card.find('.tc-card-img').css({
@@ -158,11 +157,12 @@ Tindercardsjs = (function () {
         $card.find('.tc-card-body').css({
           'position': 'relative',
           'left': '10px',
-          'width': '260px',
+          'width': '280px',
           'text-align': 'center'
         });
 
-
+     
+        
       }
       
       initSwipe(onSwiped);
