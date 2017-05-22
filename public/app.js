@@ -107,6 +107,12 @@
         templateUrl: 'components/swipe/swipe.html',
         controllerAs: 'vm'
       })
+      .state('swipeTinder', {
+        url: '/swipeTinder',
+        controller: 'SwipeTinderController',
+        templateUrl: 'components/swipeTinder/swipeTinder.html',
+        controllerAs: 'vm'
+      })
       .state('checksSwipe', {
         url: '/checksSwipe',
         controller: 'ChecksSwipeController',
