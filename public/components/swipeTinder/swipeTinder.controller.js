@@ -92,7 +92,8 @@
             if(event.cardid == $scope.lastCheckSwipe){
               console.log('entro en el if');
               $('#main').html("</br><h3 class='center-align'>Todas las tareas están evaluadas</h3><div class='center icon'><i class='material-icons'>assignment</i></div>");
-              
+              $( "div.demo-container" ).html("<p class='center-align'>Tarea "+aux+ "/" + $scope.lastCheckSwipe);
+              aux--;
             }
             
             aux++;

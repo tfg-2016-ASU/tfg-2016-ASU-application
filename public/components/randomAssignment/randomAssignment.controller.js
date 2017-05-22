@@ -211,7 +211,7 @@
           //$localStorage.rw = response.data[0].reviewer;
           console.log($scope.waiting);
           if($scope.waiting == 'no'){
-            $location.path('/checksSwipe');
+            $location.path('/swipeTinder');
           }else{
             $location.path('/waiting');
           }      
