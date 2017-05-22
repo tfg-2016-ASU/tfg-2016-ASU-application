@@ -22,7 +22,7 @@
 				"edition": "15-16",
 				"reviewer": "",
 				"preparationEnd": "no",
-				"result": "POSITIVO",
+				"result": "NEGATIVO",
 				"waiting": "si",
 				"score": 0,
 				"arrayCheckResults": [

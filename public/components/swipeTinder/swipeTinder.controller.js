@@ -13,7 +13,9 @@
 
     $scope.idFeedback = $localStorage.idFeedback;
     $localStorage.studentReviewed = $localStorage.RWDEF.student;
+    $scope.studentReviewed = $localStorage.studentReviewed;
     $localStorage.reviewedFeedbackResult = $localStorage.RWDEF;
+    $scope.reviewedFeedbackResult = $localStorage.reviewedFeedbackResult;
 
     console.log($localStorage.studentReviewed);
     console.log($localStorage.reviewedFeedbackResult);
@@ -80,21 +82,42 @@
               result = 'no';
             }
             
-            arrayRes.push({"idCheck": event.cardid,
+        
+
+            arrayRes.push({"idCheck": aux,
                            "result": result,
                            "comments": "no"
                           });
 
+            
+
             console.log((arrayRes));
           
-            console.log(event.cardid);
+            
 
             if(event.cardid == $scope.lastCheckSwipe){
               console.log('entro en el if');
               $('#main').html("</br><h3 class='center-align'>Todas las tareas están evaluadas</h3><div class='center icon'><i class='material-icons'>assignment</i></div>");
-              $( "div.demo-container" ).html("<p class='center-align'>Tarea "+aux+ "/" + $scope.lastCheckSwipe);
               aux--;
-            }
+              
+              //$localStorage.reviewedFeedbackResult.arrayCheckResults = arrayRes;
+              //delete $localStorage.reviewedFeedbackResult._id;
+              //delete $localStorage.reviewedFeedbackResult.createDate;
+              console.log($localStorage.reviewedFeedbackResult);
+
+              $localStorage.reviewedFeedbackResult.arrayCheckResults = arrayRes;
+              $http.put('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.studentReviewed, $localStorage.reviewedFeedbackResult)
+                .then(function(response) {
+                  console.log('put perfect');
+                })
+                .catch(function(response) {
+                  console.log('error');
+                })
+                .finally(function() {
+                  console.log('finish');
+                });
+            
+          }
             
             aux++;
             var progress = Math.round(aux/$scope.lastCheckSwipe * 100);

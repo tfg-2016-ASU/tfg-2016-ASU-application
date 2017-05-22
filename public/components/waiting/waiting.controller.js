@@ -23,7 +23,7 @@
           $scope.waiting = response.data[0].waiting;
           console.log($scope.waiting);
           if($scope.waiting == 'si'){
-            $location.path('/checksSwipe');
+            $location.path('/swipeTinder');
           }
         })
         .catch(function(response) {

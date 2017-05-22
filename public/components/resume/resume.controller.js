@@ -7,9 +7,13 @@
 
   ResumeController.$inject = ['$scope', '$localStorage'];
 
+  
+
   function ResumeController($scope, $localStorage) {
 	
     console.log("ResumeController initialized");
+
+    
 	
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.checks = $localStorage.reviewedFeedbackResult.arrayCheckResults;

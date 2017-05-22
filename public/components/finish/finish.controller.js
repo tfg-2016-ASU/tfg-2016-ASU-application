@@ -46,7 +46,7 @@
       console.log($scope.feedbackFinished);
       $scope.feedbackFinished.shift = 'jeje';
 
-      $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.feedbackFinished)
+      /*$http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentReviewed, $scope.feedbackFinished)
 				.then(function(response) {
 					console.log('put perfect');
 				})
@@ -55,7 +55,7 @@
 				})
 				.finally(function() {
 					console.log("Finished");
-				});
+				});*/
 
     })
     .catch(function(response) {
@@ -67,6 +67,7 @@
     
 
     $scope.finishFeedback = function(){
+      
       console.log($localStorage.reviewedFeedbackResult.waiting);
       
       if($localStorage.reviewedFeedbackResult.waiting == 'si'){
@@ -77,6 +78,7 @@
 
           console.log($localStorage.reviewedFeedbackResult.reviewer);
           console.log(response.data[0]);
+          
           $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.reviewer, response.data[0])
           .then(function(response) {
             console.log('put perfect');
