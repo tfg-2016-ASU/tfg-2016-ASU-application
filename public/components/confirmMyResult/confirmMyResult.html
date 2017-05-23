@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <div class="container">
+            <h3 class="center-align">Feedback {{idFeedback}}</h3>
+            <!--Import materialize.css-->
+            <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    </head>
+    <body>
+        <div class="center-align">
+            <h5>Hola {{student}}, estos han sido tus resultados:</h5>
+            <h6>blablabla</h6>
+            <h5>¿Estás de acuerdo?</h5>
+            <p><em>(Importante: si pulsa "No" se perderán los resultados)</em></p>
+        </div>
+
+        <div class="center-align">
+            <button ui-sref="beginSecondReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
+            <button ui-sref="beginSecondReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
+        </div>
+
+        </div>
+    </body>
+</html>

@@ -4,33 +4,31 @@
             <h3 class="center-align">Feedback {{idFeedback}}</h3>
             <!--Import materialize.css-->
             <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <style>
+        body{
+            font-size: 20px;
+        }
+        
+    </style>
+
     </head>
     <body>
         <div class="center-align">
-            <h5>Resultado final del feedback: {{feedbackFinished.result}}</h5>
-            <h5>Puntuación: {{feedbackFinished.score}}</h5>
+            <div style="border-radius: 8px;border:solid; border-color:#9d2235; width: 400px; margin-left: auto; margin-right: auto">
+                <p style="color:#9d2235">RESULTADO FEEDBACK: <p>
+                <p>Resivor (tú): <span style="color:#9d2235">{{finalReviewer}}</span></p>
+                <p>Revisado: <span style="color:#9d2235">{{finalStudent}}</span></p>
+                <p>Tareas correctas: <span style="color:#9d2235">{{wellChecks}} / {{totalChecks}}</span></p>
+                <p>Resultado: <span style="color:#9d2235">{{finalResult}}</span></p>
+                <p>Puntuación: <span style="color:#9d2235">{{finalScore}}</span></p>   
+            </div>  
         </div>
-
-        <!--<div class="center-align">
-            <a ui-sref="resume">Resumen</a> <a ui-sref="home" ng-click="authService.logout()">Log Out</a>
-        </div>-->
-        
+        </br>
         <div class="center-align">
             <button ui-sref="resume" class="btn blue lighten-2">Resumen</button>
             <button ui-sref="bye" ng-click="finishFeedback()" class="btn blue lighten-2">Estoy de acuerdo</button>
         </div>
+       
 
-
-        <!--<div class="text-center" ng-if="firstReviewFinished==true">
-            <button ui-sref="resume" class="btn blue lighten-2">Resumen true</button>
-            <button ui-sref="bye" class="btn blue lighten-2">Estoy de acuerdo</button>
-        </div>
-        <div class="text-center" ng-if="firstReviewFinished==false">
-            <button ui-sref="resume" class="btn blue lighten-2">Resumen false</button>
-            <button ui-sref="bye" ng-click="finishFeedback()" class="btn blue lighten-2">Estoy de acuerdo</button>
-        </div>-->
-        
-
-        </div>
     </body>
 </html>

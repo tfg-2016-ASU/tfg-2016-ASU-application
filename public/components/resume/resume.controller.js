@@ -17,6 +17,7 @@
 	
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.checks = $localStorage.reviewedFeedbackResult.arrayCheckResults;
+    $localStorage.arrayCheckResults = $localStorage.reviewedFeedbackResult.arrayCheckResults;;
     
     $scope.improveCheck = function(idCheck){
       $localStorage.currentCheck = idCheck;

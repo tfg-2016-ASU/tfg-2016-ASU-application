@@ -10,23 +10,28 @@
                 <h5 class="red-text text-red-ligthen-2">La tarea {{idCheckToShow}} no está realizada correctamente</h5>
             </div>
                 
-            </br>
+            
             <div class="center-align">
-                <h5>¿La ha corregido?</h5>
-    
-            </br>
-
+                <h5>¿La ha corregido? </h5>
             
-            <div>
-            <textarea ng-model="comments" placeholder="Comentarios" id="comments" class="materialize-textarea" class="validate" ng-required="true" required></textarea>
-            </div>
+
+                <div>
+                    <input type="checkbox" id="checkImproved" ng-model="checkImproved" ng-change="changeCheckImproved()" 
+                    class="filled-in" ng-true-value="'si'" ng-false-value="'no'"/>
+                    <label for="checkImproved"> ¡Sí!</label>
+                </div>
+
                 
+                <div>
+                    <textarea ng-model="comments" placeholder="Comentarios" id="comments" class="materialize-textarea" class="validate" ng-required="true" required></textarea>
+                </div>
+                    
+                </br>
 
-             </br>
+                <div class="center-align">
+                    <button ui-sref="resume" ng-click="improve()" class="btn blue lighten-2">OK</button>
+                </div>
 
-            <button class="btn red lighten-2" ng-click="noImprove()">NO</button>
-            <button class="btn green lighten-2" ng-click="improve()">SI</button>
-            
             </div>
 
         </body>

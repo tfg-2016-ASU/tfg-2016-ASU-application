@@ -219,6 +219,8 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var score = res['req']['swagger']['params']['body']['value']['score'];
     var result = res['req']['swagger']['params']['body']['value']['result'];
     var waiting = res['req']['swagger']['params']['body']['value']['waiting'];
+    var comments = res['req']['swagger']['params']['body']['value']['comments'];
+    var confirmed = res['req']['swagger']['params']['body']['value']['confirmed'];
     console.log('waiting:' + waiting);
 
     //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
@@ -237,7 +239,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 
     console.log(arrayCheckResults.length);
 
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting}},
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed}},
             function(err, docs){
                 if(err){
                     //console.log("error");

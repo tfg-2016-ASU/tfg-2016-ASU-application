@@ -433,6 +433,9 @@ definitions:
       score:
         type: "number"
         format: "double"
+      confirmed:
+        type: "integer"
+        format: "int32"
       arrayCheckResults:
         type: "array"
         items:

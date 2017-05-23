@@ -25,6 +25,7 @@
 				"result": "NEGATIVO",
 				"waiting": "si",
 				"score": 0,
+				"confirmed": 0,
 				"arrayCheckResults": [
 				]
 			};

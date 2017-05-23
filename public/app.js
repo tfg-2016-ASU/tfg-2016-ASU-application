@@ -47,6 +47,24 @@
         templateUrl: 'components/waiting/waiting.html',
         controllerAs: 'vm'
       })
+      .state('confirmMyResult', {
+        url: '/confirmMyResult',
+        controller: 'ConfirmMyResultController',
+        templateUrl: 'components/confirmMyResult/confirmMyResult.html',
+        controllerAs: 'vm'
+      })
+      .state('beginSecondReview', {
+        url: '/beginSecondReview',
+        controller: 'BeginSecondReviewController',
+        templateUrl: 'components/beginSecondReview/beginSecondReview.html',
+        controllerAs: 'vm'
+      })
+      .state('expectingConfirmation', {
+        url: '/expectingConfirmation',
+        controller: 'ExpectingConfirmationController',
+        templateUrl: 'components/expectingConfirmation/expectingConfirmation.html',
+        controllerAs: 'vm'
+      })
       .state('chooseReviewed', {
         url: '/chooseReviewed',
         controller: 'ChooseReviewedController',
@@ -77,12 +95,7 @@
         templateUrl: 'components/resume/resume.html',
         controllerAs: 'vm'
       })
-      .state('finish', {
-        url: '/finish',
-        controller: 'FinishController',
-        templateUrl: 'components/finish/finish.html',
-        controllerAs: 'vm'
-      })
+      
       .state('improveCheck', {
         url: '/improveCheck',
         controller: 'ImproveCheckController',
@@ -165,6 +178,11 @@
         url: '/bye',
         controller: 'ByeController',
         templateUrl: 'components/bye/bye.html',
+        controllerAs: 'vm'
+      }).state('finish', {
+        url: '/finish',
+        controller: 'FinishController',
+        templateUrl: 'components/finish/finish.html',
         controllerAs: 'vm'
       });
 
