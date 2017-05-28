@@ -10,9 +10,25 @@
   function ConfirmMyResultController($scope, $localStorage, $http) {
 	
     console.log("ConfirmMyResultController initialized");
-	
+
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.student = $localStorage.newFeedbackResult.student;
+    console.log($localStorage.firstReviewer == $scope.student);
+    $scope.firstReviewer = ($localStorage.firstReviewer == $scope.student);
+
+    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.newFeedbackResult.reviewer)
+      .then(function(response) {
+        console.log('get perfect');
+        console.log(response.data[0].confirmed);
+        $scope.confirmed = response.data[0].confirmed;
+      })
+      .catch(function(response) {
+        console.error('Error', response.status, response.data);
+      })
+      .finally(function() {
+        console.log("Finished");
+      });
+
 
     $scope.confirm = 'no';
     $scope.confirmResult = function(){
@@ -22,11 +38,21 @@
 
     $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
       .then(function(response) {
-        console.log('put perfect');
+        console.log('get perfect');
         $scope.resultsToConfirm = response.data[0];
         console.log($scope.resultsToConfirm);
         $scope.reviewerC = $scope.resultsToConfirm.reviewer;
+        $scope.reviewedC = $scope.resultsToConfirm.student;
         $scope.checksC = $scope.resultsToConfirm.arrayCheckResults;
+        var j;
+        var cont = 0;
+        for(j=0; j<$scope.checksC.length; j++){
+          if($scope.checksC[j].result == 'ok'){
+            cont++;
+          }
+        }
+        $scope.wellChecks = cont;
+        $scope.totalChecks = $scope.checksC.length;
         $scope.resultC = $scope.resultsToConfirm.result;
         $scope.scoreC = $scope.resultsToConfirm.score;
       })

@@ -53,10 +53,10 @@
         templateUrl: 'components/confirmMyResult/confirmMyResult.html',
         controllerAs: 'vm'
       })
-      .state('beginSecondReview', {
-        url: '/beginSecondReview',
-        controller: 'BeginSecondReviewController',
-        templateUrl: 'components/beginSecondReview/beginSecondReview.html',
+      .state('beginReview', {
+        url: '/beginReview',
+        controller: 'BeginReviewController',
+        templateUrl: 'components/beginReview/beginReview.html',
         controllerAs: 'vm'
       })
       .state('expectingConfirmation', {
@@ -179,10 +179,23 @@
         controller: 'ByeController',
         templateUrl: 'components/bye/bye.html',
         controllerAs: 'vm'
-      }).state('finish', {
+      })
+      .state('finish', {
         url: '/finish',
         controller: 'FinishController',
         templateUrl: 'components/finish/finish.html',
+        controllerAs: 'vm'
+      })
+      .state('waitingConfirmation', {
+        url: '/waitingConfirmation',
+        controller: 'WaitingConfirmationController',
+        templateUrl: 'components/waitingConfirmation/waitingConfirmation.html',
+        controllerAs: 'vm'
+      })
+      .state('resultsConfirmed', {
+        url: '/resultsConfirmed',
+        controller: 'ResultsConfirmedController',
+        templateUrl: 'components/resultsConfirmed/resultsConfirmed.html',
         controllerAs: 'vm'
       });
 

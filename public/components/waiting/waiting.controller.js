@@ -12,17 +12,19 @@
     console.log("WaitingController initialized");
 	
     $scope.idFeedback = $localStorage.idFeedback;
-    console.log($localStorage.idFeedback);  
 
-
+    $scope.reviewer = $localStorage.RWDEF.student;
+    
+    console.log($localStorage.RWDEF.reviewer);
+    
     $scope.beginReview = function(){
-        //comprobar que el waiting vale 'si'
+        //si waiting es 'no' enconces entro en el if y voy a la pantalla siguiente
         console.log($localStorage.student);
-        $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.student)
+        $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.RWDEF.reviewer)
         .then(function(response) {      
           $scope.waiting = response.data[0].waiting;
           console.log($scope.waiting);
-          if($scope.waiting == 'si'){
+          if($scope.waiting == 'no'){
             $location.path('/confirmMyResult');
           }
         })

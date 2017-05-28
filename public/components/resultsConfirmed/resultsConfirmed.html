@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <div class="container">
+            <h3 class="center-align">Feedback {{idFeedback}}</h3>
+            <!--Import materialize.css-->
+            <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <style>
+        body{
+            font-size: 20px;
+        }
+        
+    </style>
+
+    </head>
+    <body>
+        <div class="center-align">
+            <h5>Resultados confirmados satisfactoriamente</h5>
+        </div>
+       
+        <div class="center-align">
+            <div class="text-center" ng-if="confirmed==true">
+                <button ui-sref="waiting" class="btn blue lighten-2">Siguiente</button>
+            </div>
+            <div class="text-center" ng-if="confirmed==false">
+                <button ui-sref="bye" class="btn blue lighten-2">Siguiente</button>
+            </div>
+        </div>
+
+        </br>
+    </body>
+</html>

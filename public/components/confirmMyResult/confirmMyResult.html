@@ -1,8 +1,7 @@
-<html>
+<!--<html>
     <head>
         <div class="container">
             <h3 class="center-align">Feedback {{idFeedback}}</h3>
-            <!--Import materialize.css-->
             <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     </head>
     <body>
@@ -14,10 +13,60 @@
         </div>
 
         <div class="center-align">
-            <button ui-sref="beginSecondReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
-            <button ui-sref="beginSecondReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
+            <button ui-sref="beginReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
+            <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
         </div>
 
         </div>
+    </body>
+</html>
+-->
+<html>
+    <head>
+        <div class="container">
+            <h3 class="center-align">Feedback {{idFeedback}}</h3>
+            <!--Import materialize.css-->
+            <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <style>
+        body{
+            font-size: 20px;
+        }
+        
+    </style>
+
+    </head>
+    <body>
+        <div class="center-align">
+            <h5>Hola {{student}}, estos han sido tus resultados:</h5>
+            </br>
+            <div style="border-radius: 8px;border:solid; border-color:#9d2235; width: 400px; margin-left: auto; margin-right: auto">
+                <p style="color:#9d2235">RESULTADO FEEDBACK: <p>
+                <p>Resivor: <span style="color:#9d2235">{{reviewerC}}</span></p>
+                <p>Revisado (tú): <span style="color:#9d2235">{{reviewedC}}</span></p>
+                <p>Tareas correctas: <span style="color:#9d2235">{{wellChecks}} / {{totalChecks}}</span></p>
+                <p>Resultado: <span style="color:#9d2235">{{resultC}}</span></p>
+                <p>Puntuación: <span style="color:#9d2235">{{scoreC}}</span></p>   
+            </div> 
+            <h5>¿Estás de acuerdo?</h5>
+            <p><em>(Importante: si pulsa "No" se perderán los resultados)</em></p> 
+        </div>
+       
+        <!--<div class="center-align">
+            <button ui-sref="beginReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
+            <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
+        </div>-->
+
+        <div class="center-align">
+            <div class="text-center" ng-if="firstReviewer==false">
+                <button ui-sref="beginReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
+                <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
+            </div>
+            <div class="text-center" ng-if="firstReviewer==true">
+                <button ui-sref="bye" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
+                <button ui-sref="bye" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
+            </div>
+        </div>
+
+        </br>
     </body>
 </html>

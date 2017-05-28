@@ -61,6 +61,8 @@
         if($scope.myReviewer == ''){
 
           console.log('No, entro en el if');
+          
+          $localStorage.firstReviewer = response.data[0].student;
         
       
               $http.get('/api/findStudentsPreparedSameShift/' + $scope.idFeedback + '/' + $scope.shift)
@@ -211,7 +213,7 @@
           //$localStorage.rw = response.data[0].reviewer;
           console.log($scope.waiting);
           if($scope.waiting == 'no'){
-            $location.path('/swipeTinder');
+            $location.path('/beginReview');
           }else{
             $location.path('/waiting');
           }      

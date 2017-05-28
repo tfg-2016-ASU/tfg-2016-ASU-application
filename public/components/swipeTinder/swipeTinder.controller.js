@@ -104,11 +104,21 @@
               //delete $localStorage.reviewedFeedbackResult._id;
               //delete $localStorage.reviewedFeedbackResult.createDate;
               console.log($localStorage.reviewedFeedbackResult);
-
               $localStorage.reviewedFeedbackResult.arrayCheckResults = arrayRes;
-              $http.put('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.studentReviewed, $localStorage.reviewedFeedbackResult)
+              $http.get('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.studentReviewed)
                 .then(function(response) {
                   console.log('put perfect');
+                  response.data[0].arrayCheckResults = arrayRes;
+                  $http.put('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.studentReviewed, response.data[0])
+                    .then(function(response) {
+                      console.log('put perfect');
+                    })
+                    .catch(function(response) {
+                      console.log('error');
+                    })
+                    .finally(function() {
+                      console.log('finish');
+                    });
                 })
                 .catch(function(response) {
                   console.log('error');
@@ -116,6 +126,7 @@
                 .finally(function() {
                   console.log('finish');
                 });
+              
             
           }
             
