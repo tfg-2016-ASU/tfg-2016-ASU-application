@@ -1,33 +1,10 @@
-<!--<html>
-    <head>
-        <div class="container">
-            <h3 class="center-align">Feedback {{idFeedback}}</h3>
-            <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-    </head>
-    <body>
-        <div class="center-align">
-            <h5>Hola {{student}}, estos han sido tus resultados:</h5>
-            <h6>blablabla</h6>
-            <h5>¿Estás de acuerdo?</h5>
-            <p><em>(Importante: si pulsa "No" se perderán los resultados)</em></p>
-        </div>
-
-        <div class="center-align">
-            <button ui-sref="beginReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
-            <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
-        </div>
-
-        </div>
-    </body>
-</html>
--->
 <html>
     <head>
         <div class="container">
             <h3 class="center-align">Feedback {{idFeedback}}</h3>
             <!--Import materialize.css-->
             <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+           
     <style>
         body{
             font-size: 20px;
@@ -40,7 +17,7 @@
         <div class="center-align">
             <h5>Hola {{student}}, estos han sido tus resultados:</h5>
             </br>
-            <div style="border-radius: 8px;border:solid; border-color:#9d2235; width: 330px; margin-left: auto; margin-right: auto">
+            <div class="center-align" style="border-radius: 8px;border:solid; border-color:#9d2235; width: 330px; margin-left: auto; margin-right: auto">
                 <p style="color:#9d2235">RESULTADO FEEDBACK: <p>
                 <p>Resivor: <span style="color:#9d2235">{{reviewerC}}</span></p>
                 <p>Revisado (tú): <span style="color:#9d2235">{{reviewedC}}</span></p>
@@ -58,14 +35,14 @@
         </div>-->
 
         <div class="center-align">
-            <div class="text-center" ng-if="firstReviewer==false">
+            <div class="text-center" ng-if="confirmed==0">
                 <button ui-sref="beginReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
                 <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
             </div>
-            <div class="text-center" ng-if="firstReviewer==true">
+            <div class="text-center" ng-if="confirmed>0">
                 <button ui-sref="bye" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
                 <button ui-sref="bye" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
-            </div>
+            </div><!--bye-->
         </div>
 
         </br>

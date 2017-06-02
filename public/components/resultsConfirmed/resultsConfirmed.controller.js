@@ -14,9 +14,12 @@
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.student = $localStorage.newFeedbackResult.student;
 
-    console.log($localStorage.firstReviewer == $localStorage.newFeedbackResult.student);
+    console.log($localStorage.newFeedbackResult.arrayCheckResults.length>0);
 
-    $scope.confirmed = ($localStorage.firstReviewer == $localStorage.newFeedbackResult.student);
+    //$scope.confirmed = ($localStorage.firstReviewer == $localStorage.newFeedbackResult.student);
+    //$scope.confirmed = ($localStorage.newFeedbackResult.arrayCheckResults.length>0);
+  
+    $scope.confirmed = $localStorage.resultsConfirmed;
 
     console.log($localStorage.RWDEF.reviewer);
     $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.RWDEF.reviewer)

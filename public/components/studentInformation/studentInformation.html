@@ -1,4 +1,4 @@
-  <html>
+ <html>
     <div class="container" >
     <head>
       
@@ -13,49 +13,51 @@
     
     </head>
 
-    <!--<body>
-      <form>
-      <input ng-model="newFeedbackResult.idFeedback" placeholder="Número de feedback" id="idFeedback" type="number" class="validate" ng-required="true" required></input>
-      <input ng-model="newFeedbackResult.student" placeholder="Nombre y apellidos" id="student" type="text" class="validate" ng-required="true" required></input>
-      <input ng-model="newFeedbackResult.group" placeholder="Grupo" id="group" type="number" class="validate" ng-required="true" required></input>
-      <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" id="shift" type="text" class="validate" ng-required="true" required></input>
-      
-      <button ui-sref="preparation" ng-click="addFeedbackResult()">Siguiente</button>
-
-      </form>
-      
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-    </body>-->
+  
     <body>
       
-        
-        <form>
-          <div class="input-field col s6">
+        <!-- Para que las validaciones funcionen es necesario que tanto el form como input, select tengan la propiedad name -->
+        <form name="studentForm">
+          
+          <!--<div class="input-field col s6">
             <i class="material-icons prefix">account_circle</i>
             <input ng-model="newFeedbackResult.student" placeholder="Nombre y apellidos" id="student" type="text" class="validate" ng-required="true" required></input>
+          </div>-->
+          <!--
+          <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input type="text" class="form-control" placeholder="Nombre y apellidos" name="student" ng-model="newFeedbackResult.student" required></input>
           </div>
+          -->
 
           <div class="input-field col s6">
             <i class="material-icons prefix">feedback</i>
-             <input ng-model="newFeedbackResult.idFeedback" placeholder="Número de feedback" id="idFeedback" type="number" class="validate" ng-required="true" required></input>
+             <input ng-model="newFeedbackResult.idFeedback" placeholder="Número de feedback" name="idFeedback" type="number" class="form-control" required></input>
           </div>
          
+
           <div class="input-field col s6">
             <i class="material-icons prefix">group</i>
-            <input ng-model="newFeedbackResult.group" placeholder="Grupo" id="group" type="number" class="validate" ng-required="true" required></input>
+            <input ng-model="newFeedbackResult.group" placeholder="Grupo" name="group" type="number" class="form-control" required></input>
           </div>
          
           <div class="input-field col s6">
             <i class="material-icons prefix">access_time</i>
-            <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" id="shift" type="text" class="validate" ng-required="true" required></input>
+            <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" name="shift" type="text" class="form-control" required></input>
           </div>
           
-          <div class="center-align">
+          <!--<div class="center-align">
             <button ui-sref="preparation" ng-click="addFeedbackResult()" class="btn waves-effect waves-light">Siguiente
               <i class="material-icons right">send</i>
             </button>
+          </div>-->
+
+          <div class="center-align">
+            <input type="submit" ui-sref="preparation" ng-disabled="studentForm.$invalid" class="btn btn-success pull-right" ng-click="addFeedbackResult(newFeedbackResult)">
           </div>
+
+  
+          
 
         </form>
       
@@ -66,3 +68,4 @@
     </body>
      </div>
   </html>
+

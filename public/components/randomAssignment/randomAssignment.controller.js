@@ -62,7 +62,7 @@
 
           console.log('No, entro en el if');
           
-          $localStorage.firstReviewer = response.data[0].student;
+          //$localStorage.firstReviewer = response.data[0].student;
         
       
               $http.get('/api/findStudentsPreparedSameShift/' + $scope.idFeedback + '/' + $scope.shift)

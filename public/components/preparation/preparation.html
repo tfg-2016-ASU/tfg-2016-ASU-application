@@ -1,32 +1,3 @@
-<!--<html>
-    <head>
-        <h2>Feedback {{idFeedback}}</h2>
-        <h4>Preparación</h4> 
-        
-      	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-      	
-    </head>
-    <body>
-        
-        <p>
-            <ul class="preparation-container">
-                <li class="preparation-repeat" ng-repeat="p in preparation"> {{p.description}}  
-                </li>
-            </ul>
-        </p>
-
-        <p>
-            <input type="checkbox" id="preparationReady" class="filled-in" />
-            <label for="preparationReady"> ¡Preparado!</label>
-        </p>
-
-        <p>
-            <button ui-sref="chooseReviewed" ng-click="preparationEnd()">Siguiente</button>
-        </p>
-
-    </body>
-</html>-->
-
 <html>
     <div class="container" >
         <div class="center-align" >
@@ -47,7 +18,7 @@
     <body>
       <body>
         
-        
+      
         <p >
             <ul class="preparation-container">
                 <li  class="preparation-repeat" ng-repeat="p in preparation"> {{p.description}}  
@@ -56,16 +27,19 @@
             </ul>
         </p>
 
-        <p>
-            <input type="checkbox" id="preparationReady" ng-model="preparationReady" ng-change="changePreparationEnd()" 
-            class="filled-in" ng-true-value="'si'" ng-false-value="'no'"/>
-            <label for="preparationReady"> ¡Preparado!</label>
-        </p>
+        <form name="preparationForm">
+            <p class="center-align">
+                <input type="checkbox" id="preparationReady" name="preparationReady" ng-model="preparationReady" ng-change="changePreparationEnd()" 
+                class="filled-in" ng-true-value="'si'" ng-false-value="'no'" required/>
+                <label for="preparationReady"> ¡Preparado!</label>
+            </p>        
 
 
-        <button ui-sref="randomAssignment" ng-click="modifyPreparationEnd()" class="btn waves-effect waves-light">Siguiente
-            <i class="material-icons right">send</i>
-        </button>
+            <button ng-disabled="preparationForm.$invalid" ui-sref="randomAssignment" ng-click="modifyPreparationEnd()" class="btn waves-effect waves-light">Siguiente
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+        
    
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

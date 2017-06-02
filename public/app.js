@@ -197,6 +197,12 @@
         controller: 'ResultsConfirmedController',
         templateUrl: 'components/resultsConfirmed/resultsConfirmed.html',
         controllerAs: 'vm'
+      })
+      .state('validacion', {
+        url: '/validacion',
+        controller: 'ValidacionController',
+        templateUrl: 'components/validacion/validacion.html',
+        controllerAs: 'vm'
       });
 
 
@@ -204,6 +210,13 @@
       clientID: AUTH0_CLIENT_ID,
       domain: AUTH0_DOMAIN,
       options: {
+
+        additionalSignUpFields: [
+        {
+          name: "full_name",
+          placeholder: "Enter your full name"
+        }],
+
         _idTokenVerification: false,
         languageDictionary: {
           title: "Feedbacks SOS 16-17"
@@ -216,7 +229,6 @@
     });
 
     $urlRouterProvider.otherwise('/home');
-
 
     // Configuration for angular-jwt
     jwtOptionsProvider.config({

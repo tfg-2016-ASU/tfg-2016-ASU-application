@@ -13,8 +13,21 @@
 
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.student = $localStorage.newFeedbackResult.student;
-    console.log($localStorage.firstReviewer == $scope.student);
-    $scope.firstReviewer = ($localStorage.firstReviewer == $scope.student);
+    //console.log($localStorage.firstReviewer == $scope.student);
+    //$scope.firstReviewer = ($localStorage.firstReviewer == $scope.student);
+    //$scope.firstReviewer = false;
+    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.RWDEF.student)
+      .then(function(response) {
+        $scope.confirmed = response.data[0].arrayCheckResults.length;
+        console.log($scope.confirmed);
+      })
+      .catch(function(response) {
+        console.error('Error', response.status, response.data);
+      })
+      .finally(function() {
+        console.log("Finished");
+      });
+
 
     $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.newFeedbackResult.reviewer)
       .then(function(response) {

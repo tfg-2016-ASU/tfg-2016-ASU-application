@@ -21,6 +21,8 @@
     console.log($localStorage.reviewedFeedbackResult);
     $scope.totalChecks = $localStorage.checks.length;
 
+    $localStorage.firstReviewer = $localStorage.reviewedFeedbackResult.reviewer;
+
     
 
 

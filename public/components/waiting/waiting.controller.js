@@ -16,6 +16,8 @@
     $scope.reviewer = $localStorage.RWDEF.student;
     
     console.log($localStorage.RWDEF.reviewer);
+
+    $localStorage.resultsConfirmed = false;
     
     $scope.beginReview = function(){
         //si waiting es 'no' enconces entro en el if y voy a la pantalla siguiente
