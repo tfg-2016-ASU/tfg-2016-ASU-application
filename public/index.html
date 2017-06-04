@@ -65,9 +65,15 @@
     </div>
    <!-- http://materializecss.com/navbar.html -->
    <div ng-app="app" >
+     <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#">one</a></li>
+      <li><a href="#">two</a></li>
+      <li><a href="#">three</a></li>
+    </ul>
      <nav>
        <div class="nav-wrapper">
-          <a href="#" data-activates="mobile-demo"><i class="material-icons">menu</i></a>
+          <a class="dropdown-button" href="#!" data-activates="dropdown1">Menu</a>
+          <!--<a href="#" data-activates="mobile-demo"><i class="material-icons">menu</i></a>-->
        </div>
      </nav>
      <div ui-view></div>
