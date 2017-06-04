@@ -23,6 +23,12 @@
         templateUrl: 'components/login/login.html',
         controllerAs: 'vm'
       })
+      .state('time', {
+        url: '/time',
+        controller: 'TimeController',
+        templateUrl: 'components/time/time.html',
+        controllerAs: 'vm'
+      })
       .state('studentInformation', {
         url: '/studentInformation',
         controller: 'StudenInformationController',

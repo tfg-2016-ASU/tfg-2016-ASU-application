@@ -5,12 +5,23 @@
     .module('app')
     .controller('RandomAssignmentController', RandomAssignmentController);
 
-  RandomAssignmentController.$inject = ['$scope',  '$localStorage', '$http', '$location'];
+  RandomAssignmentController.$inject = ['$scope',  '$localStorage', '$http', '$location', '$interval'];
 
-  function RandomAssignmentController($scope, $localStorage, $http, $location) {
+  function RandomAssignmentController($scope, $localStorage, $http, $location, $interval) {
 	
     console.log("RandomAssignmentController initialized");
 
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------
 
     console.log($localStorage.newFeedbackResult);
 
@@ -65,7 +76,7 @@
           //$localStorage.firstReviewer = response.data[0].student;
         
       
-              $http.get('/api/findStudentsPreparedSameShift/' + $scope.idFeedback + '/' + $scope.shift)
+              $http.get('/api/feedbacksResults/findStudentsPreparedSameShift/' + $scope.idFeedback + '/' + $scope.shift)
               .then(function(response) {
                 $localStorage.feedbacksResults = response.data;
                 $scope.feedbacksResults = response.data;

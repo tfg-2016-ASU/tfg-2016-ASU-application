@@ -5,12 +5,25 @@
     .module('app')
     .controller('PreparationController', PreparationController);
 
-  PreparationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage'];
+  PreparationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage', '$interval'];
 
-  function PreparationController($scope, $http, $rootScope, $localStorage) {
+  function PreparationController($scope, $http, $rootScope, $localStorage, $interval) {
 
     console.log("PreparationController initialized");
     
+
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------
+
 
     $scope.preparationReady = 'no';
     

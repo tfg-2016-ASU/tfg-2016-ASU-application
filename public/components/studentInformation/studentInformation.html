@@ -10,11 +10,25 @@
       	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 		    <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
+
+
+
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     </head>
 
   
     <body>
+      <div class="center-align" ng-app="app">
+          <p>{{ clock | date:'HH:mm:ss'}}</p>
+      </div>
       
         <!-- Para que las validaciones funcionen es necesario que tanto el form como input, select tengan la propiedad name -->
         <form name="studentForm">
@@ -30,21 +44,43 @@
           </div>
           -->
 
+          
+         
           <div class="input-field col s6">
+            <md-select placeholder="Número de feedback" ng-model="newFeedbackResult.idFeedback" style="min-width: 200px;" required>
+              <md-option ng-value="f.idFeedback" ng-repeat="f in feedbacksInf">{{f.idFeedback}}</md-option>
+            </md-select>
+          </div>
+          
+
+          <!--<div class="input-field col s6">
             <i class="material-icons prefix">feedback</i>
              <input ng-model="newFeedbackResult.idFeedback" placeholder="Número de feedback" name="idFeedback" type="number" class="form-control" required></input>
-          </div>
-         
+          </div>-->
+
+          
 
           <div class="input-field col s6">
-            <i class="material-icons prefix">group</i>
+            <!--<i class="material-icons prefix">group</i>-->
             <input ng-model="newFeedbackResult.group" placeholder="Grupo" name="group" type="number" class="form-control" required></input>
           </div>
          
-          <div class="input-field col s6">
+          <!--<div class="input-field col s6">
             <i class="material-icons prefix">access_time</i>
             <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" name="shift" type="text" class="form-control" required></input>
+          </div>-->
+          </br>
+          
+
+        
+          <div class="input-field col s6">
+            <md-select ng-model="newFeedbackResult.shift" placeholder="Turno" required>
+              <md-option value="mañana">mañana</md-option>
+              <md-option value="tarde">tarde</md-option>
+            </md-select>
           </div>
+
+          
           
           <!--<div class="center-align">
             <button ui-sref="preparation" ng-click="addFeedbackResult()" class="btn waves-effect waves-light">Siguiente
@@ -69,3 +105,40 @@
      </div>
   </html>
 
+
+
+<!--
+<div ng-controller="SelectAsyncController" layout="column" layout-align="center center" style="padding:40px" ng-cloak>
+  <p>Select can call an arbitrary function on show. If this function returns a promise, it will display a loading indicator while it is being resolved:</p>
+  <div layout="column" layout-align="center center">
+    <md-select placeholder="Assign to user" ng-model="user" md-on-open="loadUsers()" style="min-width: 200px;">
+      <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
+    </md-select>
+    <p class="md-caption">You have assigned the task to: {{ user ? user.name : 'No one yet' }}</p>
+  </div>
+</div>
+
+
+JS:
+angular.module('selectDemoOptionsAsync', ['ngMaterial'])
+.controller('SelectAsyncController', function($timeout, $scope) {
+  $scope.user = null;
+  $scope.users = null;
+
+  $scope.loadUsers = function() {
+
+    // Use timeout to simulate a 650ms request.
+    return $timeout(function() {
+
+      $scope.users =  $scope.users  || [
+        { id: 1, name: 'Scooby Doo' },
+        { id: 2, name: 'Shaggy Rodgers' },
+        { id: 3, name: 'Fred Jones' },
+        { id: 4, name: 'Daphne Blake' },
+        { id: 5, name: 'Velma Dinkley' }
+      ];
+
+    }, 650);
+  };
+});
+-->

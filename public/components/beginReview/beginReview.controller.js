@@ -5,11 +5,23 @@
     .module('app')
     .controller('BeginReviewController', BeginReviewController);
 
-  BeginReviewController.$inject = ['$scope', '$localStorage', '$http'];
+  BeginReviewController.$inject = ['$scope', '$localStorage', '$http', '$interval'];
 
-  function BeginReviewController($scope, $localStorage, $http) {
+  function BeginReviewController($scope, $localStorage, $http, $interval) {
 	
     console.log("BeginReviewController initialized");
+
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------
 	
     $scope.idFeedback = $localStorage.idFeedback;
     console.log($localStorage.RWDEF.student);

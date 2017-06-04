@@ -91,7 +91,7 @@ paths:
         format: "int32"
       responses:
         200:
-          description: "pet response"
+          description: "feedback information response"
           schema:
             $ref: "#/definitions/feedbackInformation"
         default:
@@ -196,7 +196,7 @@ paths:
       x-swagger-router-controller: "Default"
   
 
-  /findStudentsPrepared/{idFeedback}:
+  /feedbacksResults/findStudentsPrepared/{idFeedback}:
     get:
       description: "Returns all feedbacks results with preparationEnd equal to 'si'"
       operationId: "findStudentsPrepared"
@@ -226,7 +226,7 @@ paths:
       x-swagger-router-controller: "Default"  
 
 
-  /findStudentsPreparedSameShift/{idFeedback}/{shift}:
+  /feedbacksResults/findStudentsPreparedSameShift/{idFeedback}/{shift}:
     get:
       description: "Returns all feedbacks results with preparationEnd equal to 'si'"
       operationId: "findStudentsPreparedSameShift"
@@ -261,7 +261,7 @@ paths:
       x-swagger-router-controller: "Default" 
 
 
-  /findDistinctIdFeedbacks:
+  /feedbacksResults/findDistinctIdFeedbacks:
     get:
       description: "Returns all distinct idFeedbacks"
       operationId: "findDistinctIdFeedbacks"

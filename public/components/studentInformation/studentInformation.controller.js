@@ -6,21 +6,59 @@
     .module('app')
     .controller('StudenInformationController', StudenInformationController);
 
-  StudenInformationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage'];
+  StudenInformationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage', '$interval'];
 
-  function StudenInformationController($scope, $http, $rootScope, $localStorage) {
+  function StudenInformationController($scope, $http, $rootScope, $localStorage, $interval) {
+
 
 		console.log("StudenInformationController initialized");
-		console.log($localStorage.studentLogged);
+	
+		//---------  Timer-------------------
+		var d;
+		d = new Date($localStorage.clock);
+		
+		var tick = function() {
+			$scope.clock = d;
+			d.setSeconds(d.getSeconds() + 1);
+			$localStorage.clock = d;
+		}
+		tick();
+		$interval(tick, 1000);
+		//-----------------------------------
+
+		/*
+		var tick = function() {
+			$scope.clock = $localStorage.clock;
+			console.log($localStorage.clock);
+		}
+		tick();
+		$interval(tick, 1000);
+	  	*/
+		
+
+		
+		console.log($localStorage.studentLogged); //se coge del js de auth0
 		//$localStorage.$reset();
 
-
+		$http.get('/api/feedbacksInformation')
+			.then(function(response) {
+				console.log(response.data);
+				$scope.feedbacksInf = response.data;
+				console.log('Feedback result added correctly!');	
+			})
+			.catch(function(response) {
+				console.error('Feedbacks results error', response.status, response.data);
+			})
+			.finally(function() {
+				console.log("Feedbacks results showed");
+			});
+	
 		//------------------------------------------------------------------------------------------------
 		//Inicializar las propiedad de newFeedbackResult que no han sido inicializadas en el formulario
 			
 			$scope.newFeedbackResult = {
 				"subject": "SOS",
-				"edition": "15-16",
+				"edition": "16-17",
 				"reviewer": "",
 				"preparationEnd": "no",
 				"result": "NEGATIVO",
@@ -32,6 +70,7 @@
 			};
 
 
+			
 		
 	
 			$localStorage.newFeedbackResult = $scope.newFeedbackResult;
@@ -46,7 +85,6 @@
 		
 
 		$scope.addFeedbackResult = function (){
-			
 			
 			  
 			if($scope.studentForm.$invalid){
