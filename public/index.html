@@ -19,9 +19,15 @@
     
     
       <style>
-        .navbar{
+        .nav-wrapper{
           margin-bottom: 0;
           border-radius: 0;
+          background-color: #9d2235;
+        }
+        .nav-wrapper a{
+          margin-right: 20px;
+          float: right;
+          font-size: 20px;
         }
       </style>
   </head>
@@ -62,17 +68,22 @@
             </div>
           </nav>
       <div ui-view></div>
-    </div>
+    </div>-->
+
    <!-- http://materializecss.com/navbar.html -->
    <div ng-app="app" >
      <ul id="dropdown1" class="dropdown-content">
-      <li><a href="#">one</a></li>
-      <li><a href="#">two</a></li>
-      <li><a href="#">three</a></li>
+      <li><a href="#">home</a></li>
+      <li><a ng-click="authService.logout()" href="#">logout</a></li>
     </ul>
      <nav>
        <div class="nav-wrapper">
-          <a class="dropdown-button" href="#!" data-activates="dropdown1">Menu</a>
+              Feedback SOS
+          <ul class="right hide-on-med-and-down">
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu</a></li>
+          </ul>
+          <!--<a class="dropdown-button" href="#!" data-activates="dropdown1">Menu</a>-->
           <!--<a href="#" data-activates="mobile-demo"><i class="material-icons">menu</i></a>-->
        </div>
      </nav>
