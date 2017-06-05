@@ -5,11 +5,23 @@
     .module('app')
     .controller('SwipeTinderController', SwipeTinderController);
 
-  SwipeTinderController.$inject = ['$scope', '$http', '$location', '$localStorage'];
+  SwipeTinderController.$inject = ['$scope', '$http', '$location', '$localStorage', '$interval'];
 
-  function SwipeTinderController($scope, $http, $location, $localStorage) {
+  function SwipeTinderController($scope, $http, $location, $localStorage, $interval) {
 	
     console.log("SwipeTinderController initialized");
+
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------    
 
     $scope.idFeedback = $localStorage.idFeedback;
     $localStorage.studentReviewed = $localStorage.RWDEF.student;

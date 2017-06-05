@@ -5,11 +5,23 @@
     .module('app')
     .controller('ResultsConfirmedController', ResultsConfirmedController);
 
-  ResultsConfirmedController.$inject = ['$scope', '$localStorage', '$http'];
+  ResultsConfirmedController.$inject = ['$scope', '$localStorage', '$http', '$interval'];
 
-  function ResultsConfirmedController($scope, $localStorage, $http) {
+  function ResultsConfirmedController($scope, $localStorage, $http, $interval) {
 	
     console.log("ResultsConfirmedController initialized");
+
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------    
 	
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.student = $localStorage.newFeedbackResult.student;

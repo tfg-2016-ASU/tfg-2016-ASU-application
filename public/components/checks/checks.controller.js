@@ -13,6 +13,18 @@
     
     console.log($localStorage.reviewedFeedbackResult);      
 
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------
+
     //$localStorage.reviewedFeedbackResult.arrayCheckResults.push();
 
     $scope.reviewedFeedbackResult = $localStorage.reviewedFeedbackResult; //no volver a guardar nada en local.reviewedfeedres

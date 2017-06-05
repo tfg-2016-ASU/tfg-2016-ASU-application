@@ -5,11 +5,23 @@
     .module('app')
     .controller('WaitingController', WaitingController);
 
-  WaitingController.$inject = ['$scope', '$localStorage', '$http', '$location'];
+  WaitingController.$inject = ['$scope', '$localStorage', '$http', '$location', '$interval'];
 
-  function WaitingController($scope, $localStorage, $http, $location) {
+  function WaitingController($scope, $localStorage, $http, $location, $interval) {
 	
     console.log("WaitingController initialized");
+
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------    
 	
     $scope.idFeedback = $localStorage.idFeedback;
 

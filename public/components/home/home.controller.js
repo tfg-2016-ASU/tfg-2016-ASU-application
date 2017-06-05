@@ -24,8 +24,12 @@
     });
     
     $scope.startTimer = function(){
+
+      var arr = "2014-01-01 00:00:00".split(/[- :]/),
+      date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+      
       var d;
-      d = new Date('2014-01-01 00:00:00');
+      d = date;
       
       var tick = function() {
           $scope.clock = d;

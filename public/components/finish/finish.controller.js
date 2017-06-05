@@ -5,12 +5,23 @@
     .module('app')
     .controller('FinishController', FinishController);
 
-  FinishController.$inject = ['$scope', '$rootScope', '$localStorage', '$http'];
+  FinishController.$inject = ['$scope', '$rootScope', '$localStorage', '$http', '$interval'];
 
-  function FinishController($scope, $rootScope, $localStorage, $http) {
+  function FinishController($scope, $rootScope, $localStorage, $http, $interval) {
 	
     console.log("FinishController initialized");
-
+    
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------
     
     $scope.idFeedback = $localStorage.idFeedback;
 

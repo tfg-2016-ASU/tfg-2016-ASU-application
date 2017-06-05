@@ -5,11 +5,23 @@
     .module('app')
     .controller('ExpectingConfirmationController', ExpectingConfirmationController);
 
-  ExpectingConfirmationController.$inject = ['$scope', '$localStorage', '$location', '$http'];
+  ExpectingConfirmationController.$inject = ['$scope', '$localStorage', '$location', '$http', '$interval'];
 
-  function ExpectingConfirmationController($scope, $localStorage, $location, $http) {
+  function ExpectingConfirmationController($scope, $localStorage, $location, $http, $interval) {
 	
     console.log("ExpectingConfirmationController initialized");
+    
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------    
 	
   
     $scope.idFeedback = $localStorage.idFeedback;

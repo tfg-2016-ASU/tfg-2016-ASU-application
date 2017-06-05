@@ -5,12 +5,24 @@
     .module('app')
     .controller('ImproveCheckController', ImproveCheckController);
 
-  ImproveCheckController.$inject = ['$scope', '$localStorage', '$location', '$http'];
+  ImproveCheckController.$inject = ['$scope', '$localStorage', '$location', '$http', '$interval'];
 
-  function ImproveCheckController($scope, $localStorage, $location, $http) {
+  function ImproveCheckController($scope, $localStorage, $location, $http, $interval) {
 	
     console.log("ImproveCheckController initialized");
     
+    //---------  Timer-------------------
+    var d;
+    d = new Date($localStorage.clock);
+    
+    var tick = function() {
+        $scope.clock = d;
+        d.setSeconds(d.getSeconds() + 1);
+    }
+    tick();
+    $interval(tick, 1000);
+    //-----------------------------------
+
     $scope.reviewedFeedbackResult = $localStorage.reviewedFeedbackResult;
     $scope.idFeedback = $localStorage.idFeedback;
 
