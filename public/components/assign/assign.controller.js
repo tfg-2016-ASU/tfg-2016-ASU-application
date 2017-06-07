@@ -20,22 +20,38 @@
       .then(function(response) {
           console.log(response.data[0]);
           $scope.rw = response.data[0].reviewer;
+          $localStorage.rw = response.data[0].reviewer;
+          if($scope.rw != ""){
+            $scope.withAssignment = ['rd', 'rr'];
+          }else{
+            $scope.withAssignment = ['rd'];
+          }
       })
       .catch(function(response) {
           console.error('Feedbacks results error', response.status, response.data);
       })
       .finally(function() {
       });
-    
+      
+      
     
 
     $scope.refresh = function(){
-      console.log($scope.role);
-      if($scope.rw != ""){
-        $scope.withAssignment = ['e1', 'e2'];
-      }else{
-        $scope.withAssignment = ['e1'];
-      }
+    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
+      .then(function(response) {
+          console.log(response.data[0]);
+          $scope.rw = response.data[0].reviewer;
+          if($scope.rw != ""){
+            $scope.withAssignment = ['rd', 'rr'];
+          }else{
+            $scope.withAssignment = ['rd'];
+          }
+      })
+      .catch(function(response) {
+          console.error('Feedbacks results error', response.status, response.data);
+      })
+      .finally(function() {
+      });
     }
 
   }

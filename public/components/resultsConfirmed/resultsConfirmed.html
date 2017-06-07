@@ -2,9 +2,7 @@
     <head>
         <div class="container">
             <h3 class="center-align">Feedback {{idFeedback}}</h3>
-            <div class="center-align" ng-app="app">
-                <p>{{ clock | date:'HH:mm:ss'}}</p>
-            </div>
+           
             <!--Import materialize.css-->
             <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     <style>
@@ -17,15 +15,15 @@
     </head>
     <body>
         <div class="center-align">
-            <h5>Resultados confirmados satisfactoriamente</h5>
+            <h5>The results are been confirmed</h5>
         </div>
        
         <div class="center-align">
-            <div class="text-center" ng-if="confirmed==true">
-                <button ui-sref="waiting" class="btn blue lighten-2">Siguiente</button>
+            <div class="text-center" ng-if="role=='reviewer'">
+                <button ui-sref="waiting" class="btn blue lighten-2">Next</button>
             </div>
-            <div class="text-center" ng-if="confirmed==false">
-                <button ui-sref="bye" class="btn blue lighten-2">Siguiente</button>
+            <div class="text-center" ng-if="role=='reviewed'">
+                <button ui-sref="bye" class="btn blue lighten-2">Next</button>
             </div><!--bye-->
         </div>
 

@@ -10,27 +10,17 @@
   function ConfirmMyResultController($scope, $localStorage, $http, $interval) {
 	
     console.log("ConfirmMyResultController initialized");
-    //---------  Timer-------------------
-    var d;
-    d = new Date($localStorage.clock);
     
-    var tick = function() {
-        $scope.clock = d;
-        d.setSeconds(d.getSeconds() + 1);
-    }
-    tick();
-    $interval(tick, 1000);
-    //-----------------------------------
     
     $scope.idFeedback = $localStorage.idFeedback;
-    $scope.student = $localStorage.newFeedbackResult.student;
+    $scope.student = $localStorage.studentLogged;
     //console.log($localStorage.firstReviewer == $scope.student);
     //$scope.firstReviewer = ($localStorage.firstReviewer == $scope.student);
     //$scope.firstReviewer = false;
-    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.RWDEF.student)
+    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
       .then(function(response) {
-        $scope.confirmed = response.data[0].arrayCheckResults.length;
-        console.log($scope.confirmed);
+        $scope.role = response.data[0].role;
+        console.log($scope.role);
       })
       .catch(function(response) {
         console.error('Error', response.status, response.data);
@@ -53,12 +43,13 @@
         console.log("Finished");
       });*/
 
-
+    /*
     $scope.confirm = 'no';
     $scope.confirmResult = function(){
       console.log("cambié");
       console.log($scope.confirm);
     }
+    */
 
     $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
       .then(function(response) {

@@ -11,45 +11,36 @@
 	
     console.log("SwipeTinderController initialized");
 
-    //---------  Timer-------------------
-    var d;
-    d = new Date($localStorage.clock);
-    
-    var tick = function() {
-        $scope.clock = d;
-        d.setSeconds(d.getSeconds() + 1);
-    }
-    tick();
-    $interval(tick, 1000);
-    //-----------------------------------    
 
     $scope.idFeedback = $localStorage.idFeedback;
-    $localStorage.studentReviewed = $localStorage.RWDEF.student;
-    $scope.studentReviewed = $localStorage.studentReviewed;
-    $localStorage.reviewedFeedbackResult = $localStorage.RWDEF;
-    $scope.reviewedFeedbackResult = $localStorage.reviewedFeedbackResult;
+    //$localStorage.studentReviewed = $localStorage.RWDEF.student;
+    //$scope.studentReviewed = $localStorage.studentReviewed;
+    //$localStorage.reviewedFeedbackResult = $localStorage.RWDEF;
+    //$scope.reviewedFeedbackResult = $localStorage.reviewedFeedbackResult;
 
-    console.log($localStorage.studentReviewed);
-    console.log($localStorage.reviewedFeedbackResult);
+    //console.log($localStorage.studentReviewed);
+    //console.log($localStorage.reviewedFeedbackResult);
     $scope.totalChecks = $localStorage.checks.length;
 
-    $localStorage.firstReviewer = $localStorage.reviewedFeedbackResult.reviewer;
+    //S$localStorage.firstReviewer = $localStorage.reviewedFeedbackResult.reviewer;
 
     
 
 
-    $(document).ready(function () {
+    //$(document).ready(function () {
 
-        
         
         $http.get('/api/feedbacksInformation/' + '1')
         .then(function(response) {
           $scope.feedbacksResultsSwipe = response.data[0].checks;
           $scope.lastCheckSwipe = response.data[0].checks[response.data[0].checks.length-1].idCheck;
           $scope.checkShowed = response.data[0].checks[0].idCheck;
+          //Para la barra de progreso de la app:
           var aux = $scope.checkShowed;
           var progress = Math.round(aux/$scope.lastCheckSwipe * 100);
+         
           console.log(Math.round(aux/$scope.lastCheckSwipe * 100));
+
           // Define cards
           /*var cards = [
             new Tindercardsjs.card(2, 'Tarea 2', 'Se debe tener, al menos, dos planes: Uno premium con 1000 peticiones y uno básico que permita como máximo 10 peticiones', '/images/cabecera-swipe.png'),
@@ -78,32 +69,25 @@
 
           var arrayRes = [];
 
-
-          var heidi;
-
           // Render cards
           Tindercardsjs.render(cards2, $('#main'), function (event) {
            
             //console.log('Swiped ' + event.direction + ', cardid is ' + event.cardid + ' and target is:');
             //console.log(event.card);
            
-      
-
             var result;
             if(event.direction == 'right'){
               result = 'ok';
+              console.log(result);
             }else if(event.direction == 'left'){
               result = 'no';
             }
             
-        
 
             arrayRes.push({"idCheck": aux,
                            "result": result,
                            "comments": "no"
                           });
-
-            
 
             console.log((arrayRes));
           
@@ -111,19 +95,21 @@
 
             if(event.cardid == $scope.lastCheckSwipe){
               console.log('entro en el if');
-              $('#main').html("</br><h3 class='center-align'>Todas las tareas están evaluadas</h3><div class='center icon'><i class='material-icons'>assignment</i></div>");
+              //$('#main').html("</br><h3 class='center-align'>Todas las tareas están evaluadas</h3><div class='center icon'><i class='material-icons'>assignment</i></div>");
               aux--;
               
               //$localStorage.reviewedFeedbackResult.arrayCheckResults = arrayRes;
               //delete $localStorage.reviewedFeedbackResult._id;
               //delete $localStorage.reviewedFeedbackResult.createDate;
-              console.log($localStorage.reviewedFeedbackResult);
-              $localStorage.reviewedFeedbackResult.arrayCheckResults = arrayRes;
-              $http.get('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.studentReviewed)
+              //console.log($localStorage.reviewedFeedbackResult);
+              //$localStorage.reviewedFeedbackResult.arrayCheckResults = arrayRes;
+
+              $http.get('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw)
                 .then(function(response) {
-                  console.log('put perfect');
+                  console.log(response.data[0]);
                   response.data[0].arrayCheckResults = arrayRes;
-                  $http.put('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.studentReviewed, response.data[0])
+                  $localStorage.reviewedFeedbackResult = response.data[0];
+                  $http.put('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw, response.data[0])
                     .then(function(response) {
                       console.log('put perfect');
                     })
@@ -132,6 +118,7 @@
                     })
                     .finally(function() {
                       console.log('finish');
+                      $location.path('/finish');
                     });
                 })
                 .catch(function(response) {
@@ -142,7 +129,7 @@
                 });
               
             
-          }
+            }
             
             aux++;
             var progress = Math.round(aux/$scope.lastCheckSwipe * 100);
@@ -154,9 +141,6 @@
           });
 
 
-
-
-          
         })
         .catch(function(response) {
           console.error('Feedbacks results error', response.status, response.data);
@@ -166,7 +150,7 @@
         });
 
         
-    });
+    //});
 
    
   }

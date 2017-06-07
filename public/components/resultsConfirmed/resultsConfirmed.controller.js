@@ -11,29 +11,20 @@
 	
     console.log("ResultsConfirmedController initialized");
 
-    //---------  Timer-------------------
-    var d;
-    d = new Date($localStorage.clock);
-    
-    var tick = function() {
-        $scope.clock = d;
-        d.setSeconds(d.getSeconds() + 1);
-    }
-    tick();
-    $interval(tick, 1000);
-    //-----------------------------------    
+  
 	
     $scope.idFeedback = $localStorage.idFeedback;
-    $scope.student = $localStorage.newFeedbackResult.student;
+    $scope.student = $localStorage.studentLogged;
+    $scope.role = $localStorage.role;
 
-    console.log($localStorage.newFeedbackResult.arrayCheckResults.length>0);
+    //console.log($localStorage.newFeedbackResult.arrayCheckResults.length>0);
 
     //$scope.confirmed = ($localStorage.firstReviewer == $localStorage.newFeedbackResult.student);
     //$scope.confirmed = ($localStorage.newFeedbackResult.arrayCheckResults.length>0);
   
-    $scope.confirmed = $localStorage.resultsConfirmed;
-
-    console.log($localStorage.RWDEF.reviewer);
+    //$scope.confirmed = $localStorage.resultsConfirmed;
+    /*
+    console.log($localStorage.rw);
     $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.RWDEF.reviewer)
       .then(function(response) {
         console.log('get perfect');
@@ -61,6 +52,7 @@
       .finally(function() {
         console.log("Finished");
       });
+    */
 
   }
 

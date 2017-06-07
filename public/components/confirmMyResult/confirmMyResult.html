@@ -2,9 +2,7 @@
     <head>
         <div class="container">
             <h3 class="center-align">Feedback {{idFeedback}}</h3>
-            <div class="center-align" ng-app="app">
-                <p>{{ clock | date:'HH:mm:ss'}}</p>
-            </div>
+            
             <!--Import materialize.css-->
             <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
            
@@ -18,18 +16,19 @@
     </head>
     <body>
         <div class="center-align">
-            <h5>Hola {{student}}, estos han sido tus resultados:</h5>
+            <h5>{{student}}, your results:</h5>
             </br>
-            <div class="center-align" style="border-radius: 8px;border:solid; border-color:#9d2235; width: 330px; margin-left: auto; margin-right: auto">
-                <p style="color:#9d2235">RESULTADO FEEDBACK: <p>
-                <p>Resivor: <span style="color:#9d2235">{{reviewerC}}</span></p>
-                <p>Revisado (tú): <span style="color:#9d2235">{{reviewedC}}</span></p>
-                <p>Tareas correctas: <span style="color:#9d2235">{{wellChecks}} / {{totalChecks}}</span></p>
-                <p>Resultado: <span style="color:#9d2235">{{resultC}}</span></p>
-                <p>Puntuación: <span style="color:#9d2235">{{scoreC}}</span></p>   
+            <div class="center-align" style="border-radius: 8px;border:solid; border-color:#be9d56; width: 330px; margin-left: auto; margin-right: auto">
+                <p style="color:#be9d56">FEEDBACK RESULT: <p>
+                <p>Reviewer: <span>{{reviewerC}}</span></p>
+                <p>Reviewed (you): <span>{{reviewedC}}</span></p>
+                <p>Correct checks: <span>{{wellChecks}} / {{totalChecks}}</span></p>
+                <p>Result: <span>{{resultC}}</span></p>
+                <p>Punctuation: <span>{{scoreC}}</span></p>   
             </div> 
-            <h5>¿Estás de acuerdo?</h5>
-            <p><em>(Importante: si pulsa "No" se perderán los resultados)</em></p> 
+            </br>
+            <p>¿Are you agree?</p>
+            <p><em>(Important: if you push "NO" the results will be lost)</em></p> 
         </div>
        
         <!--<div class="center-align">
@@ -38,11 +37,11 @@
         </div>-->
 
         <div class="center-align">
-            <div class="text-center" ng-if="confirmed==0">
+            <div class="text-center" ng-if="role=='reviewed'">
                 <button ui-sref="beginReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
                 <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
             </div>
-            <div class="text-center" ng-if="confirmed>0">
+            <div class="text-center" ng-if="role=='reviewer'">
                 <button ui-sref="bye" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
                 <button ui-sref="bye" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
             </div><!--bye-->

@@ -63,24 +63,24 @@
   
     $scope.finishFeedback = function(){
 
+       
        //modifio el confirmed del student
         $localStorage.reviewedFeedbackResult.confirmed = 1;
         $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
           .then(function(response) {
-           
-            $localStorage.firstReviewFinished = true;
+            console.log('perfe');
           })
           .catch(function(response) {
             console.error('Error', response.status, response.data);
           })
           .finally(function() {
-     
+            
           });
 
       
      
-      
-      //if($localStorage.reviewedFeedbackResult.waiting == 'no'){
+        /*
+        //if($localStorage.reviewedFeedbackResult.waiting == 'no'){
         
        
 
@@ -116,7 +116,11 @@
        
       //}
       
-    }
+    
+    
+  
+
+*/}
 
     
 

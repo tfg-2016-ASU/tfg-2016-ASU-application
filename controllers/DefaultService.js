@@ -179,7 +179,7 @@ exports.findReviewersPreparedSameShift = function(args, res, next) {
     var idFeedback = args['idFeedback']['value'];
     var shift = args['shift']['value'];
     
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si', shift:shift, reviewer:'', role:'reviewer'}).toArray(function(err, docs) {
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si', shift:shift, role:'reviewer'}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedback");
         }else{
@@ -192,7 +192,7 @@ exports.findReviewedsPreparedSameShift = function(args, res, next) {
     var idFeedback = args['idFeedback']['value'];
     var shift = args['shift']['value'];
     
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si', shift:shift, reviewer:'', role:'reviewed'}).toArray(function(err, docs) {
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si', shift:shift, role:'reviewed'}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedback");
         }else{

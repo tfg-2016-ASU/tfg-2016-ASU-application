@@ -2,10 +2,7 @@
      <div class="container" >
         <head>
             <h3 class="center-align">Feedback {{idFeedback}}</h3>
-            <div class="center-align" ng-app="app">
-                <p>{{ clock | date:'HH:mm:ss'}}</p>
-            </div>
-            <h5 class="center-align">Resumen del feedback</h5>
+            <h5 class="center-align">Resume</h5>
             </br>
             <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
             
@@ -14,10 +11,10 @@
             <table class="table">
                 <tbody>
                     <tr ng-repeat= "C in checks">
-                        <td class="center-align">Tarea {{C.idCheck}}</td>
+                        <td class="center-align">Check {{C.idCheck}}</td>
                         <td class="center-align"> {{C.result}}</td>
                         <td class="center-align">
-                            <button ng-if="C.result=='no'" ui-sref="improveCheck" ng-click="improveCheck(C.idCheck)" class="btn red lighten-2">Corregir</button>
+                            <button ng-if="C.result=='no'" ui-sref="improveCheck" ng-click="improveCheck(C.idCheck)" class="btn red lighten-2">Improve</button>
                         </td>
                     </tr>
                 </tbody>
@@ -25,8 +22,7 @@
         </body>
 
         <div class="center-align">
-            <button ui-sref="finish" class="btn blue lighten-2">Terminar feedback
-            </button>
+            <button ui-sref="finish" class="btn blue lighten-2">Finish feedback</button>
         </div>
 
      </div>
