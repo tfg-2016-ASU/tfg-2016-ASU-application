@@ -40,7 +40,7 @@
       });
 
 
-    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.newFeedbackResult.reviewer)
+    /*$http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.newFeedbackResult.reviewer)
       .then(function(response) {
         console.log('get perfect');
         console.log(response.data[0].confirmed);
@@ -51,7 +51,7 @@
       })
       .finally(function() {
         console.log("Finished");
-      });
+      });*/
 
 
     $scope.confirm = 'no';
@@ -64,7 +64,7 @@
       .then(function(response) {
         console.log('get perfect');
         $scope.resultsToConfirm = response.data[0];
-        console.log($scope.resultsToConfirm);
+        console.log( $scope.resultsToConfirm);
         $scope.reviewerC = $scope.resultsToConfirm.reviewer;
         $scope.reviewedC = $scope.resultsToConfirm.student;
         $scope.checksC = $scope.resultsToConfirm.arrayCheckResults;

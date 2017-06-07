@@ -206,22 +206,12 @@
 
     $scope.iHaveToWaiting = function(){
         console.log($localStorage.RWDEF);
-        console.log('iHaveToWaiting?')
-        //$localStorage.student = $scope.student;
-        //console.log('yo: ' + $localStorage.student);
+        console.log('iHaveToWaiting?');
         $localStorage.student = $scope.student2;
         console.log($localStorage.student);
         $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
         .then(function(response) {      
           $scope.waiting = response.data[0].waiting;
-          //$scope.rw = response.data[0].reviewer;
-          //$scope.reviewedFeedbackResult = response.data[0];
-          //$localStorage.rw = $scope.rw;
-          //$localStorage.reviewedFeedbackResult = $scope.reviewedFeedbackResult;
-          //$localStorage.studentReviewed = response.data[0].reviewer;
-          //$localStorage.reviewedFeedbackResult = response.data[0];
-          //console.log('RW: ' + response.data[0].reviewer);
-          //$localStorage.rw = response.data[0].reviewer;
           console.log($scope.waiting);
           if($scope.waiting == 'no'){
             $location.path('/beginReview');

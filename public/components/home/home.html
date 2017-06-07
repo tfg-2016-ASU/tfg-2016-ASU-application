@@ -7,34 +7,19 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <style>
-      .admin i {
-        margin: 40px 0;
-        color: #9d2235;
-        font-size: 8rem;
-        display: block;
-      }
-	  </style>    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
   </head>
   <body>
       <div>
         <h2 class="center-align"><img src="/images/logousblanco.png"></h2>
         <div class="text-center" ng-if="!isAuthenticated">
-
           <h5>Todavía no estás autenticado</h5>
           </br>
           <h5><a ui-sref="login">Ir a la página de Login</a></h5>
         </div>
         <div class="text-center" ng-if="isAuthenticated">
           <h5>Bienvenido/a, {{ vm.profile.user_metadata.full_name }}</h5>
-          <div class="col s6">
-              <div class="center admin">
-                <i class="material-icons">directions_walk</i>
-              </div>
-          </div>
-
+          </br>
           <button ng-click="startTimer()" ui-sref="studentInformation" class="btn blue lighten-2">Comenzar</button>
                    
         </div>

@@ -226,10 +226,44 @@ paths:
       x-swagger-router-controller: "Default"  
 
 
-  /feedbacksResults/findStudentsPreparedSameShift/{idFeedback}/{shift}:
+  /feedbacksResults/findReviewersPreparedSameShift/{idFeedback}/{shift}:
     get:
       description: "Returns all feedbacks results with preparationEnd equal to 'si'"
-      operationId: "findStudentsPreparedSameShift"
+      operationId: "findReviewersPreparedSameShift"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "idFeedback"
+        in: "path"
+        description: "id of feedback to fetch"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "shift"
+        in: "path"
+        description: "shift of feedback to fetch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "feedbacks response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/feedbackResult"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default" 
+
+  /feedbacksResults/findReviewedsPreparedSameShift/{idFeedback}/{shift}:
+    get:
+      description: "Returns all feedbacks results with preparationEnd equal to 'si'"
+      operationId: "findReviewedsPreparedSameShift"
       produces:
       - "application/json"
       - "application/xml"
@@ -425,6 +459,8 @@ definitions:
         type: "integer"
         format: "int32"
       shift:
+        type: "string"
+      role:
         type: "string"
       preparationEnd:
         type: "string"

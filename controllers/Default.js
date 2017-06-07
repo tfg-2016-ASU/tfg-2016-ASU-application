@@ -44,8 +44,12 @@ module.exports.findStudentsPrepared = function findStudentsPrepared (req, res, n
   Default.findStudentsPrepared(req.swagger.params, res, next);
 };
 
-module.exports.findStudentsPreparedSameShift = function findStudentsPreparedSameShift (req, res, next) {
-  Default.findStudentsPreparedSameShift(req.swagger.params, res, next);
+module.exports.findReviewersPreparedSameShift = function findReviewersPreparedSameShift (req, res, next) {
+  Default.findReviewersPreparedSameShift(req.swagger.params, res, next);
+};
+
+module.exports.findReviewedsPreparedSameShift = function findReviewedsPreparedSameShift (req, res, next) {
+  Default.findReviewedsPreparedSameShift(req.swagger.params, res, next);
 };
 
 module.exports.findDistinctIdFeedbacks = function findDistinctIdFeedbacks (req, res, next) {

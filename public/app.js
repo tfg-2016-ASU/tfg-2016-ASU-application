@@ -41,6 +41,24 @@
         templateUrl: 'components/preparation/preparation.html',
         controllerAs: 'vm'
       })
+      .state('selectRole', {
+        url: '/selectRole',
+        controller: 'SelectRoleController',
+        templateUrl: 'components/selectRole/selectRole.html',
+        controllerAs: 'vm'
+      })
+      .state('assign', {
+        url: '/assign',
+        controller: 'AssignController',
+        templateUrl: 'components/assign/assign.html',
+        controllerAs: 'vm'
+      })
+      .state('makeAssignment', {
+        url: '/makeAssignment',
+        controller: 'MakeAssignmentController',
+        templateUrl: 'components/makeAssignment/makeAssignment.html',
+        controllerAs: 'vm'
+      })
       .state('randomAssignment', {
         url: '/randomAssignment',
         controller: 'RandomAssignmentController',

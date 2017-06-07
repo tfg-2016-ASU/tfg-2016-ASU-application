@@ -175,11 +175,24 @@ exports.findStudentsPrepared = function(args, res, next) {
     });
 }
 
-exports.findStudentsPreparedSameShift = function(args, res, next) {
+exports.findReviewersPreparedSameShift = function(args, res, next) {
     var idFeedback = args['idFeedback']['value'];
     var shift = args['shift']['value'];
     
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si', shift:shift, reviewer:''}).toArray(function(err, docs) {
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si', shift:shift, reviewer:'', role:'reviewer'}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get feedback");
+        }else{
+            res.status(200).json(docs);
+        }
+    });
+}
+
+exports.findReviewedsPreparedSameShift = function(args, res, next) {
+    var idFeedback = args['idFeedback']['value'];
+    var shift = args['shift']['value'];
+    
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, preparationEnd:'si', shift:shift, reviewer:'', role:'reviewed'}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedback");
         }else{
@@ -221,6 +234,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var waiting = res['req']['swagger']['params']['body']['value']['waiting'];
     var comments = res['req']['swagger']['params']['body']['value']['comments'];
     var confirmed = res['req']['swagger']['params']['body']['value']['confirmed'];
+    var role = res['req']['swagger']['params']['body']['value']['role'];
     console.log('waiting:' + waiting);
 
     //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
@@ -239,7 +253,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 
     console.log(arrayCheckResults.length);
 
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed}},
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed, role:role}},
             function(err, docs){
                 if(err){
                     //console.log("error");

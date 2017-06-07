@@ -37,20 +37,19 @@
 		
 
 		
-		console.log($localStorage.studentLogged); //se coge del js de auth0
+		//console.log($localStorage.studentLogged); //se coge del js de auth0
 		//$localStorage.$reset();
 
 		$http.get('/api/feedbacksInformation')
 			.then(function(response) {
-				console.log(response.data);
 				$scope.feedbacksInf = response.data;
-				console.log('Feedback result added correctly!');	
+				//console.log('Feedback result added correctly!');	
 			})
 			.catch(function(response) {
-				console.error('Feedbacks results error', response.status, response.data);
+				//console.error('Feedbacks results error', response.status, response.data);
 			})
 			.finally(function() {
-				console.log("Feedbacks results showed");
+				//console.log("Feedbacks results showed");
 			});
 	
 		//------------------------------------------------------------------------------------------------
@@ -65,6 +64,7 @@
 				"waiting": "si",
 				"score": 0,
 				"confirmed": 0,
+				"role": "",
 				"arrayCheckResults": [
 				]
 			};
@@ -73,8 +73,10 @@
 			
 		
 	
-			$localStorage.newFeedbackResult = $scope.newFeedbackResult;
-			$localStorage.newFeedbackResult.student = $localStorage.studentLogged;
+			//$localStorage.newFeedbackResult = $scope.newFeedbackResult;
+			
+			$scope.newFeedbackResult.student = $localStorage.studentLogged;
+			console.log($scope.newFeedbackResult);
 			$localStorage.resultsConfirmed = true;
 			//Así obtengo el objeto JSON a partir de un string que previamente era un objeto javascript
 			//console.log(JSON.parse(JSON.stringify($localStorage.newFeedbackResult)));
@@ -85,13 +87,14 @@
 		
 
 		$scope.addFeedbackResult = function (){
-			
+			$localStorage.newFeedbackResult = $scope.newFeedbackResult;
+			$localStorage.idFeedback = $scope.newFeedbackResult.idFeedback;
 			  
 			if($scope.studentForm.$invalid){
 				return false;
 			}else{
 				
-				
+				console.log('aqui: ' + $scope.newFeedbackResult);
 				$http.post('/api/feedbacksResults', $scope.newFeedbackResult)
 				.then(function(response) {
 					console.log('Feedback result added correctly!');	
