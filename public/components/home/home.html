@@ -11,16 +11,18 @@
   </head>
   <body>
       <div>
-        <h2 class="center-align"><img src="/images/logousblanco.png"></h2>
+        
         <div class="text-center" ng-if="!isAuthenticated">
-          <h5>Todavía no estás autenticado</h5>
+          <h2 class="center-align image"><img style= "width:150px" src="/images/logousblanco.png"></h2>
+          <h5>You are not authenticated</h5>
           </br>
-          <h5><a ui-sref="login">Ir a la página de Login</a></h5>
+          <h5><a ui-sref="login">Go to the Login Page</a></h5>
         </div>
         <div class="text-center" ng-if="isAuthenticated">
-          <h5>Bienvenido/a, {{ vm.profile.user_metadata.full_name }}</h5>
+          <h2 class="center-align"><img style= "width:150px" src= {{urlPicture}}></h2>
+          <h5>Welcome, {{ studentLogged }}</h5>
           </br>
-          <button ng-click="startTimer()" ui-sref="studentInformation" class="btn blue lighten-2">Comenzar</button>
+          <button ng-click="startTimer()" ui-sref="studentInformation" class="btn blue lighten-2">Start</button>
                    
         </div>
       </div>

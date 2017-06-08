@@ -47,16 +47,28 @@
         templateUrl: 'components/selectRole/selectRole.html',
         controllerAs: 'vm'
       })
+      .state('makeAssignment', {
+        url: '/makeAssignment',
+        controller: 'MakeAssignmentController',
+        templateUrl: 'components/makeAssignment/makeAssignment.html',
+        controllerAs: 'vm'
+      })
       .state('assign', {
         url: '/assign',
         controller: 'AssignController',
         templateUrl: 'components/assign/assign.html',
         controllerAs: 'vm'
       })
-      .state('makeAssignment', {
-        url: '/makeAssignment',
-        controller: 'MakeAssignmentController',
-        templateUrl: 'components/makeAssignment/makeAssignment.html',
+      .state('beginReview', {
+        url: '/beginReview',
+        controller: 'BeginReviewController',
+        templateUrl: 'components/beginReview/beginReview.html',
+        controllerAs: 'vm'
+      })
+      .state('swipeTinder', {
+        url: '/swipeTinder',
+        controller: 'SwipeTinderController',
+        templateUrl: 'components/swipeTinder/swipeTinder.html',
         controllerAs: 'vm'
       })
       .state('randomAssignment', {
@@ -75,12 +87,6 @@
         url: '/confirmMyResult',
         controller: 'ConfirmMyResultController',
         templateUrl: 'components/confirmMyResult/confirmMyResult.html',
-        controllerAs: 'vm'
-      })
-      .state('beginReview', {
-        url: '/beginReview',
-        controller: 'BeginReviewController',
-        templateUrl: 'components/beginReview/beginReview.html',
         controllerAs: 'vm'
       })
       .state('expectingConfirmation', {
@@ -119,7 +125,6 @@
         templateUrl: 'components/resume/resume.html',
         controllerAs: 'vm'
       })
-      
       .state('improveCheck', {
         url: '/improveCheck',
         controller: 'ImproveCheckController',
@@ -142,12 +147,6 @@
         url: '/swipe',
         controller: 'demoSwipeCtrl',
         templateUrl: 'components/swipe/swipe.html',
-        controllerAs: 'vm'
-      })
-      .state('swipeTinder', {
-        url: '/swipeTinder',
-        controller: 'SwipeTinderController',
-        templateUrl: 'components/swipeTinder/swipeTinder.html',
         controllerAs: 'vm'
       })
       .state('checksSwipe', {

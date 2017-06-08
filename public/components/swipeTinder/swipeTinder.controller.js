@@ -13,6 +13,7 @@
 
 
     $scope.idFeedback = $localStorage.idFeedback;
+    console.log($localStorage.rw);
     //$localStorage.studentReviewed = $localStorage.RWDEF.student;
     //$scope.studentReviewed = $localStorage.studentReviewed;
     //$localStorage.reviewedFeedbackResult = $localStorage.RWDEF;
@@ -69,13 +70,94 @@
 
           var arrayRes = [];
 
+          //-----------------------------Hammer---------------------------------/
+          var myElement = document.getElementById('main');
+          //var myElement2 = document.getElementById('myElement');
+          //myElement2.style.backgroundColor = '#be9d56';
+          // create a simple instance
+          // by default, it only adds horizontal recognizers
+          var mc = new Hammer(myElement);
+
+          // listen to events...
+          /*mc.on("panleft panright tap press", function(ev) {
+              console.log(ev.type +" gesture detected.");
+              myElement2.textContent = ev.type +" gesture detected.";
+          })*/
+          
+          console.log('IMPORTANTE: ' + $scope.checkShowed);
+          var auxCheckColor = 2;
+
+            
+
+          mc.on('pan', function(ev) {
+                       
+            
+            //console.log(ev);
+            if(ev.deltaX>0){
+              //console.log('verde');
+              //myElement2.textContent = 'verde';
+              //myElement.style.backgroundColor = 'green';
+              var $card;
+              $card = cards2[auxCheckColor].tojQuery().css({
+                'position': 'absolute',
+                'border': '3px solid #666',
+                'border-radius': '10px',
+                'borderColor': 'green',
+                'height': '230px',
+                'left': '10px',
+                'top': '10px',
+                'right': '10px'
+              });
+              
+            }else if(ev.deltaX<0){
+              //console.log('rojo');
+              //myElement2.textContent = 'rojo';
+              myElement.style.borderColor = 'red';
+              var $card;
+              $card = cards2[auxCheckColor].tojQuery().css({
+                'position': 'absolute',
+                'border': '3px solid #666',
+                'border-radius': '10px',
+                'borderColor': 'red',
+                'height': '230px',
+                'left': '10px',
+                'top': '10px',
+                'right': '10px'
+              });
+            }else{
+              console.log('amarillo');
+              //myElement2.textContent = 'amarillo';
+              //myElement.style.backgroundColor = 'yellow';
+            }
+          });
+
+          //-------------------------------------------------------------------------------- 
+          
+
           // Render cards
           Tindercardsjs.render(cards2, $('#main'), function (event) {
-           
+            console.log('render card');
             //console.log('Swiped ' + event.direction + ', cardid is ' + event.cardid + ' and target is:');
             //console.log(event.card);
            
+            $scope.cardid = event.cardid;
+           
+            /*var $card;
+              $card = cards2[0].tojQuery().css({
+              'position': 'absolute',
+              'border': '1px solid #666',
+              'border-radius': '10px',
+              'background-color': 'blue',
+              'height': '230px',
+              'left': '10px',
+              'top': '10px',
+              'right': '10px'
+            });*/
+            auxCheckColor--;
             var result;
+            $scope.direction = event.direction;
+            $scope.deltaX = event.deltaX;
+            console.log('deltax: ' + $scope.deltaX);
             if(event.direction == 'right'){
               result = 'ok';
               console.log(result);
@@ -104,11 +186,15 @@
               //console.log($localStorage.reviewedFeedbackResult);
               //$localStorage.reviewedFeedbackResult.arrayCheckResults = arrayRes;
 
+              console.log($localStorage.rw);
+
               $http.get('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw)
                 .then(function(response) {
-                  console.log(response.data[0]);
+                  console.log('her we go ' + response.data[0].student);
                   response.data[0].arrayCheckResults = arrayRes;
                   $localStorage.reviewedFeedbackResult = response.data[0];
+                  console.log($localStorage.rw);
+                  
                   $http.put('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw, response.data[0])
                     .then(function(response) {
                       console.log('put perfect');

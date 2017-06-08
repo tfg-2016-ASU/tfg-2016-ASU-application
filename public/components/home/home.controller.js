@@ -17,10 +17,27 @@
     var vm = this;
     vm.authService = authService;
 
+     $( document ).ready(function() {
+        $(".button-collapse").sideNav();
+    });
 
     authService.getProfileDeferred().then(function (profile) {
       vm.profile = profile;
-      $localStorage.studentLogged = vm.profile.user_metadata.full_name;
+      console.log(vm.profile.given_name);
+      console.log(vm.profile.family_name);
+      var full_name = vm.profile.given_name + " " + vm.profile.family_name;
+      //console.log(vm.profile.user_metadata.full_name);
+      $scope.urlPicture = vm.profile.picture;
+      if(vm.profile.user_metadata == undefined){
+        $localStorage.studentLogged = full_name;
+        $scope.studentLogged = full_name; 
+      }else{
+        $localStorage.studentLogged = vm.profile.user_metadata.full_name;
+        $scope.studentLogged = vm.profile.user_metadata.full_name;
+      }
+      console.log($localStorage.studentLogged);
+     
+      
     });
     
     $scope.startTimer = function(){

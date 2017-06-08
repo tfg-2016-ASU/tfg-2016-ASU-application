@@ -13,6 +13,7 @@
 
 	
     $scope.idFeedback = $localStorage.idFeedback;
+    console.log($localStorage.rw);
     //console.log($localStorage.RWDEF.student);
 
     /*$http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.RWDEF.student)

@@ -16,11 +16,12 @@
     
     $scope.student = $localStorage.studentLogged;
     
-    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
+    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
       .then(function(response) {
           console.log(response.data[0]);
           $scope.rw = response.data[0].reviewer;
           $localStorage.rw = response.data[0].reviewer;
+          console.log($localStorage.rw);
           if($scope.rw != ""){
             $scope.withAssignment = ['rd', 'rr'];
           }else{
@@ -41,6 +42,7 @@
       .then(function(response) {
           console.log(response.data[0]);
           $scope.rw = response.data[0].reviewer;
+          $localStorage.rw = $scope.rw;
           if($scope.rw != ""){
             $scope.withAssignment = ['rd', 'rr'];
           }else{
