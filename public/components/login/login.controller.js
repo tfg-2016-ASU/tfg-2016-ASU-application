@@ -9,6 +9,7 @@
 
   function LoginController(authService) {
 
+    $localStorage.$reset();
     var vm = this;
     vm.authService = authService;
 

@@ -12,7 +12,7 @@
   function HomeController(authService, $scope, $location, $localStorage, $interval) {
 
     //console.log(user.user_metadata.full_name);
-    $localStorage.$reset();
+    
     
     var vm = this;
     vm.authService = authService;
