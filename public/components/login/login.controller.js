@@ -5,9 +5,9 @@
     .module('app')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['authService'];
+  LoginController.$inject = ['authService', '$localStorage'];
 
-  function LoginController(authService) {
+  function LoginController(authService, $localStorage) {
 
     $localStorage.$reset();
     var vm = this;
