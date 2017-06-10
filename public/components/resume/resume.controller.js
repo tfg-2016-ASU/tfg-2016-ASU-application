@@ -13,21 +13,26 @@
 	
     console.log("ResumeController initialized");
 
-    //---------  Timer-------------------
-    var d;
-    d = new Date($localStorage.clock);
-    
-    var tick = function() {
-        $scope.clock = d;
-        d.setSeconds(d.getSeconds() + 1);
-    }
-    tick();
-    $interval(tick, 1000);
-    //-----------------------------------
-	
+  
+    console.log($localStorage.checks);
+    $scope.checksTitle = $localStorage.checks;
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.checks = $localStorage.reviewedFeedbackResult.arrayCheckResults;
-    $localStorage.arrayCheckResults = $localStorage.reviewedFeedbackResult.arrayCheckResults;;
+    $localStorage.arrayCheckResults = $localStorage.reviewedFeedbackResult.arrayCheckResults;
+
+    var i;
+    for(i=0; i<$scope.checksTitle.length; i++){
+      if($scope.checks[i] != undefined){
+        $scope.checksTitle[i]["result"] = $scope.checks[i].result;
+      }else{
+        $scope.checksTitle[i]["result"] = '-'
+      }
+    }
+    console.log($scope.checksTitle);
+	
+
+
+    
     
     $scope.improveCheck = function(idCheck){
       $localStorage.currentCheck = idCheck;

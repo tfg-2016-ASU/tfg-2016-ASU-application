@@ -11,6 +11,7 @@
 
     console.log("PreparationController initialized");
     
+   
 
     //---------  Timer-------------------
     var d;

@@ -10,7 +10,8 @@
   function ImproveCheckController($scope, $localStorage, $location, $http, $interval) {
 	
     console.log("ImproveCheckController initialized");
-    
+
+  
     //---------  Timer-------------------
     var d;
     d = new Date($localStorage.clock);

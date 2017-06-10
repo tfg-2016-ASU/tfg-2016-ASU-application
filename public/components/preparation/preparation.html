@@ -31,13 +31,13 @@
 
         <form name="preparationForm">
             <p class="center-align">
-                <input type="checkbox" id="preparationReady" name="preparationReady" ng-model="preparationReady" ng-change="changePreparationEnd()" 
+                <input  type="checkbox" id="preparationReady" name="preparationReady" ng-model="preparationReady" ng-change="changePreparationEnd()" 
                 class="filled-in" ng-true-value="'si'" ng-false-value="'no'" required/>
                 <label for="preparationReady"> ¡Preparado!</label>
             </p>        
 
 
-            <button ng-disabled="preparationForm.$invalid" ui-sref="selectRole" ng-click="modifyPreparationEnd()" class="btn waves-effect waves-light">Siguiente
+            <button ng-disabled="preparationForm.$invalid" ui-sref="selectRole" ng-click="modifyPreparationEnd()" class="btn blue ligthen-2">Siguiente
                 <i class="material-icons right">send</i>
             </button>
         </form>

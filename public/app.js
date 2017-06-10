@@ -6,10 +6,11 @@
     .module('app', ['auth0.lock', 'angular-jwt', 'ui.router', 'ngStorage', 'ngMaterial'])
     .config(config);
 
-  config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider', 'jwtOptionsProvider'];
+  config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider', 'jwtOptionsProvider', '$qProvider'];
 
-  function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProvider) {
-
+ 
+  function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProvider, $qProvider) {
+    $qProvider.errorOnUnhandledRejections(false); //para el error de transition superseded
     $stateProvider
       .state('home', {
         url: '/home',
@@ -67,10 +68,24 @@
       })
       .state('swipeTinder', {
         url: '/swipeTinder',
+        params: {
+          param1: null
+        },
         controller: 'SwipeTinderController',
         templateUrl: 'components/swipeTinder/swipeTinder.html',
         controllerAs: 'vm'
       })
+
+
+      .state('checks.detail', {
+        url: '/checksDetail/:checkId',
+        controller: function($scope, $stateParams){
+            $scope.idCheck = $stateParams.checkId;
+        },
+        templateUrl: 'components/checksDetail/checksDetail.html'
+      })
+
+
       .state('randomAssignment', {
         url: '/randomAssignment',
         controller: 'RandomAssignmentController',

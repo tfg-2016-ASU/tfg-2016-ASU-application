@@ -11,6 +11,7 @@
 	
     console.log("ConfirmMyResultController initialized");
     
+   
     
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.student = $localStorage.studentLogged;

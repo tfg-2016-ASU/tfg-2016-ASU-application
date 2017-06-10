@@ -11,7 +11,7 @@
 	
     console.log("NewFeedbackInformationController initialized");
 	
-
+ 
 		//------------------------------------------------------------------------------------------------
 		//Inicializar las propiedad de newFeedbackResult que no han sido inicializadas en el formulario
 			

@@ -10,6 +10,8 @@
   function AssignController($scope, $localStorage, $http) {
 	
     console.log("AssignController initialized");
+
+    
     
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.role = $localStorage.role;

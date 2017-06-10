@@ -10,9 +10,13 @@
         <body>
             <table class="table">
                 <tbody>
-                    <tr ng-repeat= "C in checks">
-                        <td class="center-align">Check {{C.idCheck}}</td>
-                        <td class="center-align"> {{C.result}}</td>
+                    <tr ng-repeat= "C in checksTitle">
+                        <td ng-if="C.result == '-'" class="center-align"><a style="color: black" ui-sref="swipeTinder({param1: C.idCheck})">Check {{C.idCheck}}</a></td>
+                        <td ng-if="C.result == 'ok'" class="center-align"><a style="color: mediumseagreen" ui-sref="swipeTinder({param1: C.idCheck})">Check {{C.idCheck}}</a></td>
+                        <td ng-if="C.result == 'no'" class="center-align"><a style="color: lightcoral" ui-sref="swipeTinder({param1: C.idCheck})">Check {{C.idCheck}}</a></td>
+                        <td style="color: mediumseagreen" ng-if="C.result == 'ok'" class="center-align">{{C.result}}</td>
+                        <td ng-if="C.result == '-'" class="center-align">{{C.result}}</td>
+                        <td style="color: lightcoral" ng-if="C.result == 'no'" class="center-align">{{C.result}}</td>
                         <td class="center-align">
                             <button ng-if="C.result=='no'" ui-sref="improveCheck" ng-click="improveCheck(C.idCheck)" class="btn red lighten-2">Improve</button>
                         </td>
@@ -24,6 +28,8 @@
         <div class="center-align">
             <button ui-sref="finish" class="btn blue lighten-2">Finish feedback</button>
         </div>
+
+        
 
      </div>
      </br>

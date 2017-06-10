@@ -11,6 +11,8 @@
 	
     console.log("WaitingConfirmationController initialized");
 
+   
+
     //---------  Timer-------------------
     var d;
     d = new Date($localStorage.clock);

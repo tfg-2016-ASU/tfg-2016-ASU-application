@@ -12,14 +12,18 @@
   function HomeController(authService, $scope, $location, $localStorage, $interval) {
 
     //console.log(user.user_metadata.full_name);
-    
-    
+
+
     var vm = this;
     vm.authService = authService;
 
-     $( document ).ready(function() {
-        $(".button-collapse").sideNav();
-    });
+    
+    $scope.bye = function(){
+      console.log('byeeee');
+      $scope.studentLogged = undefined;
+      $localStorage.$reset();
+      authService.logout();
+    }
 
     authService.getProfileDeferred().then(function (profile) {
       vm.profile = profile;
@@ -28,12 +32,13 @@
       var full_name = vm.profile.given_name + " " + vm.profile.family_name;
       //console.log(vm.profile.user_metadata.full_name);
       $scope.urlPicture = vm.profile.picture;
+      console.log($scope.urlPicture);
       if(vm.profile.user_metadata == undefined){
         $localStorage.studentLogged = full_name;
-        $scope.studentLogged = full_name; 
+        $scope.studentLogged = $localStorage.studentLogged; 
       }else{
         $localStorage.studentLogged = vm.profile.user_metadata.full_name;
-        $scope.studentLogged = vm.profile.user_metadata.full_name;
+        $scope.studentLogged = $localStorage.studentLogged;
       }
       console.log($localStorage.studentLogged);
      
@@ -58,7 +63,7 @@
       $interval(tick, 1000);
     }
     
-
+    
   }
   
 

@@ -11,6 +11,7 @@
 	
     console.log("BeginReviewController initialized");
 
+    $scope.id = 1;
 	
     $scope.idFeedback = $localStorage.idFeedback;
     console.log($localStorage.rw);

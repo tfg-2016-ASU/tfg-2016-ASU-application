@@ -1,109 +1,116 @@
  <html>
-    <div class="container" >
-    <head>
+    <div class="text-center" ng-if="isAuthenticated">
+      <div class="container" >
+        <head>
+          
+          <h4 class="center-align">Feedback SOS</h4>
+            <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
+            <!--Import Google Icon Font-->
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <!--Import materialize.css-->
+            <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+            <!--Let browser know website is optimized for mobile-->
+            <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>-->
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+          
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+          <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
       
-      <h4 class="center-align">Feedback SOS</h4>
-        <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
-      	<!--Import Google Icon Font-->
-      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      	<!--Import materialize.css-->
-      	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-		    <!--Let browser know website is optimized for mobile-->
-        <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        </head>
+        <body>
+          
+          <div class="center-align" ng-app="app">
+              <p>{{ clock | date:'HH:mm:ss'}}</p>
+          </div>
+          
+            <!-- Para que las validaciones funcionen es necesario que tanto el form como input, select tengan la propiedad name -->
+            <form name="studentForm">
+              
+              <!--<div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input ng-model="newFeedbackResult.student" placeholder="Nombre y apellidos" id="student" type="text" class="validate" ng-required="true" required></input>
+              </div>-->
+              <!--
+              <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input type="text" class="form-control" placeholder="Nombre y apellidos" name="student" ng-model="newFeedbackResult.student" required></input>
+              </div>
+              -->
 
+              
+            
+              <div class="input-field col s6">
+                <md-select placeholder="Número de feedback" ng-model="newFeedbackResult.idFeedback" style="min-width: 200px;" required>
+                  <md-option ng-value="f.idFeedback" ng-repeat="f in feedbacksInf">{{f.idFeedback}}</md-option>
+                </md-select>
+              </div>
+              
 
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+              <!--<div class="input-field col s6">
+                <i class="material-icons prefix">feedback</i>
+                <input ng-model="newFeedbackResult.idFeedback" placeholder="Número de feedback" name="idFeedback" type="number" class="form-control" required></input>
+              </div>-->
+
+              
+
+              <div class="input-field col s6">
+                <!--<i class="material-icons prefix">group</i>-->
+                <input ng-model="newFeedbackResult.group" placeholder="Grupo" name="group" type="number" class="form-control" required></input>
+              </div>
+            
+              <!--<div class="input-field col s6">
+                <i class="material-icons prefix">access_time</i>
+                <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" name="shift" type="text" class="form-control" required></input>
+              </div>-->
+              </br>
+              
+
+            
+              <div class="input-field col s6">
+                <md-select ng-model="newFeedbackResult.shift" placeholder="Turno" required>
+                  <md-option value="mañana">mañana</md-option>
+                  <md-option value="tarde">tarde</md-option>
+                </md-select>
+              </div>
+
+              
+              
+              <!--<div class="center-align">
+                <button ui-sref="preparation" ng-click="addFeedbackResult()" class="btn waves-effect waves-light">Siguiente
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>-->
+
+              <div class="center-align">
+                <input type="submit" ui-sref="preparation" ng-disabled="studentForm.$invalid" class="btn blue lighten-2 pull-center" ng-click="addFeedbackResult(newFeedbackResult)">
+              </div>
+
       
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-	    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
-    
-    </head>
+              
 
-  
-    <body>
-      <div class="center-align" ng-app="app">
-          <p>{{ clock | date:'HH:mm:ss'}}</p>
+            </form>
+          
+            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+            
+        
+        </body>
       </div>
-      
-        <!-- Para que las validaciones funcionen es necesario que tanto el form como input, select tengan la propiedad name -->
-        <form name="studentForm">
-          
-          <!--<div class="input-field col s6">
-            <i class="material-icons prefix">account_circle</i>
-            <input ng-model="newFeedbackResult.student" placeholder="Nombre y apellidos" id="student" type="text" class="validate" ng-required="true" required></input>
-          </div>-->
-          <!--
-          <div class="input-field col s6">
-            <i class="material-icons prefix">account_circle</i>
-            <input type="text" class="form-control" placeholder="Nombre y apellidos" name="student" ng-model="newFeedbackResult.student" required></input>
-          </div>
-          -->
-
-          
-         
-          <div class="input-field col s6">
-            <md-select placeholder="Número de feedback" ng-model="newFeedbackResult.idFeedback" style="min-width: 200px;" required>
-              <md-option ng-value="f.idFeedback" ng-repeat="f in feedbacksInf">{{f.idFeedback}}</md-option>
-            </md-select>
-          </div>
-          
-
-          <!--<div class="input-field col s6">
-            <i class="material-icons prefix">feedback</i>
-             <input ng-model="newFeedbackResult.idFeedback" placeholder="Número de feedback" name="idFeedback" type="number" class="form-control" required></input>
-          </div>-->
-
-          
-
-          <div class="input-field col s6">
-            <!--<i class="material-icons prefix">group</i>-->
-            <input ng-model="newFeedbackResult.group" placeholder="Grupo" name="group" type="number" class="form-control" required></input>
-          </div>
-         
-          <!--<div class="input-field col s6">
-            <i class="material-icons prefix">access_time</i>
-            <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" name="shift" type="text" class="form-control" required></input>
-          </div>-->
-          </br>
-          
-
-        
-          <div class="input-field col s6">
-            <md-select ng-model="newFeedbackResult.shift" placeholder="Turno" required>
-              <md-option value="mañana">mañana</md-option>
-              <md-option value="tarde">tarde</md-option>
-            </md-select>
-          </div>
-
-          
-          
-          <!--<div class="center-align">
-            <button ui-sref="preparation" ng-click="addFeedbackResult()" class="btn waves-effect waves-light">Siguiente
-              <i class="material-icons right">send</i>
-            </button>
-          </div>-->
-
-          <div class="center-align">
-            <input type="submit" ui-sref="preparation" ng-disabled="studentForm.$invalid" class="btn btn-success pull-right" ng-click="addFeedbackResult(newFeedbackResult)">
-          </div>
-
-  
-          
-
-        </form>
-      
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-        
-     
-    </body>
-     </div>
+    </div>
+    <div class="text-center" ng-if="!isAuthenticated">
+      <h3>You must be logged in to access.</h3>
+      </br>
+      <h5><a ui-sref="login">Go to the Login Page</a></h5>
+    </div>
   </html>
+
 
 
 
@@ -117,7 +124,6 @@
     <p class="md-caption">You have assigned the task to: {{ user ? user.name : 'No one yet' }}</p>
   </div>
 </div>
-
 
 JS:
 angular.module('selectDemoOptionsAsync', ['ngMaterial'])

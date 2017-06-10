@@ -5,6 +5,26 @@
     .module('app')
     .controller('ChecksController', ChecksController);
 
+  ChecksController.$inject = ['$scope', '$stateParams'];
+
+  function ChecksController($scope, $stateParams) {
+	
+    console.log("ChecksController initialized");
+    console.log($scope.idCheck);
+    
+
+  }
+
+}());
+
+
+/*(function () {
+  'use strict';
+
+  angular
+    .module('app')
+    .controller('ChecksController', ChecksController);
+
   ChecksController.$inject = ['$scope', '$rootScope', '$http', '$location', '$localStorage'];
 
   function ChecksController($scope, $rootScope, $http, $location, $localStorage) {
@@ -72,7 +92,7 @@
     console.log('Currentcheck: ' + currentCheck)
 
     */
-
+/*
     
 
     $scope.nextCheck = function (){
@@ -148,7 +168,7 @@
         $scope.checkToShow = checks[currentCheck];
         $scope.descriptionToShow = checks[currentCheck].description;
         $scope.typeCheckToShow = checks[currentCheck].typeCheck;*/
-        
+     /*   
       }
       
     }	
@@ -173,4 +193,5 @@
   }
   
 
-}());
+}());*/
+

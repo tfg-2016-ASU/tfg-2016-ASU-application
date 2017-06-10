@@ -15,14 +15,22 @@
     </head>
     <body>
         <div class="center-align">
-            <div style="border-radius: 8px;border:solid; border-color:#be9d56; width: 330px; margin-left: auto; margin-right: auto">
-                <p style="color:#be9d56">FEEDBACK RESULT: <p>
+            <div ng-if="finalResult == 'POSITIVE'" style="border-radius: 8px;border:solid; border-color:mediumseagreen; width: 330px; margin-left: auto; margin-right: auto">
+                <p style="color: mediumseagreen">FEEDBACK RESULT: <p>
                 <p>Reviewer (you): <span>{{finalReviewer}}</span></p>
                 <p>Reviewed: <span>{{finalStudent}}</span></p>
                 <p>Correct checks: <span>{{wellChecks}} / {{totalChecks}}</span></p>
                 <p>Result: <span>{{finalResult}}</span></p>
                 <p>Punctuation: <span>{{finalScore}}</span></p>   
             </div>  
+            <div ng-if="finalResult == 'NEGATIVE'" style="border-radius: 8px;border:solid; border-color:lightcoral; width: 330px; margin-left: auto; margin-right: auto">
+                <p style="color: lightcoral">FEEDBACK RESULT: <p>
+                <p>Reviewer (you): <span>{{finalReviewer}}</span></p>
+                <p>Reviewed: <span>{{finalStudent}}</span></p>
+                <p>Correct checks: <span>{{wellChecks}} / {{totalChecks}}</span></p>
+                <p>Result: <span>{{finalResult}}</span></p>
+                <p>Punctuation: <span>{{finalScore}}</span></p>   
+            </div> 
         </div>
         </br>
         <div class="center-align">

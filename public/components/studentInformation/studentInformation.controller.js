@@ -6,12 +6,15 @@
     .module('app')
     .controller('StudenInformationController', StudenInformationController);
 
-  StudenInformationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage', '$interval'];
+  StudenInformationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage', '$interval', 'authService'];
 
-  function StudenInformationController($scope, $http, $rootScope, $localStorage, $interval) {
+  function StudenInformationController($scope, $http, $rootScope, $localStorage, $interval, authService) {
 
 
 		console.log("StudenInformationController initialized");
+		
+	    var vm = this;
+   		vm.authService = authService;
 	
 		//---------  Timer-------------------
 		var d;
@@ -60,7 +63,7 @@
 				"edition": "16-17",
 				"reviewer": "",
 				"preparationEnd": "no",
-				"result": "NEGATIVO",
+				"result": "NEGATIVE",
 				"waiting": "si",
 				"score": 0,
 				"confirmed": 0,

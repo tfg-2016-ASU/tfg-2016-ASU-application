@@ -11,6 +11,8 @@
 	
     console.log("MakeAssignmentController initialized");
 
+    
+
     $http.get('/api/feedbacksInformation')
         .then(function(response) {
             $scope.feedbacksInf = response.data;

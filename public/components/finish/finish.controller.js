@@ -10,6 +10,8 @@
   function FinishController($scope, $rootScope, $localStorage, $http, $interval) {
 	
     console.log("FinishController initialized");
+
+  
     
     //---------  Timer-------------------
     var d;
@@ -28,20 +30,35 @@
    
 
     //inicializo result y score en positivo
-    $localStorage.reviewedFeedbackResult.result = 'POSITIVO';
-    $localStorage.reviewedFeedbackResult.score = $localStorage.punctuation;
+    //$localStorage.reviewedFeedbackResult.result = 'POSITIVO';
+    //$localStorage.reviewedFeedbackResult.score = $localStorage.punctuation;
 
     var i;
-    for(i=0; i<$localStorage.reviewedFeedbackResult.arrayCheckResults.length; i++){
-      if($localStorage.reviewedFeedbackResult.arrayCheckResults[i].result == 'no'){
-        $localStorage.reviewedFeedbackResult.result = 'NEGATIVO';
+    var negativeFeedback = false;
+
+
+    if($localStorage.reviewedFeedbackResult.arrayCheckResults.length != $localStorage.checks.length){
+        console.log('if');
+        $localStorage.reviewedFeedbackResult.result = 'NEGATIVE';
         $localStorage.reviewedFeedbackResult.score = 0;
-        break;
+    }else{
+      console.log('else');
+      for(i=0; i<$localStorage.reviewedFeedbackResult.arrayCheckResults.length; i++){
+        if($localStorage.reviewedFeedbackResult.arrayCheckResults[i].result == 'no'){
+          console.log('aqui');
+          $localStorage.reviewedFeedbackResult.result = 'NEGATIVE';
+          $localStorage.reviewedFeedbackResult.score = 0;
+          negativeFeedback = true;
+          break;
+        }
+      }
+
+      if(negativeFeedback == false){
+        $localStorage.reviewedFeedbackResult.result = 'POSITIVE';
+        $localStorage.reviewedFeedbackResult.score = $localStorage.punctuation;
       }
     }
 
-
-   
 
     $scope.finalResult = $localStorage.reviewedFeedbackResult.result;
     $scope.finalScore = $localStorage.reviewedFeedbackResult.score;

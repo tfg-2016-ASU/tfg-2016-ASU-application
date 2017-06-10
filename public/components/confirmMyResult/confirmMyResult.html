@@ -18,8 +18,16 @@
         <div class="center-align">
             <h5>{{student}}, your results:</h5>
             </br>
-            <div class="center-align" style="border-radius: 8px;border:solid; border-color:#be9d56; width: 330px; margin-left: auto; margin-right: auto">
-                <p style="color:#be9d56">FEEDBACK RESULT: <p>
+            <div ng-if="resultC == 'POSITIVE'" class="center-align" style="border-radius: 8px;border:solid; border-color:mediumseagreen; width: 330px; margin-left: auto; margin-right: auto">
+                <p style="color:mediumseagreen">FEEDBACK RESULT: <p>
+                <p>Reviewer: <span>{{reviewerC}}</span></p>
+                <p>Reviewed (you): <span>{{reviewedC}}</span></p>
+                <p>Correct checks: <span>{{wellChecks}} / {{totalChecks}}</span></p>
+                <p>Result: <span>{{resultC}}</span></p>
+                <p>Punctuation: <span>{{scoreC}}</span></p>   
+            </div> 
+            <div ng-if="resultC == 'NEGATIVE'" class="center-align" style="border-radius: 8px;border:solid; border-color:lightcoral; width: 330px; margin-left: auto; margin-right: auto">
+                <p style="color:lightcoral">FEEDBACK RESULT: <p>
                 <p>Reviewer: <span>{{reviewerC}}</span></p>
                 <p>Reviewed (you): <span>{{reviewedC}}</span></p>
                 <p>Correct checks: <span>{{wellChecks}} / {{totalChecks}}</span></p>
@@ -39,11 +47,11 @@
         <div class="center-align">
             <div class="text-center" ng-if="role=='reviewed'">
                 <button ui-sref="beginReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
-                <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
+                <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Yes</button>
             </div>
             <div class="text-center" ng-if="role=='reviewer'">
                 <button ui-sref="bye" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
-                <button ui-sref="bye" ng-click="finishFeedback('si')" class="btn green lighten-2">Sí</button>
+                <button ui-sref="bye" ng-click="finishFeedback('si')" class="btn green lighten-2">Yes</button>
             </div><!--bye-->
         </div>
 

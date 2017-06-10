@@ -10,6 +10,8 @@
   function SelectRoleController($scope, $localStorage, $http) {
 	
     console.log("SelectRoleController initialized");
+
+    
 	
     $scope.newFeedbackResult = $localStorage.newFeedbackResult;
     $scope.idFeedback = $scope.newFeedbackResult.idFeedback;
