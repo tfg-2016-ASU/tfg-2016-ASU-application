@@ -5,12 +5,17 @@
     .module('app')
     .controller('ImproveCheckController', ImproveCheckController);
 
-  ImproveCheckController.$inject = ['$scope', '$localStorage', '$location', '$http', '$interval'];
+  ImproveCheckController.$inject = ['$scope', '$localStorage', '$location', '$http', '$interval', '$state', '$stateParams'];
 
-  function ImproveCheckController($scope, $localStorage, $location, $http, $interval) {
+  function ImproveCheckController($scope, $localStorage, $location, $http, $interval, $state, $stateParams) {
 	
     console.log("ImproveCheckController initialized");
 
+    $scope.state = $state.current
+    $scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+		$scope.edition = $scope.params.edition; 
   
     //---------  Timer-------------------
     var d;
@@ -44,7 +49,7 @@
       if($scope.checkImproved=='no'){
         $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].result = 'no';
         $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].comments = $scope.comments;
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
+        $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
           .then(function(response) {
             console.log('put perfect');
           })
@@ -58,7 +63,7 @@
         $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].result = 'ok';
         $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].comments = $scope.comments;
         
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
+        $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
           .then(function(response) {
             console.log('put perfect');
           })

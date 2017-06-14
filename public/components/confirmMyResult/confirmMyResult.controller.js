@@ -5,12 +5,17 @@
     .module('app')
     .controller('ConfirmMyResultController', ConfirmMyResultController);
 
-  ConfirmMyResultController.$inject = ['$scope', '$localStorage', '$http', '$interval'];
+  ConfirmMyResultController.$inject = ['$scope', '$localStorage', '$http', '$interval', '$state', '$stateParams'];
 
-  function ConfirmMyResultController($scope, $localStorage, $http, $interval) {
+  function ConfirmMyResultController($scope, $localStorage, $http, $interval, $state, $stateParams) {
 	
     console.log("ConfirmMyResultController initialized");
     
+    $scope.state = $state.current
+    $scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+		$scope.edition = $scope.params.edition; 
    
     
     $scope.idFeedback = $localStorage.idFeedback;
@@ -18,7 +23,7 @@
     //console.log($localStorage.firstReviewer == $scope.student);
     //$scope.firstReviewer = ($localStorage.firstReviewer == $scope.student);
     //$scope.firstReviewer = false;
-    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
+    $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
       .then(function(response) {
         $scope.role = response.data[0].role;
         console.log($scope.role);
@@ -52,7 +57,7 @@
     }
     */
 
-    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
+    $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
       .then(function(response) {
         console.log('get perfect');
         $scope.resultsToConfirm = response.data[0];
@@ -68,7 +73,7 @@
           }
         }
         $scope.wellChecks = cont;
-        $scope.totalChecks = $scope.checksC.length;
+        $scope.totalChecks = $localStorage.checks.length;
         $scope.resultC = $scope.resultsToConfirm.result;
         $scope.scoreC = $scope.resultsToConfirm.score;
       })
@@ -85,7 +90,7 @@
       //modifico la propiedad confirmed para que sea 2
       if(res=='si'){
         $scope.resultsToConfirm.confirmed = 2;
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.resultsToConfirm.student, $scope.resultsToConfirm)
+        $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $scope.resultsToConfirm.student, $scope.resultsToConfirm)
           .then(function(response) {
             console.log('put perfect');
             //$localStorage.firstReviewFinished = true;

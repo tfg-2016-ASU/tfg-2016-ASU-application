@@ -3,15 +3,25 @@
 <html>
 
   <head>
-    <title>Feedback SOS</title>
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <div class="feedback">
-      <h2 class="center-align">Feedback {{idFeedback}}</h2>
+    </br>
+    <div ng-if="lessOneMinute == false" class="center-align clock">
+        <p style="text-align: center; font-size: 20px;">Third part: {{clock}}</p>
     </div>
-    <div class="center-align" ng-app="app">
-          <p>{{ clock | date:'HH:mm:ss'}}</p>
+
+    <div ng-if="lessOneMinute == true  && lessTenSeconds == false" class="center-align clock">
+        <p style="text-align: center; font-size: 20px; color: red">Third part: {{clock}}</p>
     </div>
+
+    <div ng-if="lessTenSeconds == true" class="center-align clock">
+        <p class= 'time' style="text-align: center; font-size: 20px;" >Third part: {{clock}}</p>
+    </div>
+    
+    <h3 class="center-align">Feedback {{idFeedback}}</h3>
+    
+   
     <style>
       #myElement {
         background: silver;
@@ -60,18 +70,18 @@
     
   <div id="main"></div>
 
-  <div class="demo-container"> 
-    <p class="center-align">Tarea {{checkShowed}}/{{lastCheckSwipe}}</p>
+  <div ng-if="params.param1==null" class="demo-container"> 
+    <p class="center-align">Check {{checkShowed}}/{{lastCheckSwipe}}</p>
   </div>  
 
   
-   <div class="progress" id="progress">
+   <div ng-if="params.param1==null" class="progress" id="progress">
       <div class="determinate" style="width: 33%;"></div>
    </div>
 
     <div class="center-align">
-      <button ui-sref="resume" ng-click="resumeFeedback()" class="btn blue lighten-2">Resume</button>
-      <button ui-sref="finish" ng-click="finishFeedback()" class="btn blue lighten-2">Finish</button>
+      <button ui-sref="resume({ subject: subject, edition: edition})" ng-click="resumeFeedback()" class="btn blue lighten-2">Resume</button>
+      <button ui-sref="finish({ subject: subject, edition: edition})" ng-click="finishFeedback()" class="btn blue lighten-2">Finish</button>
      
     </div>
 

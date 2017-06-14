@@ -20,10 +20,10 @@
        
         <div class="center-align">
             <div class="text-center" ng-if="role=='reviewer'">
-                <button ui-sref="waiting" class="btn blue lighten-2">Next</button>
+                <button ui-sref="waiting({ subject: subject, edition: edition})" class="btn blue lighten-2">Next</button>
             </div>
             <div class="text-center" ng-if="role=='reviewed'">
-                <button ui-sref="bye" class="btn blue lighten-2">Next</button>
+                <button ui-sref="bye({ subject: subject, edition: edition})" class="btn blue lighten-2">Next</button>
             </div><!--bye-->
         </div>
 

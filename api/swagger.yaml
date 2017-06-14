@@ -13,7 +13,7 @@ info:
     name: "MIT"
     url: "http://opensource.org/licenses/MIT"
 host: "localhost:8080"
-basePath: "/api"
+basePath: "/api/v1/feedman"
 schemes:
 - "http"
 - "https"
@@ -22,7 +22,7 @@ consumes:
 produces:
 - "application/json"
 paths:
-  /feedbacksInformation:
+  /subjects/{subject}/{edition}/feedbacksInformation:
     get:
       description: "Returns all feedbacks  from the system that the user has access\
         \ to"
@@ -33,12 +33,16 @@ paths:
       - "text/xml"
       - "text/html"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "maximum number of feedbacks to return"
-        required: false
-        type: "integer"
-        format: "int32"
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"
       responses:
         200:
           description: "feedbacks response"
@@ -57,6 +61,16 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"
       - in: "body"
         name: "feedback"
         description: "Feedback to add"
@@ -73,7 +87,11 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
-  /feedbacksInformation/{idFeedback}:
+
+
+  
+    
+  /subjects/{subject}/{edition}/feedbacksInformation/{idFeedback}:
     get:
       description: "Returns the information of a feedback based on a single ID"
       operationId: "findFeedbackById"
@@ -89,6 +107,16 @@ paths:
         required: true
         type: "integer"
         format: "int32"
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"
       responses:
         200:
           description: "feedback information response"
@@ -103,6 +131,16 @@ paths:
       description: "deletes a single feedback based on the ID supplied"
       operationId: "deleteFeedback"
       parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"
       - name: "idFeedback"
         in: "path"
         description: "ID of feedback to delete"
@@ -117,7 +155,7 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
-  /feedbacksResults:
+  /subjects/{subject}/{edition}/feedbacksResults:
     get:
       description: "Returns all feedbacks results from the system that the user has\
         \ access to"
@@ -128,12 +166,16 @@ paths:
       - "text/xml"
       - "text/html"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "maximum number of results to return"
-        required: false
-        type: "integer"
-        format: "int32"
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"
       responses:
         200:
           description: "feedbacks results response"
@@ -152,6 +194,16 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"
       - in: "body"
         name: "feedbackResult"
         description: "Feedback result to add"
@@ -319,9 +371,33 @@ paths:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default" 
 
+  /subjects/findDistinctSubjects:
+    get:
+      description: "Returns all distinct subjects"
+      operationId: "findDistinctSubjects"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      responses:
+        200:
+          description: "feedbacks response"
+          schema:
+            type: array
+            items:
+              type: string
+              minimum: 0
+              maximum: 63
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"       
 
 
-  /feedbacksResults/{idFeedback}/{student}:
+
+  /subjects/{subject}/{edition}/feedbacksResults/{idFeedback}/{student}:
     get:
       description: "Returns the result of the feedback id_feedback for the student"
       operationId: "findFeedbackByIdFeedbackAndStudent"
@@ -331,6 +407,16 @@ paths:
       - "text/xml"
       - "text/html"
       parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"      
       - name: "idFeedback"
         in: "path"
         description: "ID of feedback to fetch"
@@ -363,6 +449,16 @@ paths:
       - "application/json"
       - "application/xml"
       parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"      
       - name: "idFeedback"
         in: "path"
         description: "ID of feedback to fetch"
@@ -390,6 +486,163 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
+
+
+
+  /subjects:
+    get:
+      description: "Returns all subjects objects"
+      operationId: "findSubjects"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      responses:
+        200:
+          description: "subjects response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/subject"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+    post:
+      description: "Creates a new subject object"
+      operationId: "addSubject"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "subject"
+        description: "Subject to add"
+        required: true
+        schema:
+          $ref: "#/definitions/subject"
+      responses:
+        200:
+          description: "subject response"
+          schema:
+            $ref: "#/definitions/subject"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+
+  /subjects/{subject}:
+    get:
+      description: "Returns the objects of a subject"
+      operationId: "findSubjectsBySubject"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "subject response"
+          schema:
+            $ref: "#/definitions/subject"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+    delete:
+      description: "deletes a subject"
+      operationId: "deleteSubject"
+      parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "subject deleted"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"    
+  /subjects/{subject}/{edition}:
+    get:
+      description: "Returns the objects of a subject"
+      operationId: "findSubjectsBySubjectAndEdition"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "subject response"
+          schema:
+            $ref: "#/definitions/subject"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+    put:
+      summary: "Updated subject"
+      operationId: "updateSubject"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "subject"
+        in: "path"
+        description: "Subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"  
+      - in: "body"
+        name: "body"
+        description: "Updated subject object"
+        required: false
+        schema:
+          $ref: "#/definitions/subject"
+      responses:
+        400:
+          description: "Invalid subject supplied"
+        404:
+          description: "subject not found"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"  
+  
+ 
+
+
+      
 definitions:
   errorModel:
     type: "object"
@@ -486,4 +739,20 @@ definitions:
         type: "string"
       comments:
         type: "string"
+  subject:
+    type: "object"
+    properties:
+      subject:
+        type: "string"
+      edition:
+        type: "string"
+      teachers:
+        type: "array"
+        items:
+          type: "string"
+      init:
+        type: "string"
+      end:
+        type: "string"
+
       

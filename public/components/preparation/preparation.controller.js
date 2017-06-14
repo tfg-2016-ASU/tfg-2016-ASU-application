@@ -5,25 +5,43 @@
     .module('app')
     .controller('PreparationController', PreparationController);
 
-  PreparationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage', '$interval'];
+  PreparationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage', '$interval', '$state', '$stateParams'];
 
-  function PreparationController($scope, $http, $rootScope, $localStorage, $interval) {
+  function PreparationController($scope, $http, $rootScope, $localStorage, $interval, $state, $stateParams) {
 
     console.log("PreparationController initialized");
-    
    
+		$scope.state = $state.current
+    $scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+		$scope.edition = $scope.params.edition;
 
-    //---------  Timer-------------------
-    var d;
-    d = new Date($localStorage.clock);
-    
-    var tick = function() {
-        $scope.clock = d;
-        d.setSeconds(d.getSeconds() + 1);
-    }
-    tick();
-    $interval(tick, 1000);
-    //-----------------------------------
+      //------------Countdown--------------
+        $scope.lessOneMinute = false;
+        $scope.lessTenSeconds = false;
+        var countDownDate = $localStorage.countDownDate;
+        var tick = function() {
+        var now = new Date().getTime();
+            var distance = countDownDate - now;
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        $scope.clock = minutes + "m " + seconds + "s ";
+        console.log($scope.clock);
+        if (distance < 0) {
+          clearInterval(tick);
+          $scope.clock = "EXPIRED";
+        }
+        if (minutes < 1) {
+          $scope.lessOneMinute = true;
+        }
+        if (minutes < 1 && seconds < 10) {
+          $scope.lessTenSeconds = true;
+        }
+          }
+      tick();
+      $interval(tick, 1000);
+      //-----------------------------------
 
 
     $scope.preparationReady = 'no';
@@ -46,8 +64,8 @@
       $scope.newFeedbackResult.preparationEnd = $scope.preparationReady;
 
     }
-
-    $http.get('/api/feedbacksInformation/' + $scope.newFeedbackResult.idFeedback)
+    
+    $http.get('api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksInformation/' + $scope.newFeedbackResult.idFeedback)
     .then(function(response) {      
       $scope.preparation = response.data[0].preparation;
       $localStorage.checks = response.data[0].checks;
@@ -65,7 +83,7 @@
 
     
     $scope.modifyPreparationEnd = function(){
-      $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $scope.newFeedbackResult.student, $scope.newFeedbackResult)
+      $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $scope.newFeedbackResult.student, $scope.newFeedbackResult)
 				.then(function(response) {
 					console.log('all perfect');
           $localStorage.newFeedbackResult = $scope.newFeedbackResult;
@@ -77,6 +95,39 @@
 				.finally(function() {
 					console.log("Finished");
 				});
+
+    
+       var minutesLeft = 5;
+
+        var countDownDate = new Date();
+        console.log(countDownDate);
+        countDownDate.setMinutes(countDownDate.getMinutes()+minutesLeft);
+        console.log(countDownDate);
+        countDownDate = countDownDate.getTime();
+        $localStorage.countDownDate = countDownDate;
+
+        $scope.lessOneMinute = false;
+        $scope.lessTenSeconds = false; 
+        var tick = function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            $scope.clock = minutes + "m " + seconds + "s ";
+            if (distance < 0) {
+                clearInterval(tick);
+                $scope.clock = "EXPIRED";
+            }
+            if (minutes < 1) {
+                $scope.lessOneMinute = true;
+            }
+            if (minutes < 1 && seconds < 10) {
+                $scope.lessTenSeconds = true;
+            }
+        }
+        tick();
+        $interval(tick, 1000);
+    
     }
 
   }

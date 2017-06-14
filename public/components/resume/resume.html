@@ -1,6 +1,18 @@
 <html>
      <div class="container" >
         <head>
+            </br>
+            <div ng-if="lessOneMinute == false" class="center-align clock">
+                <p style="text-align: center; font-size: 20px;">Third part: {{clock}}</p>
+            </div>
+
+            <div ng-if="lessOneMinute == true  && lessTenSeconds == false" class="center-align clock">
+                <p style="text-align: center; font-size: 20px; color: red">Third part: {{clock}}</p>
+            </div>
+
+            <div ng-if="lessTenSeconds == true" class="center-align clock">
+                <p class= 'time' style="text-align: center; font-size: 20px;" >Third part: {{clock}}</p>
+            </div>
             <h3 class="center-align">Feedback {{idFeedback}}</h3>
             <h5 class="center-align">Resume</h5>
             </br>
@@ -11,14 +23,14 @@
             <table class="table">
                 <tbody>
                     <tr ng-repeat= "C in checksTitle">
-                        <td ng-if="C.result == '-'" class="center-align"><a style="color: black" ui-sref="swipeTinder({param1: C.idCheck})">Check {{C.idCheck}}</a></td>
-                        <td ng-if="C.result == 'ok'" class="center-align"><a style="color: mediumseagreen" ui-sref="swipeTinder({param1: C.idCheck})">Check {{C.idCheck}}</a></td>
-                        <td ng-if="C.result == 'no'" class="center-align"><a style="color: lightcoral" ui-sref="swipeTinder({param1: C.idCheck})">Check {{C.idCheck}}</a></td>
+                        <td ng-if="C.result == '-'" class="center-align"><a style="color: black" ui-sref="swipeTinder({param1: C.idCheck, subject: subject, edition: edition})">Check {{C.idCheck}}</a></td>
+                        <td ng-if="C.result == 'ok'" class="center-align"><a style="color: mediumseagreen" ui-sref="swipeTinder({color: 'verde', param1: C.idCheck, subject: subject, edition: edition})">Check {{C.idCheck}}</a></td>
+                        <td ng-if="C.result == 'no'" class="center-align"><a style="color: lightcoral" ui-sref="swipeTinder({color: 'rojo', param1: C.idCheck, subject: subject, edition: edition})">Check {{C.idCheck}}</a></td>
                         <td style="color: mediumseagreen" ng-if="C.result == 'ok'" class="center-align">{{C.result}}</td>
                         <td ng-if="C.result == '-'" class="center-align">{{C.result}}</td>
                         <td style="color: lightcoral" ng-if="C.result == 'no'" class="center-align">{{C.result}}</td>
                         <td class="center-align">
-                            <button ng-if="C.result=='no'" ui-sref="improveCheck" ng-click="improveCheck(C.idCheck)" class="btn red lighten-2">Improve</button>
+                            <button ng-if="C.result=='no'" ui-sref="improveCheck({ subject: subject, edition: edition})" ng-click="improveCheck(C.idCheck)" class="btn red lighten-2">Improve</button>
                         </td>
                     </tr>
                 </tbody>
@@ -26,7 +38,7 @@
         </body>
 
         <div class="center-align">
-            <button ui-sref="finish" class="btn blue lighten-2">Finish feedback</button>
+            <button ui-sref="finish({ subject: subject, edition: edition})" class="btn blue lighten-2">Finish feedback</button>
         </div>
 
         

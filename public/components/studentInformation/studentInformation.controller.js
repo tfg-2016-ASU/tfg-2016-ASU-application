@@ -4,47 +4,56 @@
 
   angular
     .module('app')
-    .controller('StudenInformationController', StudenInformationController);
+    .controller('StudentInformationController', StudentInformationController);
 
-  StudenInformationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage', '$interval', 'authService'];
+  StudentInformationController.$inject = ['$scope', '$http', '$rootScope', '$localStorage', '$interval', 'authService', '$stateParams','$state'];
 
-  function StudenInformationController($scope, $http, $rootScope, $localStorage, $interval, authService) {
-
+  function StudentInformationController($scope, $http, $rootScope, $localStorage, $interval, authService, $stateParams, $state) {
+		
+		$scope.state = $state.current
+    	$scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+		$scope.edition = $scope.params.edition;
 
 		console.log("StudenInformationController initialized");
 		
 	    var vm = this;
    		vm.authService = authService;
+		   
+      //------------Countdown--------------
+	  	$scope.lessOneMinute = false;
+    	$scope.lessTenSeconds = false;
+	  	var countDownDate = $localStorage.countDownDate;
+    	var tick = function() {
+			var now = new Date().getTime();
+        	var distance = countDownDate - now;
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			$scope.clock = minutes + "m " + seconds + "s ";
+			if (distance < 0) {
+				clearInterval(tick);
+				$scope.clock = "EXPIRED";
+			}
+			if (minutes < 1) {
+				$scope.lessOneMinute = true;
+			}
+			if (minutes < 1 && seconds < 10) {
+				$scope.lessTenSeconds = true;
+			}
+        }
+		tick();
+		$interval(tick, 1000);
+      //-----------------------------------
+
 	
-		//---------  Timer-------------------
-		var d;
-		d = new Date($localStorage.clock);
-		
-		var tick = function() {
-			$scope.clock = d;
-			d.setSeconds(d.getSeconds() + 1);
-			$localStorage.clock = d;
-		}
-		tick();
-		$interval(tick, 1000);
-		//-----------------------------------
-
-		/*
-		var tick = function() {
-			$scope.clock = $localStorage.clock;
-			console.log($localStorage.clock);
-		}
-		tick();
-		$interval(tick, 1000);
-	  	*/
-		
-
 		
 		//console.log($localStorage.studentLogged); //se coge del js de auth0
 		//$localStorage.$reset();
-
-		$http.get('/api/feedbacksInformation')
+		
+		$http.get('api/v1/feedman/subjects/' + $scope.params.subject + '/' + $scope.params.edition + '/feedbacksInformation/')
 			.then(function(response) {
+				console.log(response.data);
 				$scope.feedbacksInf = response.data;
 				//console.log('Feedback result added correctly!');	
 			})
@@ -93,28 +102,21 @@
 			$localStorage.newFeedbackResult = $scope.newFeedbackResult;
 			$localStorage.idFeedback = $scope.newFeedbackResult.idFeedback;
 			  
-			if($scope.studentForm.$invalid){
-				return false;
-			}else{
-				
-				console.log('aqui: ' + $scope.newFeedbackResult);
-				$http.post('/api/feedbacksResults', $scope.newFeedbackResult)
-				.then(function(response) {
-					console.log('Feedback result added correctly!');	
-				})
-				.catch(function(response) {
-					console.error('Feedbacks results error', response.status, response.data);
-				})
-				.finally(function() {
-					console.log("Feedbacks results showed");
-				});
+	
+			console.log('aqui: ' + $scope.newFeedbackResult);
+			$http.post('/api/v1/feedman/subjects/' + $scope.params.subject + '/' + $scope.params.edition + '/feedbacksResults', $scope.newFeedbackResult)
+			.then(function(response) {
+				console.log('Feedback result added correctly!');	
+			})
+			.catch(function(response) {
+				console.error('Feedbacks results error', response.status, response.data);
+			})
+			.finally(function() {
+				console.log("Feedbacks results showed");
+			});
 				
 			}
 		
-
-			
-
-		}
     
   }
 

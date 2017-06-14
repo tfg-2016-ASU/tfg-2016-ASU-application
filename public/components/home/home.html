@@ -1,6 +1,6 @@
 <html>
   <head>
-    <h4 class="center-align">Feedback SOS</h4>
+    <!--<h4 class="center-align">Feedback SOS</h4>-->
     <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,16 +17,16 @@
         
         <div class="text-center" ng-if="!isAuthenticated">
           <h2 class="center-align image"><img style= "width:150px" src="/images/logousblanco.png"></h2>
-          <h5>You are not authenticated</h5>
+          <!--<h5>You are not authenticated</h5>-->
           </br>
-          <h5><a ui-sref="login">Go to the Login Page</a></h5>
+          <h5><a ui-sref="selectSubject">Select a subject</a></h5>
         </div>
         <div class="text-center" ng-if="isAuthenticated">
           <h2 class="center-align"><img style= "width:150px" src= {{urlPicture}}></h2>
           <h5>Welcome, {{ studentLogged }}</h5>
           </br>
-          <button ng-click="startTimer()" ui-sref="studentInformation" class="btn blue lighten-2">Start</button>
-                   
+          <button ng-click="startTimer()" ui-sref="studentInformation({ subject: subject, edition: edition})" class="btn blue lighten-2">Start</button>
+          <button  ui-sref="admin" class="btn blue lighten-2">Admin</button>         
         </div>
       </div>
   </body>

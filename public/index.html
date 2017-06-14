@@ -97,15 +97,17 @@
    <div ng-app="app" >
       <nav ng-controller="HomeController">
         <div class="nav-wrapper">
-          <p ng-if="studentLogged!=undefined" class="brand-logo">Feedback SOS - {{studentLogged}}</p>
+          <p ng-if="studentLogged!=undefined" class="brand-logo">{{studentLogged}}</p>
           <p ng-if="studentLogged==undefined" class="brand-logo">Feedback SOS</p>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="home">Home</a></li>
+            <li><a href="/#!">Select subject</a></li>
+            <li><a href="/#!/home">Home</a></li>
             <li><a ng-click="bye()" ui-sref="home">Log out</a></li>
           </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a ui-sref="home">Home</a></li>
+            <li><a href="/#!">Select subject</a></li>
+            <li><a ui-sref="/#!/home">Home</a></li>
             <li><a ng-click="bye()" ui-sref="home">Log out</a></li>
           </ul>
         </div>
@@ -134,9 +136,11 @@
     <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="app.run.js"></script>
+    <script type="text/javascript" src="components/selectSubject/selectSubject.controller.js"></script>
     <script type="text/javascript" src="components/home/home.controller.js"></script>
     <script type="text/javascript" src="components/login/login.controller.js"></script>
     <script type="text/javascript" src="components/admin/admin.controller.js"></script>
+    <script type="text/javascript" src="components/subjects/subjects.controller.js"></script>
     <script type="text/javascript" src="components/auth/auth.service.js"></script>
 
     

@@ -1,9 +1,9 @@
- <html>
-    <div class="text-center" ng-if="isAuthenticated">
+<html>
+    <div ng-if="isAuthenticated">
       <div class="container" >
         <head>
           
-          <h4 class="center-align">Feedback SOS</h4>
+          <!--<h4 class="center-align">Feedback SOS</h4>-->
             <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
             <!--Import Google Icon Font-->
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,13 +23,53 @@
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
           <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
       
+          <style> 
+            p.time{
+                /*-webkit-animation-name: parpadeo; 
+                -webkit-animation-duration: 4s; 
+                animation-name: parpadeo;
+                animation-duration: 4s;*/
+
+                animation-name: parpadeo;
+                animation-duration: 1s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+
+                -webkit-animation-name:parpadeo;
+                -webkit-animation-duration: 1s;
+                -webkit-animation-timing-function: linear;
+                -webkit-animation-iteration-count: infinite;
+            }
+
+            /* Safari 4.0 - 8.0 */
+            @-webkit-keyframes parpadeo {
+                from {color: red;}
+                to {color: red;}
+            }
+
+            /* Standard syntax */
+            @keyframes parpadeo {
+                from {color: red;}
+                to {color: red;}
+                0% { opacity: 1.0; }
+                50% { opacity: 0.0; }
+                100% { opacity: 1.0; }
+            }
+          </style>
         </head>
         <body>
-          
-          <div class="center-align" ng-app="app">
-              <p>{{ clock | date:'HH:mm:ss'}}</p>
-          </div>
-          
+          </br>
+            <div ng-if="lessOneMinute == false" class="center-align clock">
+              <p style="text-align: center; font-size: 20px;">First part: {{clock}}</p>
+            </div>
+
+            <div ng-if="lessOneMinute == true  && lessTenSeconds == false" class="center-align clock">
+                <p style="text-align: center; font-size: 20px; color: red">First part: {{clock}}</p>
+            </div>
+
+            <div ng-if="lessTenSeconds == true" class="center-align clock">
+                <p class= 'time' style="text-align: center; font-size: 20px;">First part: {{clock}}</p>
+            </div>
             <!-- Para que las validaciones funcionen es necesario que tanto el form como input, select tengan la propiedad name -->
             <form name="studentForm">
               
@@ -47,7 +87,7 @@
               
             
               <div class="input-field col s6">
-                <md-select placeholder="Número de feedback" ng-model="newFeedbackResult.idFeedback" style="min-width: 200px;" required>
+                <md-select placeholder="Number of feedback" ng-model="newFeedbackResult.idFeedback" style="min-width: 200px;" required>
                   <md-option ng-value="f.idFeedback" ng-repeat="f in feedbacksInf">{{f.idFeedback}}</md-option>
                 </md-select>
               </div>
@@ -61,39 +101,23 @@
               
 
               <div class="input-field col s6">
-                <!--<i class="material-icons prefix">group</i>-->
-                <input ng-model="newFeedbackResult.group" placeholder="Grupo" name="group" type="number" class="form-control" required></input>
+               
+                <input ng-model="newFeedbackResult.group" placeholder="Group" name="group" type="number" class="form-control" required></input>
               </div>
             
-              <!--<div class="input-field col s6">
-                <i class="material-icons prefix">access_time</i>
-                <input ng-model="newFeedbackResult.shift" placeholder="Turno (mañana o tarde)" name="shift" type="text" class="form-control" required></input>
-              </div>-->
               </br>
-              
-
-            
+      
               <div class="input-field col s6">
-                <md-select ng-model="newFeedbackResult.shift" placeholder="Turno" required>
-                  <md-option value="mañana">mañana</md-option>
-                  <md-option value="tarde">tarde</md-option>
+                <md-select ng-model="newFeedbackResult.shift" placeholder="Shift" required>
+                  <md-option value="mañana">morning</md-option>
+                  <md-option value="tarde">afternoon</md-option>
                 </md-select>
               </div>
 
-              
-              
-              <!--<div class="center-align">
-                <button ui-sref="preparation" ng-click="addFeedbackResult()" class="btn waves-effect waves-light">Siguiente
-                  <i class="material-icons right">send</i>
-                </button>
-              </div>-->
 
               <div class="center-align">
-                <input type="submit" ui-sref="preparation" ng-disabled="studentForm.$invalid" class="btn blue lighten-2 pull-center" ng-click="addFeedbackResult(newFeedbackResult)">
+                <button ui-sref="preparation({ subject: subject, edition: edition})" ng-disabled="studentForm.$invalid" class="btn blue lighten-2 pull-center" ng-click="addFeedbackResult(newFeedbackResult)">Send
               </div>
-
-      
-              
 
             </form>
           

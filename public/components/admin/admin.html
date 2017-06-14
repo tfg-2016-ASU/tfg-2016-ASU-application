@@ -1,71 +1,47 @@
-<html>
+<html> 
+  <div class="container"> 
   <head>
-    <link rel="shortcut icon" href=""> 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <style>
-      .admin i {
-        margin: 40px 0;
-        color: #9d2235;
-        font-size: 4rem;
-        display: block;
-      }
-      .admin-panel {
-          font-size: 0.7rem;
-          font-weight: 700;
-          margin-top: 5px;
-          margin-bottom: 0;
-      }
-	  </style>
-  </head>
-  <body>
-    <div class="container">
-    
-      </br>
-      </br>
-      <h3 class="center-align">Admin</h3>
-      <div class="row">
+      <h2 class="center-align">Subjects</h2>
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <style>
+          div.icon{
+            float: right;
+          }
+          div.subject{
+            float: left;
+          }
+          /*div i{
+            margin: 40px 0;
+            color: #9d2235;
+            font-size: 4rem;
+            display: block;
+          }*/
+      </style>    
+   </head>
+   <body>
+      <ul class="collection lista" ng-repeat="s in subjects">
+        <li class="collection-item">
+           <div class="list">
+            <div ng-click="viewSubject(s)" class="subject">
+              {{s}}
+            </div>
+            <div ng-click="deleteSubject(s)" class="icon">
+              <a class="secondary-content"><i style="color: black"class="material-icons">delete</i></a>
+            </div>
+        </li>
+      </ul>
 
-        <div class="col s6">
-          <div class="center admin">
-            <i ui-sref="crosscheckSelectFeedback" class="material-icons">flash_on</i>
-            <p class="admin-panel">Crosscheck</p>
-          </div>
+      <div class="right-align">
+        <i style="margin: 40px 0; color: #be9d56; font-size: 4rem; display: block" class="material-icons">add_circle</i>
       </div>
-      <div class="col s6">
-          <div class="center admin">
-            <i ui-sref="feedbacksResultsRecords" class="material-icons">assignment</i>
-            <p class="admin-panel">Historial de feedbacks</p>
-          </div>
-      </div>
-<!--
-      <div class="col s4">
-          <div class="center admin">
-            <i ui-sref="crosscheckSelectFeedback" class="material-icons">flash_on</i>
-            <p class="admin-panel">Crosscheck</p>
-          </div>
-      </div>
-      <div class="col s4">
-          <div class="center admin">
-            <i ui-sref="feedbacksResultsRecords" class="material-icons">assignment</i>
-            <p class="admin-panel">Historial de feedbacks</p>
-          </div>
-      </div>
-      
-      <div class="col s4">
-          <div class="center admin">
-            <i ui-sref="newFeedbackInformation" class="material-icons">add_circle</i>
-            <p class="admin-panel">Introducir feedback</p>
-          </div>
-      </div>
-      -->
+   
 
-    </div>
-      
-      
-    </div>
-    
-  </body>
-  
+   </body>
+  </div>
 </html>

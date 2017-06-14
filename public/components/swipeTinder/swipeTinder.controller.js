@@ -5,14 +5,46 @@
     .module('app')
     .controller('SwipeTinderController', SwipeTinderController);
 
-  SwipeTinderController.$inject = ['$scope', '$http', '$location', '$localStorage', '$interval', '$stateParams'];
+  SwipeTinderController.$inject = ['$scope', '$http', '$location', '$localStorage', '$interval', '$stateParams', '$state'];
 
-  function SwipeTinderController($scope, $http, $location, $localStorage, $interval, $stateParams) {
+  function SwipeTinderController($scope, $http, $location, $localStorage, $interval, $stateParams, $state) {
 	
     console.log("SwipeTinderController initialized");
     console.log($stateParams.param1);
 
-      $http.get('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw)
+    $scope.state = $state.current
+    $scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+		$scope.edition = $scope.params.edition;  
+
+    //------------Countdown--------------
+      $scope.lessOneMinute = false;
+      $scope.lessTenSeconds = false;
+      var countDownDate = $localStorage.countDownDate;
+      var tick = function() {
+      var now = new Date().getTime();
+          var distance = countDownDate - now;
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      $scope.clock = minutes + "m " + seconds + "s ";
+        console.log($scope.clock);
+        if (distance < 0) {
+          clearInterval(tick);
+          $scope.clock = "EXPIRED";
+        }
+        if (minutes < 1) {
+          $scope.lessOneMinute = true;
+        }
+        if (minutes < 1 && seconds < 10) {
+          $scope.lessTenSeconds = true;
+        }
+      }
+      tick();
+      $interval(tick, 1000);
+    //-----------------------------------
+
+      $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw)
       .then(function(response) {
         //console.log('put perfect');
         console.log(response.data[0]);
@@ -33,7 +65,7 @@
     $scope.totalChecks = $localStorage.checks.length;
 
         
-      $http.get('/api/feedbacksInformation/' + '1')
+      $http.get('api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksInformation/' + $scope.idFeedback)
       .then(function(response) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -52,6 +84,8 @@
           cards2.push(new Tindercardsjs.card(idCheckToPush, idCheckToPushWithTitle, descriptionToPush, '/images/cabecera-swipe.png'));
           
           console.log(cards2);
+
+
             
 
           var arrayRes = [];
@@ -62,8 +96,9 @@
           //myElement2.style.backgroundColor = '#be9d56';
           // create a simple instance
           // by default, it only adds horizontal recognizers
+          
           var mc = new Hammer(myElement);
-
+          
           // listen to events...
           /*mc.on("panleft panright tap press", function(ev) {
               console.log(ev.type +" gesture detected.");
@@ -71,11 +106,10 @@
           })*/
           
           //console.log('IMPORTANTE: ' + $scope.checkShowed);
-          
-
             
 
           mc.on('pan', function(ev) {
+
                         
             
             //console.log(ev);
@@ -123,6 +157,7 @@
             //console.log('Swiped ' + event.direction + ', cardid is ' + event.cardid + ' and target is:');
             console.log(event.cardid);
             
+            
             $scope.cardid = event.cardid;
           
             //auxCheckColor--;
@@ -146,7 +181,7 @@
                           });
             console.log($localStorage.reviewedFeedbackResult.arrayCheckResults);
 
-            $http.put('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw, $localStorage.reviewedFeedbackResult)
+            $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw, $localStorage.reviewedFeedbackResult)
               .then(function(response) {
                 //console.log('put perfect');
               })
@@ -155,7 +190,8 @@
               })
               .finally(function() {
                 //console.log('finish');
-                $location.path('/resume');
+                //$location.path('/resume');
+                $state.go('resume', {subject: $scope.subject, edition: $scope.edition})
               });
               
             
@@ -291,14 +327,14 @@
               console.log((arrayRes));
               
               //+++++++++++++++++++++++++++++++++++++
-              $http.get('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw)
+              $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw)
                 .then(function(response) {
                   //console.log('her we go ' + response.data[0].student);
                   response.data[0].arrayCheckResults = arrayRes;
                   $localStorage.reviewedFeedbackResult = response.data[0];
                   //console.log($localStorage.rw);
                   
-                  $http.put('/api/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw, response.data[0])
+                  $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.rw, response.data[0])
                     .then(function(response) {
                       //console.log('put perfect');
                     })
@@ -323,7 +359,8 @@
 
                 aux--;
                 
-                $location.path('/finish');
+                //$location.path('/finish');
+                $state.go('finish', {subject: $scope.subject, edition: $scope.edition})
 
                 //console.log($localStorage.rw);
 
@@ -336,7 +373,7 @@
               var progress = Math.round(aux/$scope.lastCheckSwipe * 100);
               //console.log(Math.round(aux/$scope.lastCheckSwipe * 100));
               //$( "div.demo-container" ).html("<p class='center-align'>Todas las tareas están evaluadas</p>");
-              $( "div.demo-container" ).html("<p class='center-align'>Tarea "+aux+ "/" + $scope.lastCheckSwipe);
+              $( "div.demo-container" ).html("<p class='center-align'>Check "+aux+ "/" + $scope.lastCheckSwipe);
               $( "div.progress" ).html("<div class='determinate' style='width:"+ progress +"%'></div>");
 
             });          

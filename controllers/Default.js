@@ -56,4 +56,32 @@ module.exports.findDistinctIdFeedbacks = function findDistinctIdFeedbacks (req, 
   Default.findDistinctIdFeedbacks(req.swagger.params, res, next);
 };
 
+module.exports.findDistinctSubjects = function findDistinctSubjects (req, res, next) {
+  Default.findDistinctSubjects(req.swagger.params, res, next);
+};
+
+module.exports.findSubjects = function findSubjects (req, res, next) {
+  Default.findSubjects(req.swagger.params, res, next);
+};
+
+module.exports.addSubject = function addSubject (req, res, next) {
+  Default.addSubject(req.swagger.params, res, next);
+};
+
+module.exports.findSubjectsBySubject = function findSubjectsBySubject (req, res, next) {
+  Default.findSubjectsBySubject(req.swagger.params, res, next);
+};
+
+module.exports.updateSubject = function updateSubject (req, res, next) {
+  Default.updateSubject(req.swagger.params, res, next);
+};
+
+module.exports.findSubjectsBySubjectAndEdition = function findSubjectsBySubjectAndEdition (req, res, next) {
+  Default.findSubjectsBySubjectAndEdition(req.swagger.params, res, next);
+};
+
+module.exports.deleteSubject = function deleteSubject (req, res, next) {
+  Default.deleteSubject(req.swagger.params, res, next);
+};
+
 

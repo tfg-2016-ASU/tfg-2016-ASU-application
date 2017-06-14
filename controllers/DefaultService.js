@@ -7,6 +7,7 @@ var ObjectID = mongodb.ObjectID;
 var assert = require('assert');
 var FEEDBACKS_COLLECTION = "feedbacks";
 var FEEDBACKS_RESULTS_COLLECTION = "feedbacksResults";
+var SUBJECTS_COLLECTION = "subjects";
 var db;
 var url = 'mongodb://admin:admin@ds137360.mlab.com:37360/mongolab-01';
 mongodb.MongoClient.connect(url, function (err, database) {
@@ -19,6 +20,7 @@ mongodb.MongoClient.connect(url, function (err, database) {
 });
 //--------------------------------------------
 
+
 exports.addFeedback = function(args, res, next) {
   /**
    * Creates a new feedback.  Duplicates are allowed
@@ -28,6 +30,8 @@ exports.addFeedback = function(args, res, next) {
    **/
   var newFeedback = args['feedback']['originalValue'];
   newFeedback.createDate = new Date();
+  newFeedback.subject = args['subject']['value'];
+  newFeedback.edition = args['edition']['value'];
   db.collection(FEEDBACKS_COLLECTION).insertOne(newFeedback, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new feedback");
@@ -49,6 +53,8 @@ exports.addFeedbackResult = function(args, res, next) {
   
   var newFeedback = args['feedbackResult']['originalValue'];
   newFeedback.createDate = new Date();
+  newFeedback.subject = args['subject']['value'];
+  newFeedback.edition = args['edition']['value'];
   db.collection(FEEDBACKS_RESULTS_COLLECTION).insertOne(newFeedback, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new feedback result");
@@ -85,9 +91,11 @@ exports.findFeedbackById = function(args, res, next) {
    * idFeedback Long ID of feedback to fetch
    * returns feedbackInformation
    **/
+  var subject = args['subject']['value'];
+  var edition = args['edition']['value'];
   var idFeedback = args['idFeedback']['value'];
   console.log(args['idFeedback']['value']);
-  db.collection(FEEDBACKS_COLLECTION).find({idFeedback:idFeedback}).toArray(function(err, docs) {
+  db.collection(FEEDBACKS_COLLECTION).find({idFeedback:idFeedback, subject:subject, edition:edition}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedbacks");
         }else{
@@ -104,8 +112,9 @@ exports.findFeedbacksResults = function(args, res, next) {
    * limit Integer maximum number of results to return (optional)
    * returns List
    **/
-    
-  db.collection(FEEDBACKS_RESULTS_COLLECTION).find({}).toArray(function(err, docs) {
+  var subject = args['subject']['value'];
+  var edition = args['edition']['value']; 
+  db.collection(FEEDBACKS_RESULTS_COLLECTION).find({subject:subject, edition:edition}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedbacks results");
         }else{
@@ -121,8 +130,11 @@ exports.findFeedbacks = function(args, res, next) {
    * limit Integer maximum number of results to return (optional)
    * returns List
    **/
-    
-  db.collection(FEEDBACKS_COLLECTION).find({}).toArray(function(err, docs) {
+  var subject = args['subject']['value'];
+  var edition = args['edition']['value'];
+  console.log(subject);
+  console.log(edition);
+  db.collection(FEEDBACKS_COLLECTION).find({subject:subject, edition:edition}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedbacks");
         }else{
@@ -150,10 +162,12 @@ exports.findFeedbackResultByIdFeedback = function(args, res, next) {
 exports.findFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var student = args['student']['value'];
     var idFeedback = args['idFeedback']['value'];
+    var subject = args['subject']['value'];
+    var edition = args['edition']['value'];    
     console.log(student);
     console.log(idFeedback);
     
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, student:student}).toArray(function(err, docs) {
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({idFeedback:idFeedback, student:student, subject:subject, edition:edition}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedback");
         }else{
@@ -215,11 +229,26 @@ exports.findDistinctIdFeedbacks = function(args, res, next) {
         );
 }
 
+exports.findDistinctSubjects = function(args, res, next) {
+
+    //db.collection(FEEDBACKS_RESULTS_COLLECTION).distinct("idFeedback");
+    db.collection(FEEDBACKS_COLLECTION).distinct("subject",
+            function(err, docs){
+                if(err){
+                    //console.log("error");
+                }else{
+                    res.send(docs);
+                }
+            }
+        );
+}
 
 
 exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var student = args['student']['value'];
     var idFeedback = args['idFeedback']['value'];
+    var subject = args['subject']['value'];
+    var edition = args['edition']['value'];
     console.log('A1 ' + student);
     console.log('A2 ' + idFeedback);
     
@@ -253,7 +282,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 
     console.log(arrayCheckResults.length);
 
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed, role:role}},
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student, subject:subject, edition:edition}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed, role:role}},
             function(err, docs){
                 if(err){
                     //console.log("error");
@@ -262,9 +291,93 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
                 }
             }
         );
+    
+}
 
-  
-    
-    
-    
+exports.findDistinctSubjects = function(args, res, next) {
+    //db.collection(FEEDBACKS_RESULTS_COLLECTION).distinct("idFeedback");
+    db.collection(SUBJECTS_COLLECTION).distinct("subject",
+            function(err, docs){
+                if(err){
+                    //console.log("error");
+                }else{
+                    res.send(docs);
+                }
+            }
+        );
+}
+
+
+exports.findSubjects = function(args, res, next) {
+    db.collection(SUBJECTS_COLLECTION).find({}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get subjects");
+        }else{
+            res.status(200).json(docs);
+        }
+    }
+    );
+}
+
+exports.findSubjectsBySubject = function(args, res, next) {
+    var subject = args['subject']['value'];
+    db.collection(SUBJECTS_COLLECTION).find({subject:subject}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get subjects");
+        }else{
+            res.status(200).json(docs);
+        }
+    }
+    );
+}
+
+exports.addSubject = function(args, res, next) { 
+  var subject = args['subject']['originalValue'];
+  subject.createDate = new Date();
+  db.collection(SUBJECTS_COLLECTION).insertOne(subject, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new subject");
+    }else{
+      res.status(201).json(doc.ops[0]);
+    }
+  });
+}
+
+exports.findSubjectsBySubjectAndEdition = function(args, res, next) {
+    var subject = args['subject']['value'];
+    var edition = args['edition']['value'];
+    db.collection(SUBJECTS_COLLECTION).find({subject:subject, edition:edition}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get subject");
+        }else{
+            res.status(200).json(docs);
+        }
+    }
+    );
+}
+
+exports.updateSubject = function(args, res, next) {
+    var subject = args['subject']['value'];
+    var edition = args['edition']['value'];
+    db.collection(SUBJECTS_COLLECTION).update({subject:subject, edition:edition}, {$set: {}},
+            function(err, docs){
+                if(err){
+                    //console.log("error");
+                }else{
+                    res.sendStatus(200);
+                }
+            }
+        );
+}
+
+exports.deleteSubject = function(args, res, next) {
+  var subject = args['subject']['value'];
+  db.collection(SUBJECTS_COLLECTION).remove({subject:subject}, {}, (err,numRemoved)=>{
+    if(err){
+      res.sendStatus(500);
+    }else{
+      console.log("Deleted " + numRemoved + " objects");
+      res.sendStatus(200);
+    }
+  });
 }

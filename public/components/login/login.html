@@ -1,6 +1,6 @@
 <html>
   <head>
-    <h4 class="center-align">Feedback SOS</h4>
+    <!--<h4 class="center-align">Feedback SOS</h4>-->
     <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,7 +17,7 @@
       <div class="text-center">
         <!--<button class="btn btn-primary" ng-click="vm.authService.login()">Log In</button>-->
 
-        <button ng-click="vm.authService.login()" class="btn blue lighten-2">Log in
+        <button ui-sref="home" ng-click="vm.authService.login()" class="btn blue lighten-2">Log in
                 <i class="material-icons right">mouse</i>
         </button>
       </div>

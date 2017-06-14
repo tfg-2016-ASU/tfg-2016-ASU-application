@@ -46,12 +46,12 @@
 
         <div class="center-align">
             <div class="text-center" ng-if="role=='reviewed'">
-                <button ui-sref="beginReview" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
-                <button ui-sref="beginReview" ng-click="finishFeedback('si')" class="btn green lighten-2">Yes</button>
+                <button ui-sref="beginReview({ subject: subject, edition: edition})" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
+                <button ui-sref="beginReview({ subject: subject, edition: edition})" ng-click="finishFeedback('si')" class="btn green lighten-2">Yes</button>
             </div>
             <div class="text-center" ng-if="role=='reviewer'">
-                <button ui-sref="bye" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
-                <button ui-sref="bye" ng-click="finishFeedback('si')" class="btn green lighten-2">Yes</button>
+                <button ui-sref="bye({ subject: subject, edition: edition})" ng-click="finishFeedback('no')" class="btn red lighten-2">No</button>
+                <button ui-sref="bye({ subject: subject, edition: edition})" ng-click="finishFeedback('si')" class="btn green lighten-2">Yes</button>
             </div><!--bye-->
         </div>
 

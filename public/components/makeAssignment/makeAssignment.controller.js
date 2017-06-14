@@ -11,9 +11,9 @@
 	
     console.log("MakeAssignmentController initialized");
 
-    
 
-    $http.get('/api/feedbacksInformation')
+
+    $http.get('api/v1/feedman/subjects/' + 'sos' + '/' + '16-17' + '/feedbacksInformation')
         .then(function(response) {
             $scope.feedbacksInf = response.data;
             //console.log('Feedback result added correctly!');	
@@ -32,10 +32,10 @@
         var reviewers = [];
         var revieweds = [];
 
-        $http.get('/api/feedbacksResults/findReviewersPreparedSameShift/' + $scope.feedbackAssign + '/' + $scope.shiftAssign)
+        $http.get('/api/v1/feedman/feedbacksResults/findReviewersPreparedSameShift/' + $scope.feedbackAssign + '/' + $scope.shiftAssign)
             .then(function(response) {
                 reviewers = response.data;
-                $http.get('/api/feedbacksResults/findReviewedsPreparedSameShift/' + $scope.feedbackAssign + '/' + $scope.shiftAssign)
+                $http.get('/api/v1/feedman/feedbacksResults/findReviewedsPreparedSameShift/' + $scope.feedbackAssign + '/' + $scope.shiftAssign)
                 .then(function(response) {
                     revieweds = response.data;
                     //Asignar un reviewer por reviewed
@@ -93,7 +93,7 @@
                         console.log(rr);
                         rr.reviewer = rd.student;
                         rd.reviewer = rr.student;
-                        $http.put('/api/feedbacksResults/' + rr.idFeedback + '/' + rr.student, rr)
+                        $http.put('/api/v1/feedman/subjects/sos/16-17/feedbacksResults/' + rr.idFeedback + '/' + rr.student, rr)
                             .then(function(response) {
                                 console.log(rr.student);
                             })
@@ -103,7 +103,7 @@
                             .finally(function() {
                             });
 
-                        $http.put('/api/feedbacksResults/' + rd.idFeedback + '/' + rd.student, rd)
+                        $http.put('/api/v1/feedman/subjects/sos/16-17/feedbacksResults/' + rd.idFeedback + '/' + rd.student, rd)
                             .then(function(response) {
                                 console.log(rd.student);
                             })

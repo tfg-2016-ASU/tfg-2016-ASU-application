@@ -6,12 +6,18 @@
     .module('app', ['auth0.lock', 'angular-jwt', 'ui.router', 'ngStorage', 'ngMaterial'])
     .config(config);
 
-  config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider', 'jwtOptionsProvider', '$qProvider'];
+  config.$inject = ['$stateProvider','lockProvider', '$urlRouterProvider', 'jwtOptionsProvider', '$qProvider'];
 
  
   function config($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProvider, $qProvider) {
     $qProvider.errorOnUnhandledRejections(false); //para el error de transition superseded
     $stateProvider
+      .state('selectSubject', {
+        url: '/selectSubject',
+        controller: 'SelectSubjectController',
+        templateUrl: 'components/selectSubject/selectSubject.html',
+        controllerAs: 'vm'
+      })
       .state('home', {
         url: '/home',
         controller: 'HomeController',
@@ -31,20 +37,38 @@
         controllerAs: 'vm'
       })
       .state('studentInformation', {
-        url: '/studentInformation',
-        controller: 'StudenInformationController',
+        url: '/:subject/:edition/studentInformation',
+        controller: 'StudentInformationController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/studentInformation/studentInformation.html',
         controllerAs: 'vm'
       })
       .state('preparation', {
-        url: '/preparation',
-        controller: 'PreparationController',
+        url: '/:subject/:edition/preparation',
+        controller: 'PreparationController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/preparation/preparation.html',
         controllerAs: 'vm'
       })
       .state('selectRole', {
-        url: '/selectRole',
-        controller: 'SelectRoleController',
+        url: '/:subject/:edition/selectRole',
+        controller: 'SelectRoleController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/selectRole/selectRole.html',
         controllerAs: 'vm'
       })
@@ -55,23 +79,42 @@
         controllerAs: 'vm'
       })
       .state('assign', {
-        url: '/assign',
-        controller: 'AssignController',
+        url: '/:subject/:edition/assign',
+        controller: 'AssignController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/assign/assign.html',
         controllerAs: 'vm'
       })
       .state('beginReview', {
-        url: '/beginReview',
-        controller: 'BeginReviewController',
+        url: '/:subject/:edition/beginReview',
+        controller: 'BeginReviewController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/beginReview/beginReview.html',
         controllerAs: 'vm'
       })
       .state('swipeTinder', {
-        url: '/swipeTinder',
+        url: '/:subject/:edition/swipeTinder',
         params: {
-          param1: null
+          param1: null,
+          color: null
         },
-        controller: 'SwipeTinderController',
+        controller: 'SwipeTinderController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/swipeTinder/swipeTinder.html',
         controllerAs: 'vm'
       })
@@ -93,14 +136,26 @@
         controllerAs: 'vm'
       })
       .state('waiting', {
-        url: '/waiting',
-        controller: 'WaitingController',
+        url: '/:subject/:edition/waiting',
+        controller: 'WaitingController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/waiting/waiting.html',
         controllerAs: 'vm'
       })
       .state('confirmMyResult', {
-        url: '/confirmMyResult',
-        controller: 'ConfirmMyResultController',
+        url: '/:subject/:edition/confirmMyResult',
+        controller: 'ConfirmMyResultController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/confirmMyResult/confirmMyResult.html',
         controllerAs: 'vm'
       })
@@ -135,14 +190,26 @@
         controllerAs: 'vm'
       })
       .state('resume', {
-        url: '/resume',
-        controller: 'ResumeController',
+        url: '/:subject/:edition/resume',
+        controller: 'ResumeController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/resume/resume.html',
         controllerAs: 'vm'
       })
       .state('improveCheck', {
-        url: '/improveCheck',
-        controller: 'ImproveCheckController',
+        url: '/:subject/:edition/improveCheck',
+        controller: 'ImproveCheckController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/improveCheck/improveCheck.html',
         controllerAs: 'vm'
       })
@@ -156,6 +223,21 @@
         url: '/admin',
         controller: 'AdminController',
         templateUrl: 'components/admin/admin.html',
+        controllerAs: 'vm'
+      })
+      .state('subjects', {
+        url: 'admin/subjects',
+        controller: 'SubjectsController',
+        templateUrl: 'components/subjects/subjects.html',
+        controllerAs: 'vm'
+      })
+      .state('subjects.details', {
+        url: '/:subject/',
+        controller: 'SubjectsDetailsController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject; 
+        },
+        templateUrl: 'components/subjectsDetails/subjectsDetails.html',
         controllerAs: 'vm'
       })
       .state('swipe', {
@@ -213,26 +295,50 @@
         controllerAs: 'vm'
       })
       .state('bye', {
-        url: '/bye',
-        controller: 'ByeController',
+        url: '/:subject/:edition/bye',
+        controller: 'ByeController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/bye/bye.html',
         controllerAs: 'vm'
       })
       .state('finish', {
-        url: '/finish',
-        controller: 'FinishController',
+        url: '/:subject/:edition/finish',
+        controller: 'FinishController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/finish/finish.html',
         controllerAs: 'vm'
       })
       .state('waitingConfirmation', {
-        url: '/waitingConfirmation',
-        controller: 'WaitingConfirmationController',
+        url: '/:subject/:edition/waitingConfirmation',
+        controller: 'WaitingConfirmationController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/waitingConfirmation/waitingConfirmation.html',
         controllerAs: 'vm'
       })
       .state('resultsConfirmed', {
-        url: '/resultsConfirmed',
-        controller: 'ResultsConfirmedController',
+        url: '/:subject/:edition/resultsConfirmed',
+        controller: 'ResultsConfirmedController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject;
+
+            // get the location
+            $scope.edition = $stateParams.edition;   
+        },
         templateUrl: 'components/resultsConfirmed/resultsConfirmed.html',
         controllerAs: 'vm'
       })

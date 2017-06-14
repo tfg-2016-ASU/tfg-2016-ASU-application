@@ -5,11 +5,17 @@
     .module('app')
     .controller('WaitingController', WaitingController);
 
-  WaitingController.$inject = ['$scope', '$localStorage', '$http', '$location', '$interval'];
+  WaitingController.$inject = ['$scope', '$localStorage', '$http', '$location', '$interval', '$state', '$stateParams'];
 
-  function WaitingController($scope, $localStorage, $http, $location, $interval) {
+  function WaitingController($scope, $localStorage, $http, $location, $interval, $state, $stateParams) {
 	
     console.log("WaitingController initialized");
+
+    $scope.state = $state.current
+    $scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+		$scope.edition = $scope.params.edition;  
 
     $scope.rw = $localStorage.rw;
 	
@@ -17,7 +23,7 @@
 
     $scope.totalChecks = $localStorage.checks.length;
 
-    $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
+    $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' +  $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
         .then(function(response) {      
           //$scope.waiting = response.data[0].waiting;
           console.log(response.data[0].arrayCheckResults);
@@ -38,12 +44,13 @@
     
 
     $scope.beginReview = function(){
-      $http.get('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
+      $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
         .then(function(response) {      
           //$scope.waiting = response.data[0].waiting;
           console.log(response.data[0].arrayCheckResults);
-          if(response.data[0].confirmed == 1){
-            $location.path('/confirmMyResult');
+
+          if(response.data[0].confirmed == 1 || response.data[0].confirmed == 2){
+            $state.go('confirmMyResult', {subject: $scope.subject, edition: $scope.edition});
           }
           
           $scope.checksReviewed = response.data[0].arrayCheckResults.length;

@@ -12,11 +12,11 @@
     console.log("TimeController initialized");
 
     //var countDownDate = new Date("Jun 9, 2017 15:37:25").getTime();
-    
+    var minutesLeft = 2;
 
     var countDownDate = new Date();
     console.log(countDownDate);
-    countDownDate.setMinutes(countDownDate.getMinutes()+5);
+    countDownDate.setMinutes(countDownDate.getMinutes()+minutesLeft);
     console.log(countDownDate);
     countDownDate = countDownDate.getTime();
 
@@ -41,7 +41,7 @@
         $scope.clock = minutes + "m " + seconds + "s ";
         // If the count down is over, write some text 
         if (distance < 0) {
-            clearInterval(x);
+            clearInterval(tick);
             $scope.clock = "EXPIRED";
         }
         if (minutes < 1) {
@@ -50,6 +50,7 @@
         if (minutes < 1 && seconds < 10) {
             $scope.lessTenSeconds = true;
         }
+
 
 		}
 		tick();

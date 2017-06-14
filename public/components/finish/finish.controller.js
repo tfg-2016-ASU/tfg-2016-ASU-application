@@ -5,24 +5,41 @@
     .module('app')
     .controller('FinishController', FinishController);
 
-  FinishController.$inject = ['$scope', '$rootScope', '$localStorage', '$http', '$interval'];
+  FinishController.$inject = ['$scope', '$rootScope', '$localStorage', '$http', '$interval', '$state', '$stateParams'];
 
-  function FinishController($scope, $rootScope, $localStorage, $http, $interval) {
+  function FinishController($scope, $rootScope, $localStorage, $http, $interval, $state, $stateParams) {
 	
     console.log("FinishController initialized");
 
-  
+    $scope.state = $state.current
+    $scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+		$scope.edition = $scope.params.edition;  
     
-    //---------  Timer-------------------
-    var d;
-    d = new Date($localStorage.clock);
-    
+    //------------Countdown--------------
+    $scope.lessOneMinute = false;
+    $scope.lessTenSeconds = false;
+    var countDownDate = $localStorage.countDownDate;
     var tick = function() {
-        $scope.clock = d;
-        d.setSeconds(d.getSeconds() + 1);
+      var now = new Date().getTime();
+          var distance = countDownDate - now;
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      $scope.clock = minutes + "m " + seconds + "s ";
+      if (distance < 0) {
+        clearInterval(tick);
+        $scope.clock = "EXPIRED";
+      }
+      if (minutes < 1) {
+        $scope.lessOneMinute = true;
+      }
+      if (minutes < 1 && seconds < 10) {
+        $scope.lessTenSeconds = true;
+      }
     }
-    tick();
-    $interval(tick, 1000);
+		tick();
+		$interval(tick, 1000);
     //-----------------------------------
     
     $scope.idFeedback = $localStorage.idFeedback;
@@ -74,7 +91,7 @@
       }
     }
     $scope.wellChecks = cont;
-    $scope.totalChecks = $localStorage.reviewedFeedbackResult.arrayCheckResults.length;
+    $scope.totalChecks = $localStorage.checks.length;
     
 
   
@@ -83,7 +100,7 @@
        
        //modifio el confirmed del student
         $localStorage.reviewedFeedbackResult.confirmed = 1;
-        $http.put('/api/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
+        $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
           .then(function(response) {
             console.log('perfe');
           })

@@ -5,13 +5,17 @@
     .module('app')
     .controller('ResultsConfirmedController', ResultsConfirmedController);
 
-  ResultsConfirmedController.$inject = ['$scope', '$localStorage', '$http', '$interval'];
+  ResultsConfirmedController.$inject = ['$scope', '$localStorage', '$http', '$interval', '$state', '$stateParams'];
 
-  function ResultsConfirmedController($scope, $localStorage, $http, $interval) {
+  function ResultsConfirmedController($scope, $localStorage, $http, $interval, $state, $stateParams) {
 	
     console.log("ResultsConfirmedController initialized");
 
-  
+    $scope.state = $state.current
+    $scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+		$scope.edition = $scope.params.edition;  
 	
     $scope.idFeedback = $localStorage.idFeedback;
     $scope.student = $localStorage.studentLogged;
