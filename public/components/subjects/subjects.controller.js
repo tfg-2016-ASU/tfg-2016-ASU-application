@@ -43,6 +43,65 @@
           });
     }
 
+    $scope.addEdition = function(e){
+      console.log(e);
+      var newSubject = {
+				"subject": $scope.subject,
+				"edition": e,
+        "teachers": [],
+        "init": "",
+        "end": ""
+			};
+        $http.post('api/v1/feedman/subjects/', newSubject)
+          .then(function(response) {
+              console.log('added perfect');
+              $state.reload();
+          })
+          .catch(function(response) {
+              console.error('error', response.status, response.data);
+          })
+          .finally(function() {
+              //$location.path('/admin');
+          });
+    }
+
+    $scope.deleteTeacher = function(e){
+      console.log(e);
+        $http.delete('api/v1/feedman/subjects/' + e.subject + '/' + e.edition)
+          .then(function(response) {
+              console.log('delete perfect');
+              $state.reload();
+          })
+          .catch(function(response) {
+              console.error('error', response.status, response.data);
+          })
+          .finally(function() {
+              $location.path('/admin');
+          });
+    }
+
+    $scope.addTeacher = function(e){
+      console.log(e);
+      var newSubject = {
+				"subject": $scope.subject,
+				"edition": e,
+        "teachers": [],
+        "init": "",
+        "end": ""
+			};
+        $http.post('api/v1/feedman/subjects/', newSubject)
+          .then(function(response) {
+              console.log('added perfect');
+              $state.reload();
+          })
+          .catch(function(response) {
+              console.error('error', response.status, response.data);
+          })
+          .finally(function() {
+              //$location.path('/admin');
+          });
+    }    
+
   }
 
 }());

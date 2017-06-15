@@ -23,13 +23,21 @@
           .collection .collection-item{
               height: 40px;
           }
+          div.newTeacher{
+            float: left;
+            width: 200px;
+          }
+          div.buttonAddTeacher{
+            float: right;
+          }
+         
         </style> 
     </head>
 
 
     <body>
         <div class="editions center-align container">
-            <ul class="collection lista" ng-repeat="e in editions | orderBy:'edition':reverse">
+            <ul style="border-color: #be9d56" class="collection lista" ng-repeat="e in editions | orderBy:'edition':reverse">
                 <li class="collection-item">
                     <div class="list">
                         <div class="edition">
@@ -41,19 +49,48 @@
                     </div>
                 
                 </li> 
-                <div style="display: inline-flex; padding-top: 10px; padding-bottom: 10px" class="dates">               
-                    <div style="float: left" class="center-align">
+                <div style="display: inline-flex; padding-top: 10px; ; padding-bottom: 10px" class="dates">               
+                    <div style="float: left;  padding-right: 20px" class="center-align">
                         <button class="start btn blue lighten-2 ">Start
                     </div>
-                    <div style="float: right" class="center-align">
+                    <div style="float: right;  padding-left: 20px" class="center-align">
                         <button class="end btn blue lighten-2 ">End
                     </div>
                 </div>
-                <div class="teachers left-align" style="padding-left: 10px; padding-bottom: 10px">              
+                <hr/>
+                <div class="teachers left-align" style="width: 400px; padding-left: 40px; padding-right: 0px; padding-bottom: 10px">              
                     Teachers: 
-                </div>
+                    </br>                   
+                    <ul class="collection list2" ng-repeat="t in e.teachers">
+                        <li class="collection-teacher">
+                            <div class="list2">
+                                <div style="padding-left: 15px" class="edition">
+                                    {{t}}
+                                </div>
+                                <div style="padding-right: 15px" ng-click="deleteTeacher(t)" class="icon">
+                                    <a class="secondary-content"><i style="color: black" class="material-icons">delete</i></a>
+                                </div>
+                            </div>
+                        </li> 
+                    </ul>
+                    <form name="teacherForm">
+                        <div class="newTeacher">
+                            <input style="width: 250px" ng-model="newTeacher" name="newTeacher" class="text" placeholder="New Teacher" required></input>
+                        </div>
+                        <div class="buttonAddTeacher">
+                            <a ng-disabled="teacherForm.$invalid" ng-click="addTeacher(newTeacher)" class="btn-floating btn-small waves-effect waves-light"><i style="font-size: 2rem;" class="material-icons">add</i></a>
+                        </div>
+                    </form>
                 
             </ul>
+            <form name="editionForm">
+                <div class="new">
+                    <input style="width: 380px" ng-model="newEdition" name="newEdition" class="text" placeholder="New Edition" required></input>
+                </div>
+                <div class="buttonAdd">
+                    <a ng-disabled="editionForm.$invalid" ng-click="addEdition(newEdition)" style="color: #be9d56" class="btn-floating btn-large waves-effect waves-light"><i style="font-size: 3rem;" class="material-icons">add</i></a>
+                </div>
+            </form>
         </div>
     </body>
      
