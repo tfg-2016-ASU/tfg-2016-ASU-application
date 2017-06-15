@@ -65,9 +65,22 @@
                 </div>
 
                 <hr/>
+                Teachers: 
+                <ul style="border: none" class="collection lista" ng-repeat="t in e.teachers | orderBy:'edition':reverse">
+                    <li class="collection-item">
+                        <div class="list">
+                            <div class="edition">
+                                {{t}}
+                            </div>
+                            <div ng-click="deleteTeacher(t, e)" class="icon">
+                                <a class="secondary-content"><i style="color: black"class="material-icons">delete</i></a>
+                            </div>
+                        </div>
+                    </li> 
+                </ul>
+                <!--
                 <div class="teachers left-align" style="width: 400px; padding-left: 40px; padding-right: 0px; padding-bottom: 10px">              
-                    Teachers: 
-                    </br>                   
+                    Teachers:                   
                     <ul class="collection list2" ng-repeat="t in e.teachers">
                         <li class="collection-teacher">
                             <div class="list2">
@@ -87,7 +100,7 @@
                         <div class="buttonAddTeacher">
                             <a ng-disabled="teacherForm.$invalid" ng-click="addTeacher(newTeacher, e)" class="btn-floating btn-small waves-effect waves-light"><i style="font-size: 2rem;" class="material-icons">add</i></a>
                         </div>
-                    </form>
+                    </form>-->
                 
             </ul>
             <form name="editionForm">
