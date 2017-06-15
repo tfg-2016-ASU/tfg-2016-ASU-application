@@ -226,18 +226,12 @@
         controllerAs: 'vm'
       })
       .state('subjects', {
-        url: 'admin/subjects',
-        controller: 'SubjectsController',
-        templateUrl: 'components/subjects/subjects.html',
-        controllerAs: 'vm'
-      })
-      .state('subjects.details', {
-        url: '/:subject/',
-        controller: 'SubjectsDetailsController', function($scope, $stateParams) {
+        url: '/subjects/:subject/',
+        controller: 'SubjectsController', function($scope, $stateParams) {
             // get the id
             $scope.subject = $stateParams.subject; 
         },
-        templateUrl: 'components/subjectsDetails/subjectsDetails.html',
+        templateUrl: 'components/subjects/subjects.html',
         controllerAs: 'vm'
       })
       .state('swipe', {

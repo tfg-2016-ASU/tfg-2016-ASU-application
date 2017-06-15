@@ -16,6 +16,19 @@
           div.subject{
             float: left;
           }
+          div.new{
+            float: left;
+            width: 300px;
+          }
+          div.buttonAdd{
+            float: right;
+          }
+          @media (min-width:1200px){
+            .container{
+              width: 500px;
+            }
+          }
+
           /*div i{
             margin: 40px 0;
             color: #9d2235;
@@ -28,19 +41,22 @@
       <ul class="collection lista" ng-repeat="s in subjects">
         <li class="collection-item">
            <div class="list">
-            <div ng-click="viewSubject(s)" class="subject">
-              {{s}}
+            <div ng-click="viewSubject(s.subject)" class="subject">
+              {{s.subject}}
             </div>
-            <div ng-click="deleteSubject(s)" class="icon">
+            <div ng-click="deleteSubject(s.subject)" class="icon">
               <a class="secondary-content"><i style="color: black"class="material-icons">delete</i></a>
             </div>
         </li>
       </ul>
-
-      <div class="right-align">
-        <i style="margin: 40px 0; color: #be9d56; font-size: 4rem; display: block" class="material-icons">add_circle</i>
-      </div>
-   
+      <form name="subjectForm">
+        <div class="new">
+          <input ng-model="newSubject" name="newSubject" class="text" placeholder="New Subject" required></input>
+        </div>
+        <div class="buttonAdd">
+          <a ng-disabled="subjectForm.$invalid" ng-click="addSubject(newSubject)" style="color: #be9d56" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+        </div>
+      </form>
 
    </body>
   </div>

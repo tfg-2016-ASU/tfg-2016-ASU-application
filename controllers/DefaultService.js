@@ -8,6 +8,7 @@ var assert = require('assert');
 var FEEDBACKS_COLLECTION = "feedbacks";
 var FEEDBACKS_RESULTS_COLLECTION = "feedbacksResults";
 var SUBJECTS_COLLECTION = "subjects";
+var ACTIVE_SUBJECTS_COLLECTION = "activeSubjects";
 var db;
 var url = 'mongodb://admin:admin@ds137360.mlab.com:37360/mongolab-01';
 mongodb.MongoClient.connect(url, function (err, database) {
@@ -373,6 +374,62 @@ exports.updateSubject = function(args, res, next) {
 exports.deleteSubject = function(args, res, next) {
   var subject = args['subject']['value'];
   db.collection(SUBJECTS_COLLECTION).remove({subject:subject}, {}, (err,numRemoved)=>{
+    if(err){
+      res.sendStatus(500);
+    }else{
+      console.log("Deleted " + numRemoved + " objects");
+      res.sendStatus(200);
+    }
+  });
+}
+
+exports.findActiveSubjects = function(args, res, next) {
+  db.collection(ACTIVE_SUBJECTS_COLLECTION).find().toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get subject");
+        }else{
+            res.status(200).json(docs);
+        }
+  });
+}
+exports.addActiveSubject = function(args, res, next) {
+  var subject = args['subject']['originalValue'];
+  subject.createDate = new Date();
+  db.collection(ACTIVE_SUBJECTS_COLLECTION).insertOne(subject, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new subject");
+    }else{
+      res.status(201).json(doc.ops[0]);
+    }
+  });
+}
+exports.findActiveSubjectBySubject = function(args, res, next) {
+    var subject = args['subject']['value'];
+    db.collection(ACTIVE_SUBJECTS_COLLECTION).find({subject:subject}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get subject");
+        }else{
+            res.status(200).json(docs);
+        }
+    }
+    );
+}
+exports.deleteActiveSubject = function(args, res, next) {
+  var subject = args['subject']['value'];
+  db.collection(ACTIVE_SUBJECTS_COLLECTION).remove({subject:subject}, {}, (err,numRemoved)=>{
+    if(err){
+      res.sendStatus(500);
+    }else{
+      console.log("Deleted " + numRemoved + " objects");
+      res.sendStatus(200);
+    }
+  });
+}
+
+exports.deleteSubjectBySubjectAndEdition = function(args, res, next) {
+  var subject = args['subject']['value'];
+  var edition = args['edition']['value'];
+  db.collection(SUBJECTS_COLLECTION).remove({subject:subject, edition:edition}, {}, (err,numRemoved)=>{
     if(err){
       res.sendStatus(500);
     }else{

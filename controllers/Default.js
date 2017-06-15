@@ -84,4 +84,23 @@ module.exports.deleteSubject = function deleteSubject (req, res, next) {
   Default.deleteSubject(req.swagger.params, res, next);
 };
 
+module.exports.findActiveSubjects = function findActiveSubjects (req, res, next) {
+  Default.findActiveSubjects(req.swagger.params, res, next);
+};
+
+module.exports.addActiveSubject = function addActiveSubject (req, res, next) {
+  Default.addActiveSubject(req.swagger.params, res, next);
+};
+
+module.exports.findActiveSubjectBySubject = function findActiveSubjectBySubject (req, res, next) {
+  Default.findActiveSubjectBySubject(req.swagger.params, res, next);
+};
+
+module.exports.deleteActiveSubject = function deleteActiveSubject (req, res, next) {
+  Default.deleteActiveSubject(req.swagger.params, res, next);
+};
+
+module.exports.deleteSubjectBySubjectAndEdition = function deleteSubjectBySubjectAndEdition (req, res, next) {
+  Default.deleteSubjectBySubjectAndEdition(req.swagger.params, res, next);
+};
 

@@ -638,11 +638,118 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"  
-  
+    delete:
+      description: "deletes a subject and edition"
+      operationId: "deleteSubjectBySubjectAndEdition"
+      parameters:
+      - name: "subject"
+        in: "path"
+        description: "Subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"  
+      responses:
+        204:
+          description: "subject deleted"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default" 
+
  
 
 
-      
+  /activeSubjects:
+    get:
+      description: "Returns all active subjects objects"
+      operationId: "findActiveSubjects"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      responses:
+        200:
+          description: "subjects response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/activeSubject"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+    post:
+      description: "Creates a new active subject object"
+      operationId: "addActiveSubject"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "subject"
+        description: "Subject to add"
+        required: true
+        schema:
+          $ref: "#/definitions/activeSubject"
+      responses:
+        200:
+          description: "subject response"
+          schema:
+            $ref: "#/definitions/activeSubject"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"      
+  /activeSubjects/{subject}:
+    get:
+      operationId: "findActiveSubjectBySubject"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "subject response"
+          schema:
+            $ref: "#/definitions/activeSubject"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+    delete:
+      description: "deletes a active subject"
+      operationId: "deleteActiveSubject"
+      parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "subject deleted"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default" 
+
+
 definitions:
   errorModel:
     type: "object"
@@ -754,5 +861,15 @@ definitions:
         type: "string"
       end:
         type: "string"
+  activeSubject:
+    type: "object"
+    properties:
+      subject:
+        type: "string"
+      editions:
+        type: "array"
+        items:
+          type: "string"
+  
 
       

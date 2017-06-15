@@ -5,13 +5,43 @@
     .module('app')
     .controller('SubjectsController', SubjectsController);
 
-  SubjectsController.$inject = ['$scope'];
+  SubjectsController.$inject = ['$scope', '$state', '$stateParams', '$http'];
 
-  function SubjectsController($scope) {
+  function SubjectsController($scope, $state, $stateParams, $http) {
 	
     console.log("SubjectsController initialized");
 	
-    var vm = this;
+    $scope.state = $state.current
+    $scope.params = $stateParams; 
+		console.log($scope.params);
+		$scope.subject = $scope.params.subject;
+
+    $http.get('api/v1/feedman/subjects/' + $scope.subject)
+      .then(function(response) {
+          console.log(response.data);
+          $scope.editions = response.data;
+      })
+      .catch(function(response) {
+          console.error('error', response.status, response.data);
+      })
+      .finally(function() {
+          //console.log("Feedbacks results showed");
+      });
+
+    $scope.deleteEdition = function(e){
+      console.log(e);
+        $http.delete('api/v1/feedman/subjects/' + e.subject + '/' + e.edition)
+          .then(function(response) {
+              console.log('delete perfect');
+              $state.reload();
+          })
+          .catch(function(response) {
+              console.error('error', response.status, response.data);
+          })
+          .finally(function() {
+              $location.path('/admin');
+          });
+    }
 
   }
 

@@ -1,3 +1,60 @@
-<div class="center-align">
-<input type="submit" ui-sref="subjects.details({ subject: 'sos'})"  class="btn blue lighten-2 pull-center" >
-</div>
+<html>
+    <head>
+        <h3 class="center-align">Subject: {{subject}}</h3>
+        <style>
+          div.icon{
+            float: right;
+          }
+          div.edition{
+            float: left;
+          }
+          div.new{
+            float: left;
+            width: 300px;
+          }
+          div.buttonAdd{
+            float: right;
+          }
+          @media (min-width:1200px){
+            .container{
+              width: 500px;
+            }
+          }
+          .collection .collection-item{
+              height: 40px;
+          }
+        </style> 
+    </head>
+
+
+    <body>
+        <div class="editions center-align container">
+            <ul class="collection lista" ng-repeat="e in editions | orderBy:'edition':reverse">
+                <li class="collection-item">
+                    <div class="list">
+                        <div class="edition">
+                            {{e.edition}}
+                        </div>
+                        <div ng-click="deleteEdition(e)" class="icon">
+                            <a class="secondary-content"><i style="color: black"class="material-icons">delete</i></a>
+                        </div>
+                    </div>
+                
+                </li> 
+                <div style="display: inline-flex; padding-top: 10px; padding-bottom: 10px" class="dates">               
+                    <div style="float: left" class="center-align">
+                        <button class="start btn blue lighten-2 ">Start
+                    </div>
+                    <div style="float: right" class="center-align">
+                        <button class="end btn blue lighten-2 ">End
+                    </div>
+                </div>
+                <div class="teachers left-align" style="padding-left: 10px; padding-bottom: 10px">              
+                    Teachers: 
+                </div>
+                
+            </ul>
+        </div>
+    </body>
+     
+</html>
