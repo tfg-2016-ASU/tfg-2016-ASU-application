@@ -95,7 +95,7 @@
       $http.put('api/v1/feedman/subjects/' + e.subject + '/' + e.edition, e)
         .then(function(response) {
             console.log('put perfect');
-            $state.reload();
+            //$state.reload();
         })
         .catch(function(response) {
             console.error('error', response.status, response.data);
@@ -160,7 +160,37 @@
         .finally(function() {
             
         });
-    }       
+    }    
+
+    $scope.editInit = function(init, e){
+      e.init = init;
+      $http.put('api/v1/feedman/subjects/' + e.subject + '/' + e.edition, e)
+        .then(function(response) {
+            console.log('put perfect');
+            //$state.reload();
+        })
+        .catch(function(response) {
+            console.error('error', response.status, response.data);
+        })
+        .finally(function() {
+            
+        });      
+    } 
+
+    $scope.editEnd = function(end, e){
+      e.end = end;
+      $http.put('api/v1/feedman/subjects/' + e.subject + '/' + e.edition, e)
+        .then(function(response) {
+            console.log('put perfect');
+            //$state.reload();
+        })
+        .catch(function(response) {
+            console.error('error', response.status, response.data);
+        })
+        .finally(function() {
+            
+        });      
+    }                
 
 
   }

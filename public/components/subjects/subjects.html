@@ -41,7 +41,7 @@
                 <li class="collection-item">
                     <div class="list">
                         <div class="edition">
-                            {{e.edition}}
+                            Edition {{e.edition}}
                         </div>
                         <div ng-click="deleteEdition(e)" class="icon">
                             <a class="secondary-content"><i style="color: black"class="material-icons">delete</i></a>
@@ -58,10 +58,27 @@
                         <button ng-disabled="e.init == ''" ng-click="finishEdition(e)" class="end btn blue lighten-2 ">Finish
                     </div>
                 </div>
-
+                </br>
+                </br>
                 <div class="dates2">               
-                    <p>Init: {{e.init}}</p>
-                    <p>End: {{e.end}}</p>
+                    <div style="display: inline-flex">
+                        <div style="float: left">
+                            Init: <input style="width: 80px; font-size: 1.5rem" ng-model="e.init"></input>
+                        </div>
+                        <div style="float: right" ng-click="editInit(e.init, e)" class="icon">
+                            <a class="secondary-content"><i style="color: black; font-size: 2rem" class="material-icons">edit</i></a>
+                        </div>
+                    </div>
+                    </br>
+                    </br>
+                    <div style="display: inline-flex">
+                        <div style="float: left">
+                            End: <input style="width: 80px; font-size: 1.5rem" ng-model="e.end"></input>
+                        </div>
+                        <div style="float: right" ng-click="editEnd(e.end, e)" class="icon">
+                            <a class="secondary-content"><i style="color: black; font-size: 2rem" class="material-icons">edit</i></a>
+                        </div>
+                    </div>
                 </div>
 
                 <hr/>
@@ -78,6 +95,16 @@
                         </div>
                     </li> 
                 </ul>
+                <div style="margin-right: 20px; margin-left: 20px">
+                    <form name="teacherForm">
+                        <div class="newTeacher">
+                            <input style="font-size: 1.5rem; width: 250px" ng-model="newTeacher" name="newTeacher" class="text" placeholder="New Teacher" required></input>
+                        </div>
+                        <div class="buttonAddTeacher">
+                            <a ng-disabled="teacherForm.$invalid" ng-click="addTeacher(newTeacher, e)" class="btn-floating btn-small waves-effect waves-light"><i style="font-size: 2rem;" class="material-icons">add</i></a>
+                        </div>
+                    </form>
+                </div>
                 <!--
                 <div class="teachers left-align" style="width: 400px; padding-left: 40px; padding-right: 0px; padding-bottom: 10px">              
                     Teachers:                   
@@ -105,7 +132,7 @@
             </ul>
             <form name="editionForm">
                 <div class="new">
-                    <input style="width: 380px" ng-model="newEdition" name="newEdition" class="text" placeholder="New Edition" required></input>
+                    <input style="width: 150px; font-size: 1.5rem;" ng-model="newEdition" name="newEdition" class="text" placeholder="New Edition" required></input>
                 </div>
                 <div class="buttonAdd">
                     <a ng-disabled="editionForm.$invalid" ng-click="addEdition(newEdition)" style="color: #be9d56" class="btn-floating btn-large waves-effect waves-light"><i style="font-size: 3rem;" class="material-icons">add</i></a>
