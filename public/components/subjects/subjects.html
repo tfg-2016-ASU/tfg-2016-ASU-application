@@ -47,16 +47,23 @@
                             <a class="secondary-content"><i style="color: black"class="material-icons">delete</i></a>
                         </div>
                     </div>
-                
                 </li> 
+                
+
                 <div style="display: inline-flex; padding-top: 10px; ; padding-bottom: 10px" class="dates">               
                     <div style="float: left;  padding-right: 20px" class="center-align">
-                        <button class="start btn blue lighten-2 ">Start
+                        <button ng-click="startEdition(e)" class="start btn blue lighten-2 ">Start
                     </div>
                     <div style="float: right;  padding-left: 20px" class="center-align">
-                        <button class="end btn blue lighten-2 ">End
+                        <button ng-disabled="e.init == ''" ng-click="finishEdition(e)" class="end btn blue lighten-2 ">Finish
                     </div>
                 </div>
+
+                <div class="dates2">               
+                    <p>Init: {{e.init}}</p>
+                    <p>End: {{e.end}}</p>
+                </div>
+
                 <hr/>
                 <div class="teachers left-align" style="width: 400px; padding-left: 40px; padding-right: 0px; padding-bottom: 10px">              
                     Teachers: 
@@ -67,7 +74,7 @@
                                 <div style="padding-left: 15px" class="edition">
                                     {{t}}
                                 </div>
-                                <div style="padding-right: 15px" ng-click="deleteTeacher(t)" class="icon">
+                                <div style="padding-right: 15px" ng-click="deleteTeacher(t, e)" class="icon">
                                     <a class="secondary-content"><i style="color: black" class="material-icons">delete</i></a>
                                 </div>
                             </div>
@@ -78,7 +85,7 @@
                             <input style="width: 250px" ng-model="newTeacher" name="newTeacher" class="text" placeholder="New Teacher" required></input>
                         </div>
                         <div class="buttonAddTeacher">
-                            <a ng-disabled="teacherForm.$invalid" ng-click="addTeacher(newTeacher)" class="btn-floating btn-small waves-effect waves-light"><i style="font-size: 2rem;" class="material-icons">add</i></a>
+                            <a ng-disabled="teacherForm.$invalid" ng-click="addTeacher(newTeacher, e)" class="btn-floating btn-small waves-effect waves-light"><i style="font-size: 2rem;" class="material-icons">add</i></a>
                         </div>
                     </form>
                 

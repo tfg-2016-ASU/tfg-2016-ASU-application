@@ -360,7 +360,10 @@ exports.findSubjectsBySubjectAndEdition = function(args, res, next) {
 exports.updateSubject = function(args, res, next) {
     var subject = args['subject']['value'];
     var edition = args['edition']['value'];
-    db.collection(SUBJECTS_COLLECTION).update({subject:subject, edition:edition}, {$set: {}},
+    var teachers = res['req']['swagger']['params']['body']['value']['teachers'];
+    var init = res['req']['swagger']['params']['body']['value']['init'];
+    var end = res['req']['swagger']['params']['body']['value']['end'];
+    db.collection(SUBJECTS_COLLECTION).update({subject:subject, edition:edition}, {$set: {teachers:teachers, init:init, end:end}},
             function(err, docs){
                 if(err){
                     //console.log("error");
