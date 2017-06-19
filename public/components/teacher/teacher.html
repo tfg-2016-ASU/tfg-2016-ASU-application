@@ -1,0 +1,58 @@
+<html> 
+  <div class="container"> 
+  <head>
+      <h2 class="center-align">Subjects</h2>
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <style>
+          div.icon{
+            float: right;
+          }
+          div.subject{
+            float: left;
+          }
+          div.new{
+            float: left;
+            width: 300px;
+          }
+          div.buttonAdd{
+            float: right;
+          }
+          @media (min-width:1200px){
+            .container{
+              width: 500px;
+            }
+          }
+
+          /*div i{
+            margin: 40px 0;
+            color: #9d2235;
+            font-size: 4rem;
+            display: block;
+          }*/
+      </style>    
+   </head>
+   <body>
+      <ul class="collection lista" ng-repeat="s in subjects">
+        <li class="collection-item">
+           <div class="list">
+            <div class="subject">
+              {{s.subject}}
+            </div>
+            <div style="padding-bottom: 10px; padding-left: 15px" ng-click="" class="icon">
+              <button ui-sref="feedbacks({ subject: s.subject})" style="color: #be9d56" class="secondary-content">Feedbacks</button>
+            </div>
+            <div style="padding-bottom: 10px" ng-click="" class="icon">
+              <button ui-sref="subjects({ subject: s.subject})" style="color: #be9d56" class="secondary-content">Admin</button>
+            </div>
+        </li>
+      </ul>
+
+   </body>
+  </div>
+</html>

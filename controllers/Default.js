@@ -104,3 +104,8 @@ module.exports.deleteSubjectBySubjectAndEdition = function deleteSubjectBySubjec
   Default.deleteSubjectBySubjectAndEdition(req.swagger.params, res, next);
 };
 
+module.exports.updateFeedbackInformationByIdFeedback = function updateFeedbackInformationByIdFeedback (req, res, next) {
+  Default.updateFeedbackInformationByIdFeedback(req.swagger.params, res, next);
+};
+
+

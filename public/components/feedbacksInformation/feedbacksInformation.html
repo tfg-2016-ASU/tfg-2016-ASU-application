@@ -1,0 +1,100 @@
+<html>
+    
+      <div class="container" >
+        <head>
+          
+          <!--<h4 class="center-align">Feedback SOS</h4>-->
+            <link rel="shortcut icon" href=""> <!--Pongo esto para solucionar el error de 'favicon failed to load'-->
+            <!--Import Google Icon Font-->
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <!--Import materialize.css-->
+            <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+            <!--Let browser know website is optimized for mobile-->
+            <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>-->
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+          
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+          <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+          <style>
+            i.material-icons{
+               padding-top: 10px
+            }
+          
+          </style>
+          
+        </head>
+        <body>
+            <h4 class="center-align">Feedback Information</h4>
+            <!-- Para que las validaciones funcionen es necesario que tanto el form como input, select tengan la propiedad name -->
+            <h6 class="center-align">Id Feedback: {{idFeedback}}</h6>
+            <h6 class="center-align">Subject: {{subject}}</h6>
+            <h6 class="center-align">Edition: {{edition}}</h6>
+            </br>
+            
+               <div class="container"> 
+                    <div class="punctuation" style="display: inline-block">
+                        <div style="float: left">
+                            Punctuation: <input style="width: 80px; font-size: 1rem" ng-model="feedback.punctuation"></input>
+                        </div>
+                        <div style="float: right" ng-click="editPunctuation(feedback.punctuation)" class="icon">
+                            <a class="secondary-content"><i style="color: black; font-size: 1.5rem" class="material-icons">edit</i></a>
+                        </div>
+                    </div>
+                </div>
+                </br>
+
+                <div class="container left-align">
+                    Preparation: 
+                    <div ng-repeat="p in feedback.preparation">
+                        <textarea ng-model="p.description" style="width: 90%; float: left">{{p.description}}</textarea>
+                        <div style="float: right" ng-click="editPreparation(p.idPreparation, p.description, feedback)" class="icon">
+                            <a class="secondary-content"><i style="color: black; font-size: 1.5rem" class="material-icons">edit</i></a>
+                        </div>
+                    </div>
+                     <div>
+                        <textarea ng-model="newDescription" style="width: 90%; float: left"></textarea>
+                        <div style="float: right" ng-click="newPreparation(newDescription, feedback)" class="icon">
+                            <a class="secondary-content"><i style="color: black; font-size: 1.5rem" class="material-icons">add_circle</i></a>
+                        </div>
+                    </div>
+                </div>
+                </br>
+             
+
+
+                <div class="container">
+                    Checks: 
+                    <div ng-repeat="c in feedback.checks">
+                        <textarea ng-model="c.description" style="width: 90%; float: left">{{c.description}}</textarea>
+                        <div style="float: right" ng-click="editCheck(c.idCheck, c.description, feedback)" class="icon">
+                            <a class="secondary-content"><i style="color: black; font-size: 1.5rem" class="material-icons">edit</i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <textarea ng-model="newCheckDescription" style="width: 90%; float: left"></textarea>
+                        <div style="float: right" ng-click="newCheck(newCheckDescription, feedback)" class="icon">
+                            <a class="secondary-content"><i style="color: black; font-size: 1.5rem" class="material-icons">add_circle</i></a>
+                        </div>
+                    </div>
+                </div>
+          
+          
+            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+            
+        
+        </body>
+      </div>
+    
+    <
+  </html>
+
+
+

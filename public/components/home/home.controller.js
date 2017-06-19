@@ -6,11 +6,12 @@
     .module('app')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['authService', '$scope', '$location', '$localStorage', '$interval'];
+  HomeController.$inject = ['authService', '$scope', '$location', '$localStorage', '$interval', '$state'];
 
 
-  function HomeController(authService, $scope, $location, $localStorage, $interval) {
+  function HomeController(authService, $scope, $location, $localStorage, $interval, $state) {
 
+  
     //console.log(user.user_metadata.full_name);
     if($localStorage.selected != undefined){
       $scope.subject = $localStorage.selected.subject;
@@ -31,12 +32,12 @@
 
     authService.getProfileDeferred().then(function (profile) {
       vm.profile = profile;
-      console.log(vm.profile.given_name);
-      console.log(vm.profile.family_name);
+      //console.log(vm.profile.given_name);
+      //console.log(vm.profile.family_name);
       var full_name = vm.profile.given_name + " " + vm.profile.family_name;
       //console.log(vm.profile.user_metadata.full_name);
       $scope.urlPicture = vm.profile.picture;
-      console.log($scope.urlPicture);
+      //console.log($scope.urlPicture);
       if(vm.profile.user_metadata == undefined){
         $localStorage.studentLogged = full_name;
         $scope.studentLogged = $localStorage.studentLogged; 
@@ -44,8 +45,7 @@
         $localStorage.studentLogged = vm.profile.user_metadata.full_name;
         $scope.studentLogged = $localStorage.studentLogged;
       }
-      console.log($localStorage.studentLogged);
-     
+      //console.log($localStorage.studentLogged);     
       
     });
     

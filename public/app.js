@@ -225,6 +225,12 @@
         templateUrl: 'components/admin/admin.html',
         controllerAs: 'vm'
       })
+      .state('teacher', {
+        url: '/teacher',
+        controller: 'TeacherController',
+        templateUrl: 'components/teacher/teacher.html',
+        controllerAs: 'vm'
+      })
       .state('subjects', {
         url: '/subjects/:subject/',
         controller: 'SubjectsController', function($scope, $stateParams) {
@@ -232,6 +238,26 @@
             $scope.subject = $stateParams.subject; 
         },
         templateUrl: 'components/subjects/subjects.html',
+        controllerAs: 'vm'
+      })
+      .state('feedbacks', {
+        url: '/feedbacks/:subject/',
+        controller: 'FeedbacksController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject; 
+        },
+        templateUrl: 'components/feedbacks/feedbacks.html',
+        controllerAs: 'vm'
+      })
+      .state('feedbacksInformation', {
+        url: '/feedbacks/:subject/:edition/information/:idFeedback',
+        controller: 'FeedbacksInformationController', function($scope, $stateParams) {
+            // get the id
+            $scope.subject = $stateParams.subject; 
+            $scope.edition = $stateParams.edition; 
+            $scope.idFeedback = $stateParams.idFeedback; 
+        },
+        templateUrl: 'components/feedbacksInformation/feedbacksInformation.html',
         controllerAs: 'vm'
       })
       .state('swipe', {

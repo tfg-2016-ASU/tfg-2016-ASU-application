@@ -13,8 +13,8 @@
 	
     $scope.state = $state.current
     $scope.params = $stateParams; 
-		console.log($scope.params);
-		$scope.subject = $scope.params.subject;
+    console.log($scope.params);
+    $scope.subject = $scope.params.subject;
 
     $http.get('api/v1/feedman/subjects/' + $scope.subject)
       .then(function(response) {

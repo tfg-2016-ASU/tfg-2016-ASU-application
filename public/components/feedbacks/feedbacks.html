@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <h3 class="center-align">Subject: {{subject}}</h3>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+          div.icon{
+            float: right;
+          }
+          div.feedback{
+            float: left;
+          }
+          div.new{
+            float: left;
+            width: 300px;
+          }
+          div.buttonAdd{
+            float: right;
+          }
+          @media (min-width:1200px){
+            .container{
+              width: 500px;
+            }
+          }
+          .collection .collection-item{
+              height: 40px;
+          }
+          div.newTeacher{
+            float: left;
+            width: 200px;
+          }
+          div.buttonAddTeacher{
+            float: right;
+          }
+         
+        </style> 
+    </head>
+
+
+    <body>
+        
+        <div class="feedbacks center-align container">
+
+            <div class="input-field col s6">
+                <md-select placeholder="Choose an active edition" ng-change="editionSelected()" ng-model="editionChosen" style="min-width: 200px;" required>
+                    <md-option ng-value="s.edition" ng-repeat="s in subjects">{{s.edition}}</md-option>
+                </md-select>
+            </div> 
+
+            <ul style="border-color: #be9d56" class="collection lista" ng-repeat="f in feedbacks | orderBy:'edition':reverse">
+                <li class="collection-item">
+                    <div class="list">
+                        <div ng-click="viewFeedbackResults(f.idFeedback)" class="feedback">
+                            Feedback {{f.idFeedback}}
+                        </div>
+                        <div ng-click="deleteFeedback(f)" class="icon">
+                            <a class="secondary-content"><i style="color: black"class="material-icons">delete</i></a>
+                        </div>
+                        <div ui-sref="feedbacksInformation({subject: subject, edition: f.edition, idFeedback: f.idFeedback})" style="padding-right: 20px" ng-click="editFeedback(f)" class="icon">
+                            <a class="secondary-content"><i style="color: black"class="material-icons">edit</i></a>
+                        </div>
+                    </div>
+                </li> 
+                
+
+                <div style="display: inline-flex; padding-top: 10px; ; padding-bottom: 10px" class="dates">               
+                    <div style="float: left;  padding-right: 20px" class="center-align">
+                        <button ng-click="startEdition(e)" class="start btn blue lighten-2 ">Start
+                    </div>
+                </div>
+            
+                
+            </ul>
+            <form name="feedbackForm">  
+                <div class="new">
+                    <input style="width: 150px; font-size: 1.5rem;" ng-model="newFB" name="newFB" class="text" placeholder="New Feedback" required></input>
+                </div>
+                <div class="buttonAdd">
+                    <a ng-disabled="feedbackForm.$invalid" ng-click="addFeedback(newFB)" style="color: #be9d56" class="btn-floating btn-large waves-effect waves-light"><i style="font-size: 3rem;" class="material-icons">add</i></a>
+                </div>
+            </form>
+           
+    </body>
+     
+</html>

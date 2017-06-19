@@ -30,6 +30,7 @@ exports.addFeedback = function(args, res, next) {
    * returns feedbackInformation
    **/
   var newFeedback = args['feedback']['originalValue'];
+  console.log(newFeedback);
   newFeedback.createDate = new Date();
   newFeedback.subject = args['subject']['value'];
   newFeedback.edition = args['edition']['value'];
@@ -440,4 +441,23 @@ exports.deleteSubjectBySubjectAndEdition = function(args, res, next) {
       res.sendStatus(200);
     }
   });
+}
+
+exports.updateFeedbackInformationByIdFeedback = function(args, res, next) {
+    var subject = args['subject']['value'];
+    var edition = args['edition']['value'];
+    var idFeedback = res['req']['swagger']['params']['body']['value']['idFeedback'];
+    var init = res['req']['swagger']['params']['body']['value']['init'];
+    var punctuation = res['req']['swagger']['params']['body']['value']['punctuation'];
+    var preparation = res['req']['swagger']['params']['body']['value']['preparation'];
+    var checks = res['req']['swagger']['params']['body']['value']['checks'];
+    db.collection(FEEDBACKS_COLLECTION).update({subject:subject, edition:edition, idFeedback:idFeedback}, {$set: {punctuation:punctuation, init:init, preparation:preparation, checks:checks}},
+            function(err, docs){
+                if(err){
+                    //console.log("error");
+                }else{
+                    res.sendStatus(200);
+                }
+            }
+        );
 }
