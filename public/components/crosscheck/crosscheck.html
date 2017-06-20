@@ -18,7 +18,7 @@
             <div class="text-center" ng-repeat="f in feedbacks">
                 <ul>
                     <li ng-if="f.role == 'reviewer'" style="display: inline-flex">
-                         <div style="float: left" ng-click="viewFeedbackResults(f.idFeedback, f.edition, f.subject)" class="feedback">
+                         <div ui-sref="crosscheckStudent({ subject: f.subject, edition: f.edition, idFeedback: f.idFeedback, student: f.student})" style="float: left" ng-click="" class="feedback">
                             <a>{{f.student}}  -</a>
                         </div>
                         <div style="float: right">  - Checks reviewed:{{f.arrayCheckResults.length}}/{{totalChecks}}</div>
@@ -30,7 +30,7 @@
             <div class="text-center" ng-repeat="f in feedbacks">
                 <ul>
                     <li ng-if="f.role == 'reviewed'" style="display: inline-flex">
-                        <div style="float: left" ng-click="viewFeedbackResults(f.idFeedback, f.edition, f.subject)" class="feedback">
+                        <div ng-click="" style="float: left" ui-sref="crosscheckStudent({ subject: f.subject, edition: f.edition, idFeedback: f.idFeedback, student: f.student})" class="feedback">
                             <a>{{f.student}}  -</a>
                         </div>
                         <div style="float: right">  - Checks reviewed:{{f.arrayCheckResults.length}}/{{totalChecks}}</div>
@@ -39,9 +39,10 @@
             </div>
             </br>
             <div>
-                <label>CROSSCHECK FILTER: </label>   
+                <label>CROSSCHECK FILTER: </label>
                 <input ng-model="filter" style="width: 40%"></input>
-                <button ng-click="setFilter(filter)" class="btn blue lighten-2">SET</button>                
+                <button ng-click="setFilter(filter)" class="btn blue lighten-2">SET</button>   
+                <label style="width: 40%">{{arrayChecks}}</label>             
             </div>    
            
         </div>

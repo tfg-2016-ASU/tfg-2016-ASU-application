@@ -280,6 +280,17 @@
         templateUrl: 'components/crosscheck/crosscheck.html',
         controllerAs: 'vm'
       })
+      .state('crosscheckStudent', {
+        url: '/feedbacks/:subject/:edition/crosscheck/:idFeedback/:student',
+        controller: 'CrosscheckStudentController', function($scope, $stateParams) {
+            $scope.subject = $stateParams.subject; 
+            $scope.edition = $stateParams.edition; 
+            $scope.idFeedback = $stateParams.idFeedback; 
+            $scope.student = $stateParams.student; 
+        },
+        templateUrl: 'components/crosscheckStudent/crosscheckStudent.html',
+        controllerAs: 'vm'
+      })
       .state('swipe', {
         url: '/swipe',
         controller: 'demoSwipeCtrl',

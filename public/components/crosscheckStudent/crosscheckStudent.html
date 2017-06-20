@@ -1,0 +1,37 @@
+<html>
+    <head></head>
+    <body>
+    <div class="container center-align">
+        <!-- Switch -->
+        <h4 style="margin-top: 20px">Crosscheck: {{student}}</h4>
+        <div class="switch" style="margin-top: 20px; align-content: center">
+            Crosscheck filter: <div ng-repeat="f in filter">Check {{f}}</div>
+            </br>
+            <label>Off<input ng-model="filterActivated" type="checkbox" ng-change="changed()" ng-true-value="'si'" ng-false-value="'no'">
+                <span class="lever"></span>On
+            </label>
+        </div>
+        </br>
+        </br>
+        <table class="table striped">
+            <thead>
+                <tr>
+                    <th class="center-align">
+                        Checks
+                    </th>
+                    <th class="center-align">Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat= "c in checks">
+                    <td class="center-align">Check {{c.idCheck}}</td>
+                    <td class="center-align"><button ng-click="negativeCrosscheck(c.idCheck)" class="btn red lighten-2">NO</button> 
+                        <button style="margin-left: 20px" ng-click="positiveCrosscheck(c.idCheck)" class="btn green lighten-2">OK</button>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+    </body>
+</html>

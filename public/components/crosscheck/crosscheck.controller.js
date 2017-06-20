@@ -57,6 +57,7 @@
 
     $scope.setFilter = function(filter){
         console.log(filter);
+        $scope.arrayChecks = filter;
         var i, check;
         var arrayChecks = [];
         for(i=0; i<filter.length; i++){
@@ -71,7 +72,10 @@
                 arrayChecks.push(check);
             }
         }
+        
         console.log(arrayChecks);
+        //$localStorage.filter = filter;
+        $localStorage.filter = arrayChecks;
     }   
 
   }

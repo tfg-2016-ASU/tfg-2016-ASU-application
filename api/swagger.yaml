@@ -926,6 +926,8 @@ definitions:
         type: "string"
       comments:
         type: "string"
+      crosscheck:
+        type: "string"  
   subject:
     type: "object"
     properties:
