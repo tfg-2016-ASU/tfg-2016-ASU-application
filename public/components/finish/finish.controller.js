@@ -97,7 +97,7 @@
   
     $scope.finishFeedback = function(){
 
-       
+       console.log('resultado: ' + $localStorage.reviewedFeedbackResult);
        //modifio el confirmed del student
         $localStorage.reviewedFeedbackResult.confirmed = 1;
         $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
@@ -108,7 +108,7 @@
             console.error('Error', response.status, response.data);
           })
           .finally(function() {
-            
+            console.log('resultado: ' + response.data);
           });
 
       

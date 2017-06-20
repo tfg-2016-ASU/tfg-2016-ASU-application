@@ -259,6 +259,45 @@ paths:
           schema:
             $ref: "#/definitions/errorModel"
       x-swagger-router-controller: "Default"
+
+  /subjects/{subject}/{edition}/feedbacksResults/{idFeedback}:
+    get:
+      description: "Returns all feedbacks results of a feedback"
+      operationId: "findFeedbacksResultsByIdFeedback"
+      produces:
+      - "application/json"
+      - "application/xml"
+      - "text/xml"
+      - "text/html"
+      parameters:
+      - name: "subject"
+        in: "path"
+        description: "subject to fetch"
+        required: true
+        type: "string"
+      - name: "edition"
+        in: "path"
+        description: "edition to fetch"
+        required: true
+        type: "string"
+      - name: "idFeedback"
+        in: "path"
+        description: "idFeedback to fetch"
+        required: true
+        type: "string"        
+      responses:
+        200:
+          description: "feedbacks results response"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/feedbackResult"
+        default:
+          description: "unexpected error"
+          schema:
+            $ref: "#/definitions/errorModel"
+      x-swagger-router-controller: "Default"
+
   /feedbacksResults/{idFeedback}:
     get:
       description: "Returns the result of a feedback based on a id"

@@ -461,3 +461,20 @@ exports.updateFeedbackInformationByIdFeedback = function(args, res, next) {
             }
         );
 }
+
+
+exports.findFeedbacksResultsByIdFeedback = function(args, res, next) {
+    var idFeedback = parseInt(args['idFeedback']['value']);
+    var subject = args['subject']['value'];
+    var edition = args['edition']['value'];    
+    console.log(idFeedback);
+    console.log(subject);
+    console.log(edition);
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({subject:subject, edition:edition}).toArray(function(err, docs) {
+        if(err) {
+            handleError(res, err.message, "Failed to get feedback");
+        }else{
+            res.status(200).json(docs);
+        }
+    });
+}

@@ -91,8 +91,9 @@
             }); 
     }
 
-    $scope.viewFeedbackResults = function(id){
+    $scope.viewFeedbackResults = function(id, edition, subject){
         console.log(id);
+        $state.go('feedbacksResults', {idFeedback: id, subject: subject, edition: edition});
     }
 
   }

@@ -108,4 +108,9 @@ module.exports.updateFeedbackInformationByIdFeedback = function updateFeedbackIn
   Default.updateFeedbackInformationByIdFeedback(req.swagger.params, res, next);
 };
 
+module.exports.findFeedbacksResultsByIdFeedback = function findFeedbacksResultsByIdFeedback (req, res, next) {
+  Default.findFeedbacksResultsByIdFeedback(req.swagger.params, res, next);
+};
+
+
 

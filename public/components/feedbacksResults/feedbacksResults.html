@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+
+    <body>
+        <div class="container center-align">
+            <h3 class="center-align">Feedback {{idFeedback}}: results</h3>
+        
+            <!--
+            <ul style="border-color: #be9d56" class="collection lista" ng-repeat="r in results | orderBy:'edition':reverse">
+            
+                <li>Student: {{r.student}}</li>
+                <li>Reviewer: {{r.reviewer}}</li>
+                <li>Result: {{r.result}}</li>
+                <li>Score: {{r.score}}</li>   
+            </ul>-->
+        
+            <div ng-repeat="r in results" style="padding: 10px; border-radius: 8px;border: solid; border-color:#be9d56; width: 60%px; margin-left: auto; margin-right: auto">
+                <p style="font-size: 1.5rem; color: #be9d56">Student: {{r.student}} <p>
+                <p>Reviewer: <span>{{r.reviewer}}</span></p>
+                <p>Result: <span>{{r.result}}</span></p>
+                <p>Score: <span>{{r.score}}</span></p>
+                <div ng-repeat="c in r.arrayCheckResults">
+                    <p>Check {{c.idCheck}}: {{c.result}}</p>
+                </div>
+            </div> 
+        </div> 
+    </body>
+     
+</html>

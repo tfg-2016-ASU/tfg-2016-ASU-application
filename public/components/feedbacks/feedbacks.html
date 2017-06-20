@@ -55,7 +55,7 @@
             <ul style="border-color: #be9d56" class="collection lista" ng-repeat="f in feedbacks | orderBy:'edition':reverse">
                 <li class="collection-item">
                     <div class="list">
-                        <div ng-click="viewFeedbackResults(f.idFeedback)" class="feedback">
+                        <div ng-click="viewFeedbackResults(f.idFeedback, f.edition, f.subject)" class="feedback">
                             Feedback {{f.idFeedback}}
                         </div>
                         <div ng-click="deleteFeedback(f)" class="icon">
@@ -70,7 +70,7 @@
 
                 <div style="display: inline-flex; padding-top: 10px; ; padding-bottom: 10px" class="dates">               
                     <div style="float: left;  padding-right: 20px" class="center-align">
-                        <button ng-click="startEdition(e)" class="start btn blue lighten-2 ">Start
+                        <button ui-sref="crosscheck({subject: f.subject, idFeedback: f.idFeedback, edition: f.edition})" class="start btn blue lighten-2 ">Start
                     </div>
                 </div>
             

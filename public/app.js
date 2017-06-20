@@ -260,6 +260,26 @@
         templateUrl: 'components/feedbacksInformation/feedbacksInformation.html',
         controllerAs: 'vm'
       })
+      .state('feedbacksResults', {
+        url: '/feedbacks/:subject/:edition/results/:idFeedback',
+        controller: 'FeedbacksResultsController', function($scope, $stateParams) {
+            $scope.subject = $stateParams.subject; 
+            $scope.edition = $stateParams.edition; 
+            $scope.idFeedback = $stateParams.idFeedback; 
+        },
+        templateUrl: 'components/feedbacksResults/feedbacksResults.html',
+        controllerAs: 'vm'
+      })
+      .state('crosscheck', {
+        url: '/feedbacks/:subject/:edition/crosscheck/:idFeedback',
+        controller: 'CrosscheckController', function($scope, $stateParams) {
+            $scope.subject = $stateParams.subject; 
+            $scope.edition = $stateParams.edition; 
+            $scope.idFeedback = $stateParams.idFeedback; 
+        },
+        templateUrl: 'components/crosscheck/crosscheck.html',
+        controllerAs: 'vm'
+      })
       .state('swipe', {
         url: '/swipe',
         controller: 'demoSwipeCtrl',
@@ -282,12 +302,6 @@
         url: '/crosscheckSelectStudent',
         controller: 'CrosscheckSelectStudentController',
         templateUrl: 'components/crosscheckSelectStudent/crosscheckSelectStudent.html',
-        controllerAs: 'vm'
-      })
-      .state('crosscheck', {
-        url: '/crosscheck',
-        controller: 'CrosscheckController',
-        templateUrl: 'components/crosscheck/crosscheck.html',
         controllerAs: 'vm'
       })
       .state('newFeedbackInformation', {
