@@ -12,7 +12,7 @@ info:
   license:
     name: "MIT"
     url: "http://opensource.org/licenses/MIT"
-host: "localhost:8080"
+host: "feedman.herokuapp.com"
 basePath: "/api/v1/feedman"
 schemes:
 - "http"
