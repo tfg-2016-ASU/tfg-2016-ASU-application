@@ -36,7 +36,7 @@
       
       $http.get('api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition)
         .then(function(response) {
-          console.log(response.data[0].teachers);
+          
           $scope.teachers = response.data[0].teachers;
           var i;
           $scope.isTeacher = false;
@@ -62,11 +62,10 @@
     var vm = this;
     vm.authService = authService;
     $scope.isAdmin = vm.authService.isAdmin();
-    console.log(vm.authService.isAdmin());
+  
 
     
     $scope.bye = function(){
-      console.log('byeeee');
       $scope.studentLogged = undefined;
       $localStorage.$reset();
       authService.logout();
@@ -78,9 +77,9 @@
        var minutesLeft = 5;
 
         var countDownDate = new Date();
-        console.log(countDownDate);
+       
         countDownDate.setMinutes(countDownDate.getMinutes()+minutesLeft);
-        console.log(countDownDate);
+     
         countDownDate = countDownDate.getTime();
         $localStorage.countDownDate = countDownDate;
 

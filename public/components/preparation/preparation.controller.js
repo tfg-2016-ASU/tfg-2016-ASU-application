@@ -27,7 +27,7 @@
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         $scope.clock = minutes + "m " + seconds + "s ";
-        console.log($scope.clock);
+        
         if (distance < 0) {
           clearInterval(tick);
           $scope.clock = "EXPIRED";
@@ -103,9 +103,9 @@
        var minutesLeft = 5;
 
         var countDownDate = new Date();
-        console.log(countDownDate);
+      
         countDownDate.setMinutes(countDownDate.getMinutes()+minutesLeft);
-        console.log(countDownDate);
+     
         countDownDate = countDownDate.getTime();
         $localStorage.countDownDate = countDownDate;
 

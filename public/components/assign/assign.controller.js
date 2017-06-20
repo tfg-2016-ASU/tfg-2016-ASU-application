@@ -27,7 +27,7 @@
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     $scope.clock = minutes + "m " + seconds + "s ";
-    console.log($scope.clock);
+    
     if (distance < 0) {
       clearInterval(tick);
       $scope.clock = "EXPIRED";
@@ -95,7 +95,6 @@
       console.log('clock: ' + $scope.clock);
       $scope.resp['timeSecondPart'] = $scope.clock;
       $scope.resp['timeThirdPart'] = '';
-      console.log($scope.resp);
       delete $scope.resp.createDate;
       delete $scope.resp._id;
       $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student, $scope.resp)
