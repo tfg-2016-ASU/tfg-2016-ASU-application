@@ -19,7 +19,7 @@
     $scope.edition = $scope.params.edition;
     $scope.student = $scope.params.student;
 
-    console.log('filer: ' + $localStorage.filter)
+    console.log('filter: ' + $localStorage.filter)
     $scope.filter = $localStorage.filter;
 
     $http.get('api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksInformation/' + $scope.idFeedback)

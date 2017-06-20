@@ -399,7 +399,6 @@
       clientID: AUTH0_CLIENT_ID,
       domain: AUTH0_DOMAIN,
       options: {
-
         additionalSignUpFields: [
         {
           name: "full_name",

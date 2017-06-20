@@ -52,6 +52,7 @@
     $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.studentLogged)
       .then(function(response) {
           console.log(response.data[0]);
+          $scope.resp = response.data[0];
           $scope.rw = response.data[0].reviewer;
           $localStorage.rw = response.data[0].reviewer;
           console.log($localStorage.rw);
@@ -74,6 +75,7 @@
     $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student)
       .then(function(response) {
           console.log(response.data[0]);
+          $scope.resp = response.data[0];
           $scope.rw = response.data[0].reviewer;
           $localStorage.rw = $scope.rw;
           if($scope.rw != ""){
@@ -89,6 +91,26 @@
       });
     }
 
+    $scope.setTimer = function(){
+      console.log('clock: ' + $scope.clock);
+      $scope.resp['timeSecondPart'] = $scope.clock;
+      $scope.resp['timeThirdPart'] = '';
+      console.log($scope.resp);
+      delete $scope.resp.createDate;
+      delete $scope.resp._id;
+      $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $scope.student, $scope.resp)
+				.then(function(response) {
+					console.log('all perfect');
+				})
+				.catch(function(response) {
+					console.error('Error', response.status, response.data);
+				})
+				.finally(function() {
+					console.log("Finished");
+				});
+        //ui-sref="waiting({ subject: subject, edition: edition})"
+        //$state.go('waiting', {subject: subject, edition: edition})
+    }
 
 
   }

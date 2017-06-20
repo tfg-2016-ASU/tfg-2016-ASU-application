@@ -266,6 +266,10 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var comments = res['req']['swagger']['params']['body']['value']['comments'];
     var confirmed = res['req']['swagger']['params']['body']['value']['confirmed'];
     var role = res['req']['swagger']['params']['body']['value']['role'];
+    var timeFirstPart = res['req']['swagger']['params']['body']['value']['timeFirstPart'];
+    var timeSecondPart = res['req']['swagger']['params']['body']['value']['timeSecondPart'];
+    var timeThirdPart = res['req']['swagger']['params']['body']['value']['timeThirdPart'];
+
     console.log('waiting:' + waiting);
 
     //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
@@ -284,7 +288,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 
     console.log(arrayCheckResults.length);
 
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student, subject:subject, edition:edition}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed, role:role}},
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student, subject:subject, edition:edition}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed, role:role, timeFirstPart:timeFirstPart, timeSecondPart:timeSecondPart, timeThirdPart:timeThirdPart}},
             function(err, docs){
                 if(err){
                     //console.log("error");
@@ -470,7 +474,7 @@ exports.findFeedbacksResultsByIdFeedback = function(args, res, next) {
     console.log(idFeedback);
     console.log(subject);
     console.log(edition);
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({subject:subject, edition:edition}).toArray(function(err, docs) {
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).find({subject:subject, edition:edition, idFeedback:idFeedback}).toArray(function(err, docs) {
         if(err) {
             handleError(res, err.message, "Failed to get feedback");
         }else{

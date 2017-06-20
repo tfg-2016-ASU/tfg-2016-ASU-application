@@ -77,7 +77,8 @@
       login: login,
       logout: logout,
       registerAuthenticationListener: registerAuthenticationListener,
-      getProfileDeferred: getProfileDeferred
+      getProfileDeferred: getProfileDeferred,
+      isAdmin: isAdmin
     }
   }
 })();

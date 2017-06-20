@@ -56,7 +56,7 @@
                 <li class="collection-item">
                     <div class="list">
                         <div ng-click="viewFeedbackResults(f.idFeedback, f.edition, f.subject)" class="feedback">
-                            Feedback {{f.idFeedback}}
+                            Feedback {{f.idFeedback}} 
                         </div>
                         <div ng-click="deleteFeedback(f)" class="icon">
                             <a class="secondary-content"><i style="color: black"class="material-icons">delete</i></a>
@@ -70,7 +70,10 @@
 
                 <div style="display: inline-flex; padding-top: 10px; ; padding-bottom: 10px" class="dates">               
                     <div style="float: left;  padding-right: 20px" class="center-align">
-                        <button ui-sref="crosscheck({subject: f.subject, idFeedback: f.idFeedback, edition: f.edition})" class="start btn blue lighten-2 ">Start
+                        <button ui-sref="crosscheck({subject: f.subject, idFeedback: f.idFeedback, edition: f.edition})" class="start btn blue lighten-2 ">Start</button>
+                    </div>
+                    <div style="float: left;  padding-right: 20px" class="center-align">
+                        <button ui-sref="makeAssignment" class="start btn blue lighten-2 ">Make assignment</button>
                     </div>
                 </div>
             

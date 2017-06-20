@@ -906,6 +906,12 @@ definitions:
         type: "string"
       result:
         type: "string"
+      timeFirstPart:
+        type: "string"  
+      timeSecondPart:
+        type: "string"  
+      timeThirdPart:
+        type: "string"      
       score:
         type: "number"
         format: "double"

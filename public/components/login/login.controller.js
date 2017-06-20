@@ -9,7 +9,7 @@
 
   function LoginController(authService, $localStorage) {
 
-    $localStorage.reloadPage = 1;
+    $localStorage.relo = 1;
     var vm = this;
     vm.authService = authService;
 

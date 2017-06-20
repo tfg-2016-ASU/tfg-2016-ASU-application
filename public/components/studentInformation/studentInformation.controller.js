@@ -10,6 +10,7 @@
 
   function StudentInformationController($scope, $http, $rootScope, $localStorage, $interval, authService, $stateParams, $state) {
 		
+
 		$scope.state = $state.current
     	$scope.params = $stateParams; 
 		console.log($scope.params);
@@ -76,6 +77,9 @@
 				"waiting": "si",
 				"score": 0,
 				"confirmed": 0,
+				"timeFirstPart": "",
+				"timeSecondPart": "",
+				"timeThirdPart": "",
 				"role": "",
 				"arrayCheckResults": [
 				]

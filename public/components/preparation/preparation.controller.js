@@ -41,6 +41,7 @@
           }
       tick();
       $interval(tick, 1000);
+     
       //-----------------------------------
 
 
@@ -83,6 +84,8 @@
 
     
     $scope.modifyPreparationEnd = function(){
+      console.log('clock: ' + $scope.clock);
+      $scope.newFeedbackResult['timeFirstPart'] = $scope.clock;
       $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $scope.newFeedbackResult.student, $scope.newFeedbackResult)
 				.then(function(response) {
 					console.log('all perfect');
@@ -96,7 +99,7 @@
 					console.log("Finished");
 				});
 
-    
+       
        var minutesLeft = 5;
 
         var countDownDate = new Date();

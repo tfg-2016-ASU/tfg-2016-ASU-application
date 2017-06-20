@@ -65,7 +65,7 @@
                 </div>
                 <div class="text-center" ng-if="withAssignment.length==2">
                     <h5>{{rw}}</h5>
-                    <button ng-click="startTimer()" ui-sref="beginReview({ subject: subject, edition: edition})" class="btn blue lighten-2">Next</button>
+                    <button ng-click="setTimer()" ui-sref="beginReview({ subject: subject, edition: edition})" class="btn blue lighten-2">Next</button>
                 </div>               
             </div>
         </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="text-center" ng-if="withAssignment.length==2">
                     <h5>{{rw}}</h5>
-                    <button ui-sref="waiting({ subject: subject, edition: edition})" class="btn blue lighten-2">Next</button>
+                    <button ui-sref="waiting({ subject: subject, edition: edition})" ng-click="setTimer()" class="btn blue lighten-2">Next</button>
                 </div>  
             </div>
         </div>

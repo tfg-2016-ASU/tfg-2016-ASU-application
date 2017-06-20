@@ -96,7 +96,8 @@
 
   
     $scope.finishFeedback = function(){
-
+       console.log('clock: ' + $scope.clock);
+       $localStorage.reviewedFeedbackResult['timeThirdPart'] = $scope.clock;
        console.log('resultado: ' + $localStorage.reviewedFeedbackResult);
        //modifio el confirmed del student
         $localStorage.reviewedFeedbackResult.confirmed = 1;
