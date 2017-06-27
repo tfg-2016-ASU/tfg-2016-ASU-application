@@ -256,6 +256,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     
 
     var reviewer = res['req']['swagger']['params']['body']['value']['reviewer'];
+    var reviewed = res['req']['swagger']['params']['body']['value']['reviewed'];
     console.log('A3 ' + reviewer);
     var preparationEnd = res['req']['swagger']['params']['body']['value']['preparationEnd'];
     var group = res['req']['swagger']['params']['body']['value']['group'];
@@ -269,7 +270,6 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
     var timeFirstPart = res['req']['swagger']['params']['body']['value']['timeFirstPart'];
     var timeSecondPart = res['req']['swagger']['params']['body']['value']['timeSecondPart'];
     var timeThirdPart = res['req']['swagger']['params']['body']['value']['timeThirdPart'];
-
     console.log('waiting:' + waiting);
 
     //db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student});
@@ -288,7 +288,7 @@ exports.updateFeedbackByIdFeedbackAndStudent = function(args, res, next) {
 
     console.log(arrayCheckResults.length);
 
-    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student, subject:subject, edition:edition}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed, role:role, timeFirstPart:timeFirstPart, timeSecondPart:timeSecondPart, timeThirdPart:timeThirdPart}},
+    db.collection(FEEDBACKS_RESULTS_COLLECTION).update({idFeedback:idFeedback, student:student, subject:subject, edition:edition}, {$set: {reviewer:reviewer, arrayCheckResults:arrayCheckResults, preparationEnd:preparationEnd, score:score, result:result, waiting:waiting, confirmed:confirmed, role:role, timeFirstPart:timeFirstPart, timeSecondPart:timeSecondPart, timeThirdPart:timeThirdPart, reviewed:reviewed}},
             function(err, docs){
                 if(err){
                     //console.log("error");

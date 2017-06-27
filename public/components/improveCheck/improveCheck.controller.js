@@ -17,17 +17,41 @@
 		$scope.subject = $scope.params.subject;
 		$scope.edition = $scope.params.edition; 
   
-    //---------  Timer-------------------
-    var d;
-    d = new Date($localStorage.clock);
-    
-    var tick = function() {
-        $scope.clock = d;
-        d.setSeconds(d.getSeconds() + 1);
-    }
-    tick();
-    $interval(tick, 1000);
-    //-----------------------------------
+   
+      //------------Countdown--------------
+        $scope.lessOneMinute = false;
+        $scope.lessTenSeconds = false;
+        var countDownDate = $localStorage.countDownDate;
+        var tick = function() {
+        var now = new Date().getTime();
+            var distance = countDownDate - now;
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if(minutes.toString().length == 1){
+          minutes = '0' + minutes;
+        }
+        if(seconds.toString().length == 1){
+          seconds = '0' + seconds;
+        }
+        $scope.clock = minutes + "m " + seconds + "s ";
+        
+        if (distance < 0) {
+          clearInterval(tick);
+          $scope.clock = "TIME OUT";
+        }
+        if (minutes < 1) {
+          $scope.lessOneMinute = true;
+        }
+        if (minutes < 1 && seconds < 10) {
+          $scope.lessTenSeconds = true;
+        }
+          }
+      tick();
+      $interval(tick, 1000);
+     
+      //-----------------------------------
+
 
     $scope.reviewedFeedbackResult = $localStorage.reviewedFeedbackResult;
     $scope.idFeedback = $localStorage.idFeedback;
@@ -48,6 +72,7 @@
       console.log($scope.comments);
       if($scope.checkImproved=='no'){
         $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].result = 'no';
+        $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].corrected = 'no';
         $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].comments = $scope.comments;
         $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
           .then(function(response) {
@@ -61,8 +86,9 @@
           });
       }else if($scope.checkImproved=='si'){
         $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].result = 'ok';
+        $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].corrected = 'si';
         $localStorage.reviewedFeedbackResult.arrayCheckResults[$scope.idCheckToShow-1].comments = $scope.comments;
-        
+        $localStorage.reviewedFeedbackResult.corrected = 'si';
         $http.put('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $scope.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student, $localStorage.reviewedFeedbackResult)
           .then(function(response) {
             console.log('put perfect');

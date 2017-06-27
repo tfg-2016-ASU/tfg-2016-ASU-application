@@ -103,12 +103,14 @@
           <ul class="right hide-on-med-and-down">
             <li><a href="/#!">Select subject</a></li>
             <li><a href="/#!/home">Home</a></li>
-            <li><a ng-click="bye()" ui-sref="home">Log out</a></li>
+            <li><a ng-if="isAuthenticated" ng-click="bye()" ui-sref="home">Log out</a></li>
+            <li><a ng-if="!isAuthenticated" ng-click="bye()" ui-sref="home">Log in</a></li>
           </ul>
           <ul class="side-nav" id="mobile-demo">
             <li><a href="/#!">Select subject</a></li>
             <li><a ui-sref="/#!/home">Home</a></li>
-            <li><a ng-click="bye()" ui-sref="home">Log out</a></li>
+            <li><a ng-if="isAuthenticated" ng-click="bye()" ui-sref="home">Log out</a></li>
+            <li><a ng-if="!isAuthenticated" ng-click="bye()" ui-sref="home">Log in</a></li>
           </ul>
         </div>
       </nav>
@@ -166,7 +168,7 @@
     <script type="text/javascript" src="components/randomAssignment/randomAssignment.controller.js"></script>
     <script type="text/javascript" src="components/waiting/waiting.controller.js"></script>
    
-    <script type="text/javascript" src="components/checksV2/checksV2.controller.js"></script>
+    <!--<script type="text/javascript" src="components/checksV2/checksV2.controller.js"></script>-->
     <script type="text/javascript" src="components/checks/checks.controller.js"></script> 
     <script type="text/javascript" src="components/resume/resume.controller.js"></script> 
     <script type="text/javascript" src="components/finish/finish.controller.js"></script> 
@@ -191,10 +193,10 @@
     <script type="text/javascript" src="components/crossCheckSelectStudent/crossCheckSelectStudent.controller.js"></script>-->
     <script type="text/javascript" src="components/crosscheck/crosscheck.controller.js"></script>
     <script type="text/javascript" src="components/crosscheckStudent/crosscheckStudent.controller.js"></script>
-    <script type="text/javascript" src="components/newFeedbackInformation/newFeedbackInformation.controller.js"></script>
+    <!--<script type="text/javascript" src="components/newFeedbackInformation/newFeedbackInformation.controller.js"></script>
     <script type="text/javascript" src="components/feedbacksResultsRecords/feedbacksResultsRecords.controller.js"></script>
     <script type="text/javascript" src="components/feedbacksResultsRecordsStudents/feedbacksResultsRecordsStudents.controller.js"></script>
-    <script type="text/javascript" src="components/feedbacksResultsRecordsStudentChosen/feedbacksResultsRecordsStudentChosen.controller.js"></script>
+    <script type="text/javascript" src="components/feedbacksResultsRecordsStudentChosen/feedbacksResultsRecordsStudentChosen.controller.js"></script>-->
     <script type="text/javascript" src="components/bye/bye.controller.js"></script>
     
   

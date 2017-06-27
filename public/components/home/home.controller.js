@@ -11,6 +11,41 @@
 
   function HomeController(authService, $scope, $location, $localStorage, $interval, $state, $http) {
 
+    $scope.selected = {'subject': '', 'edition': ''};
+
+    $http.get('api/v1/feedman/subjects/findDistinctSubjects')
+        .then(function(response) {
+            console.log(response.data);
+            $scope.subjects = response.data;
+        })
+        .catch(function(response) {
+            console.error('error', response.status, response.data);
+        })
+        .finally(function() {
+            //console.log("Feedbacks results showed");
+        });
+
+    $scope.hasChanged = function(){
+        console.log($scope.selected.subject);
+        $http.get('api/v1/feedman/subjects/' + $scope.selected.subject)
+        .then(function(response) {
+            console.log(response.data);
+            $scope.editions = response.data;
+        })
+        .catch(function(response) {
+            console.error('error', response.status, response.data);
+        })
+        .finally(function() {
+            //console.log("Feedbacks results showed");
+        });
+    }    
+
+    $scope.selectSubject = function(selected){
+        console.log(selected);
+        $localStorage.selected = selected;
+    }
+
+
     authService.getProfileDeferred().then(function (profile) {
       vm.profile = profile;
       //console.log(vm.profile.given_name);
@@ -93,7 +128,7 @@
             $scope.clock = minutes + "m " + seconds + "s ";
             if (distance < 0) {
                 clearInterval(tick);
-                $scope.clock = "EXPIRED";
+                $scope.clock = "TIME OUT";
             }
             if (minutes < 1) {
                 $scope.lessOneMinute = true;
@@ -105,8 +140,11 @@
         tick();
         $interval(tick, 1000);
     }
+
     
     
+
+
   }
   
 

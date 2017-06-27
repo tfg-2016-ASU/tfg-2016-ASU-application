@@ -4,15 +4,15 @@
     <head>
         </br>
         <div ng-if="lessOneMinute == false" class="center-align clock">
-            <p style="text-align: center; font-size: 20px;">First part: {{clock}}</p>
+            <p style="text-align: center; font-size: 20px;">{{clock}}</p>
         </div>
 
         <div ng-if="lessOneMinute == true  && lessTenSeconds == false" class="center-align clock">
-            <p style="text-align: center; font-size: 20px; color: red">First part: {{clock}}</p>
+            <p style="text-align: center; font-size: 20px; color: red">{{clock}}</p>
         </div>
 
         <div ng-if="lessTenSeconds == true" class="center-align clock">
-            <p class= 'time' style="text-align: center; font-size: 20px;" >First part: {{clock}}</p>
+            <p class= 'time' style="text-align: center; font-size: 20px;" >{{clock}}</p>
         </div>
       <h5 class="center-align">Feedback {{idFeedback}}: preparation</h5>
       
@@ -73,15 +73,21 @@
 
         <form name="preparationForm">
             <p class="center-align">
+
+
                 <input  type="checkbox" id="preparationReady" name="preparationReady" ng-model="preparationReady" ng-change="changePreparationEnd()" 
-                class="filled-in" ng-true-value="'si'" ng-false-value="'no'" required/>
+                    class="filled-in" ng-true-value="'si'" ng-false-value="'no'" required/></input>
                 <label for="preparationReady"> Ready!</label>
+
+
             </p>        
 
 
             <button ng-disabled="preparationForm.$invalid" ui-sref="selectRole({ subject: subject, edition: edition})" ng-click="modifyPreparationEnd()" class="btn blue ligthen-2">Next
-                <i class="material-icons right">send</i>
+               
             </button>
+
+            
         </form>
 
         

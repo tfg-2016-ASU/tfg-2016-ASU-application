@@ -15,6 +15,7 @@
     $scope.params = $stateParams; 
     console.log($scope.params);
     $scope.subject = $scope.params.subject;
+    $scope.shift = $scope.params.shift;
 
   
 

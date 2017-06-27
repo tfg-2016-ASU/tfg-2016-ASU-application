@@ -3,18 +3,18 @@
         <div class="container">
             </br>
             <div ng-if="lessOneMinute == false" class="center-align clock">
-                <p style="text-align: center; font-size: 20px;">Third part: {{clock}}</p>
+                <p style="text-align: center; font-size: 20px;">{{clock}}</p>
             </div>
 
             <div ng-if="lessOneMinute == true  && lessTenSeconds == false" class="center-align clock">
-                <p style="text-align: center; font-size: 20px; color: red">Third part: {{clock}}</p>
+                <p style="text-align: center; font-size: 20px; color: red">{{clock}}</p>
             </div>
 
             <div ng-if="lessTenSeconds == true" class="center-align clock">
-                <p class= 'time' style="text-align: center; font-size: 20px;" >Third part: {{clock}}</p>
+                <p class= 'time' style="text-align: center; font-size: 20px;" >{{clock}}</p>
             </div>
             
-            <h3 class="center-align">Feedback {{idFeedback}}</h3>
+            <h5 class="center-align">Feedback {{idFeedback}}</h5>
             <!--Import materialize.css-->
             <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -34,7 +34,7 @@
                 <p>Reviewed: <span>{{finalStudent}}</span></p>
                 <p>Correct checks: <span>{{wellChecks}} / {{totalChecks}}</span></p>
                 <p>Result: <span>{{finalResult}}</span></p>
-                <p>Punctuation: <span>{{finalScore}}</span></p>   
+                <p>Score: <span>{{finalScore}}</span></p>   
             </div>  
             <div ng-if="finalResult == 'NEGATIVE'" style="border-radius: 8px;border:solid; border-color:lightcoral; width: 330px; margin-left: auto; margin-right: auto">
                 <p style="color: lightcoral">FEEDBACK RESULT: <p>
@@ -42,13 +42,13 @@
                 <p>Reviewed: <span>{{finalStudent}}</span></p>
                 <p>Correct checks: <span>{{wellChecks}} / {{totalChecks}}</span></p>
                 <p>Result: <span>{{finalResult}}</span></p>
-                <p>Punctuation: <span>{{finalScore}}</span></p>   
+                <p>Score: <span>{{finalScore}}</span></p>   
             </div> 
         </div>
         </br>
         <div class="center-align">
-            <button ui-sref="resume({ subject: subject, edition: edition})" class="btn blue lighten-2">Resume</button>
-            <button ui-sref="waitingConfirmation({ subject: subject, edition: edition})" ng-click="finishFeedback()" class="btn blue lighten-2">I am agree</button>
+            <button ui-sref="resume({ subject: subject, edition: edition})" class="btn blue lighten-2">Summary</button>
+            <button ui-sref="waitingConfirmation({ subject: subject, edition: edition})" ng-click="finishFeedback()" class="btn blue lighten-2">I agree</button>
         </div>
        
 

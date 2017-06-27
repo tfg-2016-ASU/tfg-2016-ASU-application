@@ -7,26 +7,33 @@
     <body>
         <div class="container center-align">
             <h5>Feedback {{idFeedback}}</h5>
-
-            <div class="text-center">
-                <button ng-click="refresh()" class="btn blue lighten-2">
-                    <i class="material-icons">refresh</i>
-                </button>
+            <div style="display: inline-flex">
+                <div class="text-center">
+                    <button style="float: left; margin-right: 5px" ng-click="refresh()" class="btn blue lighten-2">
+                        <i class="material-icons">refresh</i>
+                    </button>
+                </div>
+                <div style="float: right; margin-left: 5px" class="center-align">
+                    <button ng-click="assignStudents()" class="start btn blue lighten-2 ">Matchmaking</button>
+                </div>
             </div>
             </br>
-            <h6>Reviewers:</h6>
-            <div class="text-center" ng-repeat="f in feedbacks">
+            </br>
+            <!--<div class="text-center" ng-repeat="f in feedbacks">
                 <ul>
                     <li ng-if="f.role == 'reviewer'" style="display: inline-flex">
-                         <div ui-sref="crosscheckStudent({ subject: f.subject, edition: f.edition, idFeedback: f.idFeedback, student: f.student})" style="float: left" ng-click="" class="feedback">
+                        <div ui-sref="crosscheckStudent({ subject: f.subject, edition: f.edition, idFeedback: f.idFeedback, student: f.student})" style="float: left" ng-click="" class="feedback">
                             <a>{{f.student}}  -</a>
                         </div>
                         <div style="float: right">  - Checks reviewed:{{f.arrayCheckResults.length}}/{{totalChecks}}</div>
+                        <p class="partner">hhh</p>
                     </li>
                 </ul>
-            </div>
+            </div>-->
+
+
             </br>
-            <h6>Revieweds:</h6>
+            <!--<h6>Reviewed:</h6>
             <div class="text-center" ng-repeat="f in feedbacks">
                 <ul>
                     <li ng-if="f.role == 'reviewed'" style="display: inline-flex">
@@ -36,7 +43,38 @@
                         <div style="float: right">  - Checks reviewed:{{f.arrayCheckResults.length}}/{{totalChecks}}</div>
                     </li>
                 </ul>
-            </div>
+            </div>-->
+            <table class="table">
+                <thead>
+                    <td style="width: 325px; font-weight: bold;" class="center-align">Reviewers</td>
+                    <td style="width: 339px" class="center-align">Checks reviewed</td>
+                    <td style="width: 250px" class="center-align">is reviewing to</td>
+                </thead>
+                <tbody class="center-align">
+                    <tr ng-repeat= "f in feedbacks">
+                        <td ng-if="f.role == 'reviewer'" class="center-align"><a ui-sref="crosscheckStudent({ subject: f.subject, edition: f.edition, idFeedback: f.idFeedback, student: f.student})">{{f.student}}</a></td>
+                        <td ng-if="f.role == 'reviewer'" class="center-align">{{f.arrayCheckResults.length}}/{{totalChecks}}</td>
+                        <td ng-if="f.role == 'reviewer'" class="center-align">{{f.reviewed}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="table">
+                <thead>
+                    <td style="width: 325px; font-weight: bold;" class="center-align">Reviewed</td>
+                         <td style="width: 339px" class="center-align">Checks reviewed</td>
+                    <td style="width: 250px" class="center-align">reviewed by</td>
+                </thead>
+                <tbody class="center-align">
+                    <tr ng-repeat= "f in feedbacks">
+                        <td ng-if="f.role == 'reviewed'" class="center-align">{{f.student}}</td>
+                        <td ng-if="f.role == 'reviewed'" class="center-align">{{f.arrayCheckResults.length}}/{{totalChecks}}</td> 
+                        <td ng-if="f.role == 'reviewed'" class="center-align">{{f.reviewer}}</td> 
+                    </tr>
+                </tbody>
+            </table>
+
+
             </br>
             <div>
                 <label>CROSSCHECK FILTER: </label>

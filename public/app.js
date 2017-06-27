@@ -241,10 +241,11 @@
         controllerAs: 'vm'
       })
       .state('feedbacks', {
-        url: '/feedbacks/:subject/',
+        url: '/feedbacks/:shift/:subject',
         controller: 'FeedbacksController', function($scope, $stateParams) {
             // get the id
             $scope.subject = $stateParams.subject; 
+            $scope.shift = $stateParams.shift; 
         },
         templateUrl: 'components/feedbacks/feedbacks.html',
         controllerAs: 'vm'
@@ -256,6 +257,7 @@
             $scope.subject = $stateParams.subject; 
             $scope.edition = $stateParams.edition; 
             $scope.idFeedback = $stateParams.idFeedback; 
+            
         },
         templateUrl: 'components/feedbacksInformation/feedbacksInformation.html',
         controllerAs: 'vm'
@@ -271,11 +273,12 @@
         controllerAs: 'vm'
       })
       .state('crosscheck', {
-        url: '/feedbacks/:subject/:edition/crosscheck/:idFeedback',
+        url: '/feedbacks/:shift/:subject/:edition/crosscheck/:idFeedback',
         controller: 'CrosscheckController', function($scope, $stateParams) {
             $scope.subject = $stateParams.subject; 
             $scope.edition = $stateParams.edition; 
             $scope.idFeedback = $stateParams.idFeedback; 
+            $scope.shift = $stateParams.shift; 
         },
         templateUrl: 'components/crosscheck/crosscheck.html',
         controllerAs: 'vm'
@@ -407,7 +410,7 @@
 
         _idTokenVerification: false,
         languageDictionary: {
-          title: "Feedbacks SOS 16-17"
+          title: "Feedman"
         },
         theme: {
           logo: '/images/logous.png',

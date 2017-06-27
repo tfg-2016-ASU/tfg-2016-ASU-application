@@ -71,7 +71,7 @@
             $scope.clock = minutes + "m " + seconds + "s ";
             if (distance < 0) {
                 clearInterval(tick);
-                $scope.clock = "EXPIRED";
+                $scope.clock = "TIME OUT";
             }
             if (minutes < 1) {
                 $scope.lessOneMinute = true;

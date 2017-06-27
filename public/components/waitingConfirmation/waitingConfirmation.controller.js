@@ -17,17 +17,7 @@
 		$scope.subject = $scope.params.subject;
 		$scope.edition = $scope.params.edition;  
 
-    //---------  Timer-------------------
-    var d;
-    d = new Date($localStorage.clock);
-    
-    var tick = function() {
-        $scope.clock = d;
-        d.setSeconds(d.getSeconds() + 1);
-    }
-    tick();
-    $interval(tick, 1000);
-    //-----------------------------------    
+    $scope.idFeedback = $localStorage.idFeedback; 
     
     $scope.refreshConfirmed = function(){
       $http.get('/api/v1/feedman/subjects/' + $scope.subject + '/' + $scope.edition + '/feedbacksResults/' + $localStorage.idFeedback + '/' + $localStorage.reviewedFeedbackResult.student)

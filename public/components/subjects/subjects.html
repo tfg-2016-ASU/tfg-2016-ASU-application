@@ -52,10 +52,12 @@
 
                 <div style="display: inline-flex; padding-top: 10px; ; padding-bottom: 10px" class="dates">               
                     <div style="float: left;  padding-right: 20px" class="center-align">
-                        <button ng-click="startEdition(e)" class="start btn blue lighten-2 ">Start
+                        <button ng-if="e.init==''" ng-click="startEdition(e)" class="start btn blue lighten-2 ">Start</button>
+                        <button ng-if="e.init!=''" ng-click="startEdition(e)" class="start btn blue lighten-4 ">Start</button>
                     </div>
                     <div style="float: right;  padding-left: 20px" class="center-align">
-                        <button ng-disabled="e.init == ''" ng-click="finishEdition(e)" class="end btn blue lighten-2 ">Finish
+                        <button ng-if="e.end==''" ng-disabled="e.init == ''" ng-click="finishEdition(e)" class="end btn blue lighten-2 ">Finish</button>
+                        <button ng-if="e.end!=''" ng-disabled="e.init == ''" ng-click="finishEdition(e)" class="end btn blue lighten-4 ">Finish</button>
                     </div>
                 </div>
                 </br>
@@ -66,7 +68,7 @@
                             Init: <input style="width: 80px; font-size: 1.5rem" ng-model="e.init"></input>
                         </div>
                         <div style="float: right" ng-click="editInit(e.init, e)" class="icon">
-                            <a class="secondary-content"><i style="color: black; font-size: 2rem" class="material-icons">edit</i></a>
+                            <a class="secondary-content"><i style="color: black; font-size: 2rem" class="material-icons">add_circle</i></a>
                         </div>
                     </div>
                     </br>
@@ -76,7 +78,7 @@
                             End: <input style="width: 80px; font-size: 1.5rem" ng-model="e.end"></input>
                         </div>
                         <div style="float: right" ng-click="editEnd(e.end, e)" class="icon">
-                            <a class="secondary-content"><i style="color: black; font-size: 2rem" class="material-icons">edit</i></a>
+                            <a class="secondary-content"><i style="color: black; font-size: 2rem" class="material-icons">add_circle</i></a>
                         </div>
                     </div>
                 </div>

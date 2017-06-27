@@ -27,11 +27,17 @@
           var distance = countDownDate - now;
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
           var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      if(minutes.toString().length == 1){
+        minutes = '0' + minutes;
+      }
+      if(seconds.toString().length == 1){
+        seconds = '0' + seconds;
+      }    
       $scope.clock = minutes + "m " + seconds + "s ";
         console.log($scope.clock);
         if (distance < 0) {
           clearInterval(tick);
-          $scope.clock = "EXPIRED";
+          $scope.clock = "TIME OUT";
         }
         if (minutes < 1) {
           $scope.lessOneMinute = true;
@@ -177,6 +183,7 @@
             
             $localStorage.reviewedFeedbackResult.arrayCheckResults.splice($stateParams.param1-1, 0, {"idCheck": $stateParams.param1,
                             "result": result,
+                            "corrected": "no",
                             "comments": "no"
                           });
             console.log($localStorage.reviewedFeedbackResult.arrayCheckResults);
@@ -321,6 +328,7 @@
 
               arrayRes.push({"idCheck": aux,
                               "result": result,
+                              "corrected": "no",
                               "comments": "no"
                             });
 

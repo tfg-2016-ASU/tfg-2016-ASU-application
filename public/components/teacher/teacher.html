@@ -37,22 +37,32 @@
           }*/
       </style>    
    </head>
-   <body>
-      <ul class="collection lista" ng-repeat="s in subjects">
-        <li class="collection-item">
-           <div class="list">
-            <div class="subject">
-              {{s.subject}}
-            </div>
-            <div style="padding-bottom: 10px; padding-left: 15px" ng-click="" class="icon">
-              <button ui-sref="feedbacks({ subject: s.subject})" style="color: #be9d56" class="secondary-content">Feedbacks</button>
-            </div>
-            <div style="padding-bottom: 10px" ng-click="" class="icon">
-              <button ui-sref="subjects({ subject: s.subject})" style="color: #be9d56" class="secondary-content">Admin</button>
-            </div>
-        </li>
-      </ul>
+  <body>
+  <form name="teacherForm">
+    <div class="input-field col s6">
+      <md-select ng-model="shiftTeacher" placeholder="Shift" required>
+        <md-option value="morning">morning</md-option>
+        <md-option value="afternoon">afternoon</md-option>
+      </md-select>
+    </div>
 
-   </body>
+    <ul class="collection lista" ng-repeat="s in subjects">
+      <li class="collection-item">
+        <div class="list">
+          <div class="subject">
+            {{s.subject}}
+          </div>
+          <div style="padding-bottom: 10px; padding-left: 15px" ng-click="" class="icon">
+            <button ui-sref="feedbacks({ subject: s.subject, shift: shiftTeacher})" style="color: #be9d56" class="secondary-content">Feedbacks</button>
+          </div>
+          <div style="padding-bottom: 10px" ng-click="" class="icon">
+            <button ui-sref="subjects({ subject: s.subject, shift: shiftTeacher})" style="color: #be9d56" class="secondary-content">Admin</button>
+          </div>
+      </li>
+    </ul>
+
+  </form>
+
+  </body>
   </div>
 </html>

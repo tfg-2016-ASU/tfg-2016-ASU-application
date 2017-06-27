@@ -26,13 +26,19 @@
     var countDownDate = $localStorage.countDownDate;
     var tick = function() {
       var now = new Date().getTime();
-          var distance = countDownDate - now;
+      var distance = countDownDate - now;
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      if(minutes.toString().length == 1){
+        minutes = '0' + minutes;
+      }
+      if(seconds.toString().length == 1){
+        seconds = '0' + seconds;
+      }
       $scope.clock = minutes + "m " + seconds + "s ";
       if (distance < 0) {
         clearInterval(tick);
-        $scope.clock = "EXPIRED";
+        $scope.clock = "TIME OUT";
       }
       if (minutes < 1) {
         $scope.lessOneMinute = true;
@@ -56,6 +62,7 @@
     for(i=0; i<$scope.checksTitle.length; i++){
       if($scope.checks[i] != undefined){
         $scope.checksTitle[i]["result"] = $scope.checks[i].result;
+        $scope.checksTitle[i]["corrected"] = $scope.checks[i].corrected;
       }else{
         $scope.checksTitle[i]["result"] = '-'
       }

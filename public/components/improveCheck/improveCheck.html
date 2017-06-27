@@ -1,31 +1,40 @@
 <html>
     <div class="container">
-        <head>
-            <h3 class="center-align">Feedback {{idFeedback}}</h3>
-            <div class="center-align" ng-app="app">
-                <p>{{ clock | date:'HH:mm:ss'}}</p>
+        <head>  
+            </br>         
+            <div ng-if="lessOneMinute == false" class="center-align clock">
+                <p style="text-align: center; font-size: 20px;">{{clock}}</p>
+            </div>
+
+            <div ng-if="lessOneMinute == true  && lessTenSeconds == false" class="center-align clock">
+                <p style="text-align: center; font-size: 20px; color: red">{{clock}}</p>
+            </div>
+
+            <div ng-if="lessTenSeconds == true" class="center-align clock">
+                <p class= 'time' style="text-align: center; font-size: 20px;" >{{clock}}</p>
             </div>
             
             <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
         </head>
         <body>
             <div class="center-align">
-                <h5 class="red-text text-red-ligthen-2">La tarea {{idCheckToShow}} no está realizada correctamente</h5>
+                <h5 class="center-align">Feedback {{idFeedback}}</h5>
+                <h5 class="red-text text-red-ligthen-2">Check {{idCheckToShow}} is not done correctly</h5>
             </div>
                 
             
             <div class="center-align">
-                <h5>¿La ha corregido? </h5>
+                <h5>Corrected it? </h5>
             
 
                 <div>
                     <input type="checkbox" id="checkImproved" ng-model="checkImproved" ng-change="changeCheckImproved()" 
                     class="filled-in" ng-true-value="'si'" ng-false-value="'no'"/>
-                    <label for="checkImproved"> ¡Sí!</label>
+                    <label for="checkImproved"> Yes!</label>
                 </div>
 
                 <div>
-                    <textarea ng-model="comments" placeholder="Comentarios" id="comments" class="materialize-textarea" class="validate" ng-required="true" required></textarea>
+                    <textarea ng-model="comments" placeholder="Comments" id="comments" class="materialize-textarea" class="validate" ng-required="true" required></textarea>
                 </div>
                     
                 </br>
